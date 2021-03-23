@@ -15,7 +15,7 @@ public class ArtistController {
     @Autowired
     private ArtistService artistService;
 
-//    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/artists")
     public ResponseEntity<Object> getArtists() {
         List<Artist> artists = artistService.getAllArtists();
