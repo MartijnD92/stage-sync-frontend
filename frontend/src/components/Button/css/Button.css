@@ -1,0 +1,19 @@
+.btn {
+  border: 0;
+  border-radius: 500px;
+  padding: 1rem 2.5rem;
+  text-transform: capitalize;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn--primary {
+  color: #f1f1f1;
+  background: #0a2540;
+}
+.btn--secondary {
+  color: #f04b1a;
+  border: 3px solid #f04b1a;
+  background: transparent;
+}/*# sourceMappingURL=Button.css.map */

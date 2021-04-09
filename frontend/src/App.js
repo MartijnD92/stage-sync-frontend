@@ -1,34 +1,25 @@
-import './App.css';
-import axios from 'axios';
-import NavBar from './components/NavBar';
-import SideMenu from './components/SideMenu';
-import SearchBar from './components/SearchBar';
-// import ResultsList from './components/ResultsList';
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import NavBar from 'components/NavBar/NavBar';
+import Home from 'pages/Home/Home';
+import Search from 'pages/Search/Search';
+import './css/App.css';
 
 function App() {
-
-  async function getArtists() {
-    try {
-      const response = await axios.get('http://localhost:8080/artists');
-      return response.data[0];
-
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
 	return (
-		<div className="container">
+		<>
 			<header>
 				<NavBar />
 			</header>
-			<aside>
-				<SideMenu />
-			</aside>
-			<main>
-				<SearchBar />
-			</main>
-		</div>
+			<Switch>
+				<Route exact path="/">
+					<Home />
+				</Route>
+				<Route path="/search">
+					<Search />
+				</Route>
+			</Switch>
+		</>
 	);
 }
 
