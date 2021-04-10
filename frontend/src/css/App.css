@@ -24,31 +24,6 @@ header a {
   text-decoration: none;
   color: #f0f0f0;
 }
-header .logo__text {
-  font-size: 3.75rem;
-  font-weight: 700;
-  padding-left: 1rem;
-}
-
-.container {
-  height: 100vh;
-  display: grid;
-  grid-template-areas: "aside main";
-  grid-template-rows: 3.5em 1fr;
-  grid-template-columns: 200px 1fr;
-}
-
-aside {
-  grid-area: aside;
-}
-
-main {
-  grid-area: main;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-}
 
 .search-bar {
   height: 2em;
@@ -72,4 +47,4 @@ main {
   padding: 0 1em;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-}/*# sourceMappingURL=App.css.map */
+}

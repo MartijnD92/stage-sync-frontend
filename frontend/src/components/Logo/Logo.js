@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as LogoIcon } from 'assets/logo.svg';
+import './css/Logo.scss';
 
 export default function Logo({ extended }) {
 	return (

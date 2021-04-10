@@ -1,7 +1,9 @@
+@import '../../../css/config';
+
 .btn {
 	border: 0;
 	border-radius: 500px;
-	padding: .8rem 2.5rem;
+	padding: 0.75rem 2rem;
 	text-transform: capitalize;
 	font-size: inherit;
 	font-family: inherit;
@@ -9,13 +11,25 @@
 	cursor: pointer;
 
 	&--primary {
-		color: #f1f1f1;
-		background: #0a2540;
-		border: 3px solid #0a2540;
+		color: $color-btn--primary;
+		background: $bg-btn--primary;
+		border: 3px solid $bg-btn--primary;
+		transition: background 100ms ease, border-color 100ms ease;
+		
+		&:hover {
+			background: $bg-btn--primary-alt;
+			border-color: $bg-btn--primary-alt;
+		}
 	}
 	&--secondary {
-		color: #f04b1a;
-		border: 3px solid #f04b1a;
+		color: $color-btn--secondary;
+		border: 3px solid $bg-btn--secondary;
 		background: transparent;
+		transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+
+		&:hover {
+			color: $color-btn--secondary-alt;
+			background: $bg-btn--secondary;
+		}
 	}
 }
