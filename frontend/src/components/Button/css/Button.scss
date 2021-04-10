@@ -1,7 +1,7 @@
 .btn {
 	border: 0;
 	border-radius: 500px;
-	padding: 1rem 2.5rem;
+	padding: .8rem 2.5rem;
 	text-transform: capitalize;
 	font-size: inherit;
 	font-family: inherit;
@@ -11,6 +11,7 @@
 	&--primary {
 		color: #f1f1f1;
 		background: #0a2540;
+		border: 3px solid #0a2540;
 	}
 	&--secondary {
 		color: #f04b1a;
