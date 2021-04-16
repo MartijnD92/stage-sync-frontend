@@ -4,8 +4,8 @@ import './css/Button.css';
 
 export default function Button({ type, link, children }) {
 	return (
-		<Link to={link}>
-			<button className={`btn btn--${type}`}>{children}</button>
+		<Link className={`btn btn--${type}`} to={link}>
+			{children}
 		</Link>
 	);
 }

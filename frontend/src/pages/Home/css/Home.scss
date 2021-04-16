@@ -1,4 +1,4 @@
-@import '../../../css/config';
+@use '../../../css/config' as *;
 
 main {
 	margin: 0 13rem;
@@ -8,16 +8,24 @@ main {
 	display: grid;
 	grid-template-columns: 445px 1fr;
 	color: $color-body--secondary;
-	&--left {
-		width: 445px;
+
+	&--left,
+	&--right {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+	}
+
+	&--left {
+		width: 445px;
 		align-items: flex-start;
 	}
 	&--right {
-		width: 500px;
-		height: 500px;
+		align-items: flex-end;
+
+		.spotlight {
+			width: 603px;
+		}
 	}
 
 	&__title {
@@ -38,11 +46,5 @@ main {
 			background: $bg-btn--secondary-alt;
 			border-color: $bg-btn--secondary-alt;
 		}
-	}
-
-	.spotlight {
-		width: 500px;
-		height: 500px;
-		transform: translateX(30%);
 	}
 }

@@ -1,15 +1,21 @@
 .navbar {
-  --margin-top: 3.5rem;
-  height: 3.5em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-top: 3.5rem;
+  height: 3.5rem;
+  display: grid;
+  grid-template-columns: 560px 1fr;
   z-index: 10;
 }
 .navbar--primary {
-  margin: 3.5rem 13rem;
+  margin: 3.5rem 13rem 6.375rem;
 }
-.navbar--primary .navbar__btn-container {
+.navbar--primary .navbar__left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar--primary .navbar__right {
+  display: flex;
+  justify-content: flex-end;
   margin-left: 5rem;
 }
 .navbar--secondary {
@@ -21,10 +27,13 @@
 .navbar__link {
   position: relative;
   margin: 0 1em;
+  position: relative;
 }
-.navbar__link .active::after {
+.navbar__link.active::after {
   content: "";
   position: absolute;
+  bottom: -2px;
+  left: 0;
   display: block;
   width: 100%;
   border-radius: 10px;

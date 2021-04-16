@@ -6,7 +6,7 @@ import './css/Home.scss';
 export default function Home() {
 	return (
 		<main>
-			<div className="teaser">
+			<section className="teaser">
 				<div className="teaser--left">
 					<h1 className="teaser__title">StageSync knows about your gigs</h1>
 					<p className="teaser__subtitle">
@@ -20,7 +20,10 @@ export default function Home() {
 				<div className="teaser--right">
 					<Spotlight className="spotlight" />
 				</div>
-			</div>
+			</section>
+			<section className="about">
+				
+			</section>
 		</main>
 	);
 }

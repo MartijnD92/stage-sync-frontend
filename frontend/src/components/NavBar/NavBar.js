@@ -1,5 +1,6 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
+import { NavHashLink } from 'react-router-hash-link';
 import Logo from 'components/Logo/Logo';
 import Button from 'components/Button/Button.js';
 import SearchBar from 'components/SearchBar/SearchBar.js';
@@ -26,16 +27,18 @@ export default function NavBar() {
 				</nav>
 			) : (
 				<nav className="navbar navbar--primary">
-					<Logo extended={true} />
-					<div className="navbar-links">
-						<Link className="navbar__link" to="/#about">
-							About
-						</Link>
-						<Link className="navbar__link" to="/#contact">
-							Contact
-						</Link>
+					<div className="navbar__left">
+						<Logo extended={true} />
+						<div className="navbar-links">
+							<NavHashLink className="navbar__link" smooth to="/#about" activeClassName="active">
+								About
+							</NavHashLink>
+							<NavHashLink className="navbar__link" smooth to="/#contact" activeClassName="active">
+								Contact
+							</NavHashLink>
+						</div>
 					</div>
-					<div className="navbar__btn-container">
+					<div className="navbar__right">
 						{!location.includes('/login') && (
 							<Button type={'secondary'} link={'/login'}>
 								{isAuthorized ? 'Log in' : 'Log out'}

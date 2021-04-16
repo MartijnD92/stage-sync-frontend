@@ -4,7 +4,7 @@ import SideMenu from 'components/SideMenu/SideMenu';
 import SearchBar from 'components/SearchBar/SearchBar';
 import ResultsList from 'components/ResultsList/ResultsList';
 
-function App() {
+export default function Dashboard() {
 	// async function getArtists() {
 	//   try {
 	//     const response = await axios.get('http://localhost:8080/artists');
@@ -28,5 +28,3 @@ function App() {
 		</div>
 	);
 }
-
-export default App;

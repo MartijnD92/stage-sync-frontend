@@ -7,16 +7,20 @@ main {
   grid-template-columns: 445px 1fr;
   color: #F0F0F0;
 }
-.teaser--left {
-  width: 445px;
+.teaser--left, .teaser--right {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.teaser--left {
+  width: 445px;
   align-items: flex-start;
 }
 .teaser--right {
-  width: 500px;
-  height: 500px;
+  align-items: flex-end;
+}
+.teaser--right .spotlight {
+  width: 603px;
 }
 .teaser__title {
   font-size: 2.5rem;
@@ -34,9 +38,4 @@ main {
 .teaser .btn:hover {
   background: #FF6200;
   border-color: #FF6200;
-}
-.teaser .spotlight {
-  width: 500px;
-  height: 500px;
-  transform: translateX(30%);
 }

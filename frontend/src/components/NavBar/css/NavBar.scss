@@ -1,22 +1,32 @@
 @import '../../../css/config';
 
+$navbar-height: 3.5rem;
+$navbar-margin-top: 3.5rem;
+
 .navbar {
-	--margin-top: 3.5rem;
-	height: 3.5em;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	margin-top: $navbar-margin-top;
+	height: $navbar-height;
+	display: grid;
+	grid-template-columns: 560px 1fr;
 	z-index: 10;
 
 	&--primary {
-		margin: 3.5rem 13rem;
+		margin: $navbar-margin-top 13rem 6.375rem;
 
-		.navbar__btn-container {
+		.navbar__left {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.navbar__right {
+			display: flex;
+			justify-content: flex-end;
 			margin-left: 5rem;
 		}
 	}
 	&--secondary {
-		margin: 3.5rem 4rem 0 5.1875rem;
+		margin: $navbar-margin-top 4rem 0 5.1875rem;
 	}
 
 	.btn {
@@ -26,11 +36,14 @@
 	&__link {
 		position: relative;
 		margin: 0 1em;
+		position: relative;
 
-		.active {
-				&::after {
+		&.active {
+			&::after {
 				content: '';
 				position: absolute;
+				bottom: -2px;
+				left: 0;
 				display: block;
 				width: 100%;
 				border-radius: 10px;
