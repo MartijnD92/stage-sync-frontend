@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'components/Button/Button';
 import { ReactComponent as Spotlight } from 'assets/spotlight.svg';
+import dashboard from 'assets/mockup-dashboard.png';
 import './css/Home.scss';
 
 export default function Home() {
@@ -21,9 +22,35 @@ export default function Home() {
 					<Spotlight className="spotlight" />
 				</div>
 			</section>
-			<section className="about">
-				
-			</section>
+			<div className="about__wrapper">
+				<section className="about" id="about">
+					<div className="about__left">
+						<div className="about__img-container">
+							<div className="about__border">
+								<img
+									className="about__img"
+									src={dashboard}
+									alt="dashboard preview"
+								/>
+							</div>
+						</div>
+					</div>
+					<div className="about__right">
+						<div className="about__text-container">
+							<h2 className="about__title">About StageSync</h2>
+							<p className="about__text">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit.
+								Perferendis praesentium, quibusdam laudantium officiis
+								architecto aliquid iure natus beatae earum unde nostrum quia
+								accusamus cum voluptates dolor sint inventore ab alias eveniet
+								fuga exercitationem. Repellat debitis possimus similique
+								inventore consectetur, omnis quisquam, autem ducimus hic
+								mollitia earum odio, esse ea quae.
+							</p>
+						</div>
+					</div>
+				</section>
+			</div>
 		</main>
 	);
 }

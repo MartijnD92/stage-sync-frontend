@@ -1,16 +1,17 @@
 @use '../../../css/config' as *;
 
-main {
-	margin: 0 13rem;
-}
-
 .teaser {
+	padding: 0 13rem;
+	height: calc(100vh - 214px);
+	margin-top: 214px;
 	display: grid;
 	grid-template-columns: 445px 1fr;
 	color: $color-body--secondary;
+	background: $bg--primary;
 
 	&--left,
 	&--right {
+		padding-bottom: 18rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -45,6 +46,83 @@ main {
 		&:hover {
 			background: $bg-btn--secondary-alt;
 			border-color: $bg-btn--secondary-alt;
+		}
+	}
+}
+
+.about__wrapper {
+	height: 700px;
+	width: 100vw;
+	position: absolute;
+	top: 100vh;
+	width: 100%;
+	background: $bg--alt;
+}
+
+.about {
+	height: 100%;
+	padding: 0 13rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
+	&__left,
+	&__right {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__img-container {
+		height: 320px;
+	}
+
+	&__text-container {
+		height: 320px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-direction: column;
+		text-align: left;
+	}
+	&__title {
+		display: inline-block;
+		text-align: left;
+		position: relative;
+		z-index: 1;
+
+		&::before {
+			content: '';
+			display: block;
+			position: absolute;
+			bottom: 3px;
+			left: 0;
+			width: 63%;
+			height: 13px;
+			background: rgba($bg-btn--secondary, 0.6);
+			z-index: -1;
+		}
+	}
+
+	&__img {
+		width: 564px;
+		transform: translate(-10px, 2px);
+	}
+
+	&__border {
+		width: 90%;
+		border: 10px solid rgba($bg-btn--secondary, 0.6);
+		border-left: 0;
+		position: relative;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 10px;
+			height: 100%;
+			background: rgba($bg-btn--secondary, 0.6);
+			z-index: 10;
 		}
 	}
 }

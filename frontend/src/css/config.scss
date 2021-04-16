@@ -1,14 +1,17 @@
 // Main Styles
 
 $color-body--primary: #0A2540;
+$bg-btn--primary: $color-body--primary;
 $color-body--secondary: #F0F0F0;
-$bg-btn--primary: #0A2540;
-$color-btn--primary: #F0F0F0;
+$color-btn--primary: $color-body--secondary;
+$color-btn--secondary-alt: $color-body--secondary;
 $bg-btn--primary-alt: #16497C;
 $bg-btn--secondary: #f04b1a;
-$color-btn--secondary: #f04b1a;
+$color-btn--secondary: $bg-btn--secondary;
 $bg-btn--secondary-alt: #FF6200;
-$color-btn--secondary-alt: #F0F0F0;
 
+$bg--primary: linear-gradient(45deg, #4f5b92 15%, #c75a67, #ffd6d6) fixed;
+$bg--secondary: $color-body--secondary;
+$bg--alt: #FAFAFA;
 
 $font-body--primary: 18px;

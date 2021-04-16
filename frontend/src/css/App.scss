@@ -14,14 +14,18 @@ html {
 }
 
 body {
-	width: 100%;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: $font-body--primary;
 	color: $color-body--primary;
-	background: linear-gradient(45deg, #4f5b92 15%, #c75a67, #ffd6d6) fixed;
 }
 
 header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: $bg--primary;
+	z-index: 100;
 	a {
 		text-decoration: none;
 		color: #f0f0f0;

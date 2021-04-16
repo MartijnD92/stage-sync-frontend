@@ -7,6 +7,7 @@
 }
 .navbar--primary {
   margin: 3.5rem 13rem 6.375rem;
+  background: linear-gradient(45deg, #4f5b92 15%, #c75a67, #ffd6d6) fixed;
 }
 .navbar--primary .navbar__left {
   display: flex;

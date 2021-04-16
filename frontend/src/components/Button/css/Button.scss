@@ -53,6 +53,7 @@
 		border: 3px solid $bg-btn--secondary;
 		background: transparent;
 		transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+		z-index: 2;
 
 		&::before {
 			content: '';

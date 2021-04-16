@@ -12,6 +12,7 @@ $navbar-margin-top: 3.5rem;
 
 	&--primary {
 		margin: $navbar-margin-top 13rem 6.375rem;
+		background: $bg--primary;
 
 		.navbar__left {
 			display: flex;
