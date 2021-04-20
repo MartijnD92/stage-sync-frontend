@@ -40,13 +40,9 @@ export default function Home() {
 						<div className="about__text-container">
 							<h2 className="about__title">About StageSync</h2>
 							<p className="about__text">
-								Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Perferendis praesentium, quibusdam laudantium officiis
-								architecto aliquid iure natus beatae earum unde nostrum quia
-								accusamus cum voluptates dolor sint inventore ab alias eveniet
-								fuga exercitationem. Repellat debitis possimus similique
-								inventore consectetur, omnis quisquam, autem ducimus hic
-								mollitia earum odio, esse ea quae.
+								StageSync's intuitive and intelligent design allows artists and
+								booking agents alike to easily and comfortably get insightful
+								details about upcoming shows.
 							</p>
 						</div>
 					</div>

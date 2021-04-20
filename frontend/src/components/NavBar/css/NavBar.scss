@@ -1,14 +1,15 @@
 @import '../../../css/config';
 
 $navbar-height: 3.5rem;
-$navbar-margin-top: 3.5rem;
+$navbar-margin-top: 2rem;
 
 header {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
-	background: $bg--primary;
+	padding: $navbar-margin-top 13rem;
+	background: transparent;
 	z-index: 100;
 	a {
 		text-decoration: none;
@@ -16,17 +17,13 @@ header {
 	}
 }
 
-
 .navbar {
-	margin-top: $navbar-margin-top;
 	height: $navbar-height;
 	display: grid;
 	grid-template-columns: 560px 1fr;
 	z-index: 10;
 
 	&--primary {
-		margin: $navbar-margin-top 13rem 6.375rem;
-		background: $bg--primary;
 
 		.navbar__left {
 			display: flex;

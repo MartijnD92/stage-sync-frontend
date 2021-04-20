@@ -1,14 +1,14 @@
 .teaser {
   padding: 0 13rem;
-  height: calc(100vh - 214px);
-  margin-top: 214px;
+  height: 100vh;
+  width: 100%;
   display: grid;
   grid-template-columns: 445px 1fr;
+  align-items: center;
   color: #F0F0F0;
   background: linear-gradient(45deg, #4f5b92 15%, #c75a67, #ffd6d6) fixed;
 }
 .teaser--left, .teaser--right {
-  padding-bottom: 18rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -91,6 +91,7 @@
   display: inline-block;
   text-align: left;
   position: relative;
+  margin-bottom: 0.3em;
   z-index: 1;
 }
 .about__title::before {
@@ -106,7 +107,7 @@
 }
 .about__img {
   width: 564px;
-  transform: translate(-10px, 2px);
+  transform: translate(-20px, 2px);
 }
 .about__border {
   width: 90%;
