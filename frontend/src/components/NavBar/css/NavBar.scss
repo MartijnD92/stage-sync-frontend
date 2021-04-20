@@ -3,6 +3,20 @@
 $navbar-height: 3.5rem;
 $navbar-margin-top: 3.5rem;
 
+header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: $bg--primary;
+	z-index: 100;
+	a {
+		text-decoration: none;
+		color: #f0f0f0;
+	}
+}
+
+
 .navbar {
 	margin-top: $navbar-margin-top;
 	height: $navbar-height;
@@ -35,9 +49,15 @@ $navbar-margin-top: 3.5rem;
 	}
 
 	&__link {
+		display: inline-block;
 		position: relative;
 		margin: 0 1em;
 		position: relative;
+		transition: transform 100ms ease;
+
+		&:hover {
+			transform: scale(1.05);
+		}
 
 		&.active {
 			&::after {

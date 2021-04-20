@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'components/Button/Button';
 import { ReactComponent as Spotlight } from 'assets/spotlight.svg';
 import dashboard from 'assets/mockup-dashboard.png';
+import microphone from 'assets/microphone.jpg';
 import './css/Home.scss';
 
 export default function Home() {
@@ -47,6 +48,15 @@ export default function Home() {
 								inventore consectetur, omnis quisquam, autem ducimus hic
 								mollitia earum odio, esse ea quae.
 							</p>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div className="contact__wrapper">
+				<section className="contact" id="contact">
+					<div className="contact__left">
+						<div className="contact__img-container">
+							<img className="contact__img" src={microphone} alt="microphone" />
 						</div>
 					</div>
 				</section>
