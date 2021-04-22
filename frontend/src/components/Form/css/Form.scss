@@ -1,0 +1,37 @@
+@use '../../../css/config' as *;
+
+.contact-form {
+	width: 418px;
+	height: 517px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 2rem;
+
+	.form__input,
+	.form__textarea {
+		display: block;
+		width: 100%;
+		border: 0;
+		border-bottom: 2px solid $color-body--primary;
+		background: inherit;
+        font-family: inherit;
+        font-size: inherit;
+		resize: none;
+		margin: .5rem 0;
+        padding: .5rem 0;
+    }
+}
+
+.btn--secondary {
+    margin-top: 1rem;
+    &,
+    &::before {
+        color: $color-body--primary;
+        border: 3px solid $color-body--primary;
+    }
+    &::before {
+        background: $color-body--primary;
+    }
+}

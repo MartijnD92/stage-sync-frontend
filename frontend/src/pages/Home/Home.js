@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'components/Button/Button';
+import Form from 'components/Form/Form';
 import { ReactComponent as Spotlight } from 'assets/spotlight.svg';
 import dashboard from 'assets/mockup-dashboard.png';
 import microphone from 'assets/microphone.jpg';
@@ -54,6 +55,9 @@ export default function Home() {
 						<div className="contact__img-container">
 							<img className="contact__img" src={microphone} alt="microphone" />
 						</div>
+					</div>
+					<div className="contact-right">
+						<Form/>
 					</div>
 				</section>
 			</div>

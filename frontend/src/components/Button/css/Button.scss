@@ -1,4 +1,4 @@
-@import '../../../css/config';
+@use '../../../css/config' as *;
 
 .btn {
 	min-width: 140px;
@@ -48,6 +48,7 @@
 			border-color: $bg-btn--primary-alt;
 		}
 	}
+
 	&--secondary {
 		color: $color-btn--secondary;
 		border: 3px solid $bg-btn--secondary;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/SideMenu.css';
+import './css/SideMenu.scss';
 
 export default function SideMenu() {
 	return (
