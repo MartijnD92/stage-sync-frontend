@@ -1,9 +1,9 @@
 import React from 'react';
 import DefaultProfile from 'assets/default-profile.jpg';
-import './css/ProfilePicture.scss';
+import styles from './css/ProfilePicture.module.scss';
 
 export default function ProfilePicture({ defaultPicture }) {
 	return (
-		<>{defaultPicture && <img src={DefaultProfile} alt="default profile" />}</>
+		<>{defaultPicture && <img className={styles['profile-picture']} src={DefaultProfile} alt="default profile" />}</>
 	);
 }

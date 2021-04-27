@@ -1,4 +1,4 @@
-@use '../../../css/config' as *;
+@import '../../../css/config';
 
 .contact-form {
 	width: 418px;
@@ -8,6 +8,10 @@
 	align-items: flex-start;
 	justify-content: center;
 	padding: 2rem;
+
+	.label {
+		width: 100%;
+	}
 
 	.form__input,
 	.form__textarea {
@@ -24,14 +28,3 @@
     }
 }
 
-.btn--secondary {
-    margin-top: 1rem;
-    &,
-    &::before {
-        color: $color-body--primary;
-        border: 3px solid $color-body--primary;
-    }
-    &::before {
-        background: $color-body--primary;
-    }
-}

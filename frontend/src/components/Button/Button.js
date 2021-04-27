@@ -1,14 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './css/Button.scss';
+import styles from './css/Button.module.scss';
 
-export default function Button({ type, link, children }) {
+export default function Button({ type, isAlt, link, children }) {
+
 	return link ? (
-		<Link className={`btn btn--${type}`} to={link}>
+		<Link
+			className={`${styles.btn} ${styles[type]} ${isAlt ? styles.alt : ''}`}
+			to={link}
+		>
 			{children}
 		</Link>
 	) : (
-		<button className={`btn btn--${type}`} type="submit">
+		<button
+			className={`${styles.btn} ${styles[type]} ${isAlt ? styles.alt : ''}`}
+			type="submit"
+		>
 			{children}
 		</button>
 	);

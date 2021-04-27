@@ -16,7 +16,7 @@ export default function Home() {
 						A smart booking system for booking agencies and artists that does
 						all the work for you.
 					</p>
-					<Button type={'primary'} link={'/signup'}>
+					<Button type={'primary'} isAlt link={'/signup'}>
 						Try it now
 					</Button>
 				</div>
@@ -57,7 +57,7 @@ export default function Home() {
 						</div>
 					</div>
 					<div className="contact-right">
-						<Form/>
+						<Form />
 					</div>
 				</section>
 			</div>

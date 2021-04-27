@@ -5,7 +5,7 @@ import Logo from 'components/Logo/Logo';
 import Button from 'components/Button/Button.js';
 import SearchBar from 'components/SearchBar/SearchBar.js';
 import ProfilePicture from 'components/ProfilePicture/ProfilePicture.js';
-import './css/NavBar.scss';
+import styles from './css/NavBar.module.scss';
 
 export default function NavBar() {
 	const { pathname: location } = useLocation();
@@ -17,7 +17,7 @@ export default function NavBar() {
 	return (
 		<>
 			{location.includes('/search') || location.includes('/artist') ? (
-				<nav className="navbar navbar--secondary">
+				<nav className={`${styles.navbar} ${styles['navbar--secondary']}`}>
 					<Logo extended={false} />
 					{location.includes('/search') && <SearchBar />}
 					<Button type={'secondary'} link={'/login'}>
@@ -26,19 +26,29 @@ export default function NavBar() {
 					<ProfilePicture defaultPicture={true} />
 				</nav>
 			) : (
-				<nav className="navbar navbar--primary">
-					<div className="navbar__left">
+				<nav className={`${styles.navbar} ${styles['navbar--primary']}`}>
+					<div className={styles['navbar__left']}>
 						<Logo extended={true} />
-						<div className="navbar-links">
-							<NavHashLink className="navbar__link" smooth to="/#about" activeClassName="active">
+						<div className={styles['navbar-links']}>
+							<NavHashLink
+								className={styles['navbar__link']}
+								smooth
+								to="/#about"
+								activeClassName={styles.active}
+							>
 								About
 							</NavHashLink>
-							<NavHashLink className="navbar__link" smooth to="/#contact" activeClassName="active">
+							<NavHashLink
+								className={styles['navbar__link']}
+								smooth
+								to="/#contact"
+								activeClassName={styles.active}
+							>
 								Contact
 							</NavHashLink>
 						</div>
 					</div>
-					<div className="navbar__right">
+					<div className={styles['navbar__right']}>
 						{!location.includes('/login') && (
 							<Button type={'secondary'} link={'/login'}>
 								{isAuthorized ? 'Log in' : 'Log out'}

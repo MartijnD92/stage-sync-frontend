@@ -1,0 +1,110 @@
+@import '../../../css/config';
+
+.btn {
+	min-width: 140px;
+	border: 0;
+	border-radius: 500px;
+	padding: 0.75rem 2rem;
+	text-transform: capitalize;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: inherit;
+	font-family: inherit;
+	font-weight: 700;
+	cursor: pointer;
+	text-decoration: none;
+	position: relative;
+	overflow: hidden;
+}
+
+.primary {
+	min-height: 52px;
+	color: $color-btn--primary;
+	background: $bg-btn--primary;
+
+	&::before {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(255, 255, 255, 0.3);
+		filter: blur(30px);
+		transform: translateX(100%);
+		transition: transform 300ms ease-in-out;
+	}
+
+	&:hover,
+	&:focus {
+		&::before {
+			transform: translateX(0);
+		}
+	}
+	&:hover,
+	&:focus {
+		background: $bg-btn--primary-alt;
+		border-color: $bg-btn--primary-alt;
+	}
+
+	&.alt {
+		background: $bg-btn--secondary;
+		border-color: $bg-btn--secondary;
+
+		&:hover {
+			background: $bg-btn--secondary-alt;
+			border-color: $bg-btn--secondary-alt;
+		}
+	}
+}
+
+.secondary {
+	color: $color-btn--secondary;
+	border: 3px solid $bg-btn--secondary;
+	background: transparent;
+	transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+	z-index: 2;
+
+	&::before {
+		content: '';
+		display: block;
+		border: 3px solid $bg-btn--secondary;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 150%;
+		height: 100%;
+		background: $bg-btn--secondary;
+		transform: translateX(-120%) skew(-60deg);
+		transition: transform 300ms ease-in-out;
+		z-index: -1;
+	}
+
+	&:hover,
+	&:focus {
+		&::before {
+			transform: translateX(-20%) skew(-60deg);
+		}
+	}
+	&:hover,
+	&:focus {
+		color: $color-btn--secondary-alt;
+	}
+
+	&.alt {
+		margin-top: 1rem;
+		&,
+		&::before {
+			color: $color-body--primary;
+			border: 3px solid $color-body--primary;
+		}
+		&::before {
+			background: $color-body--primary;
+		}
+		&:hover {
+			color: $color-body--secondary;
+		}
+	}
+}
