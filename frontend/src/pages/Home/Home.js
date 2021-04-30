@@ -56,7 +56,7 @@ export default function Home() {
 							<img className="contact__img" src={microphone} alt="microphone" />
 						</div>
 					</div>
-					<div className="contact-right">
+					<div className="contact__right">
 						<Form />
 					</div>
 				</section>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './css/Button.module.scss';
 
-export default function Button({ type, isAlt, link, children }) {
+export default function Button({ type, isAlt, link, children, ...rest }) {
 
 	return link ? (
 		<Link

@@ -2,9 +2,10 @@
 
 .btn {
 	min-width: 140px;
+	height: 48px;
 	border: 0;
 	border-radius: 500px;
-	padding: 0.75rem 2rem;
+	padding: 0 2rem;
 	text-transform: capitalize;
 	display: flex;
 	align-items: center;
@@ -19,7 +20,6 @@
 }
 
 .primary {
-	min-height: 52px;
 	color: $color-btn--primary;
 	background: $bg-btn--primary;
 
@@ -94,7 +94,6 @@
 	}
 
 	&.alt {
-		margin-top: 1rem;
 		&,
 		&::before {
 			color: $color-body--primary;
@@ -103,7 +102,8 @@
 		&::before {
 			background: $color-body--primary;
 		}
-		&:hover {
+		&:hover,
+		&:focus {
 			color: $color-body--secondary;
 		}
 	}

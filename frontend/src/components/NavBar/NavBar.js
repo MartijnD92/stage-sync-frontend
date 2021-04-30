@@ -9,7 +9,6 @@ import styles from './css/NavBar.module.scss';
 
 export default function NavBar() {
 	const { pathname: location } = useLocation();
-	console.log(location);
 
 	// TODO: variable verwijderen
 	const isAuthorized = true;

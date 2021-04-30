@@ -1,30 +1,52 @@
 @import '../../../css/config';
 
-.contact-form {
+.title {
+	margin-bottom: 2.5rem;
+}
+
+.form {
 	width: 418px;
-	height: 517px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: center;
 	padding: 2rem;
+	position: relative;
+
+	.overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: rgba(240, 240, 240, 0.95);
+		z-index: 10;
+	}
 
 	.label {
 		width: 100%;
+		color: rgba($color-body--primary, 0.5);
 	}
 
-	.form__input,
-	.form__textarea {
+	.input,
+	.textarea {
 		display: block;
 		width: 100%;
 		border: 0;
 		border-bottom: 2px solid $color-body--primary;
 		background: inherit;
-        font-family: inherit;
-        font-size: inherit;
+		font-family: inherit;
+		font-size: inherit;
 		resize: none;
-		margin: .5rem 0;
-        padding: .5rem 0;
-    }
-}
+		margin-bottom: 2.5rem;
+		padding: 0.5rem 0;
+	}
 
+	.error {
+		border: 2px solid red;
+		border-radius: 5px;
+	}
+}

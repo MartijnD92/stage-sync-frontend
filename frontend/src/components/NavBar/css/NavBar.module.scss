@@ -1,6 +1,5 @@
 @import '../../../css/config';
 
-$navbar-height: 3.5rem;
 $navbar-margin-top: 2rem;
 
 header {
@@ -18,21 +17,27 @@ header {
 }
 
 .navbar {
-	height: $navbar-height;
 	display: grid;
 	grid-template-columns: 560px 1fr;
 	z-index: 10;
 
+	a:first-child {
+		margin-right: 2rem;
+	}
+
 	&--primary {
 
 		.navbar__left {
+			height: 100%;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
 		}
 
 		.navbar__right {
+			height: 100%;
 			display: flex;
+			align-items: center;
 			justify-content: flex-end;
 			margin-left: 5rem;
 		}
@@ -41,14 +46,9 @@ header {
 		margin: $navbar-margin-top 4rem 0 5.1875rem;
 	}
 
-	.btn {
-		margin: 0.5em;
-	}
-
 	&__link {
 		display: inline-block;
 		position: relative;
-		margin: 0 1em;
 		position: relative;
 		transition: transform 100ms ease;
 

@@ -8,15 +8,15 @@ export default function Logo({ extended }) {
 	return (
 		<Link to="/">
 			{extended ? (
-				<div className={`${styles.logo} ${styles['logo--extended']}`}>
+				<div className={`${styles.logo} ${styles.extended}`}>
 					<LogoExtended
 						alt="StageSync logo"
-						className={styles['logo__img--extended']}
+						className={styles['logo--extended']}
 					/>
 				</div>
 			) : (
-				<div className={`${styles.logo} ${styles['logo--small']}`}>
-					<LogoIcon alt="StageSync logo" className={styles['logo__img']} />
+				<div className={`${styles.logo} ${styles.small}`}>
+					<LogoIcon alt="StageSync logo" className={styles['logo--small']} />
 				</div>
 			)}
 		</Link>
