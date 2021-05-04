@@ -30,7 +30,11 @@
 		width: 100%;
 		color: rgba($color-body--primary, 0.5);
 	}
-
+	.error-message {
+		color: red;
+		float: right;
+	}
+	
 	.input,
 	.textarea {
 		display: block;
@@ -46,7 +50,6 @@
 	}
 
 	.error {
-		border: 2px solid red;
-		border-radius: 5px;
+		border-bottom: 2px solid red;
 	}
 }

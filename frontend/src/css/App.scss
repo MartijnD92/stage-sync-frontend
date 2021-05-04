@@ -14,32 +14,33 @@ html {
 }
 
 body {
-	
+	width: 100vw;
+	height: 100vh;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: $font-body--primary;
 	color: $color-body--primary;
 }
 
-.search-bar {
-	height: 2em;
-	width: 500px;
-}
+// .search-bar {
+// 	height: 2em;
+// 	width: 500px;
+// }
 
-.search-bar__input {
-	height: 100%;
-	width: 80%;
-	padding: 0 1em;
-	border: 0;
-	border-radius: 500px;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
-	background: #ddd;
-}
+// .search-bar__input {
+// 	height: 100%;
+// 	width: 80%;
+// 	padding: 0 1em;
+// 	border: 0;
+// 	border-radius: 500px;
+// 	border-top-right-radius: 0;
+// 	border-bottom-right-radius: 0;
+// 	background: #ddd;
+// }
 
-.search-bar__btn {
-	height: 100%;
-	width: 20%;
-	padding: 0 1em;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
+// .search-bar__btn {
+// 	height: 100%;
+// 	width: 20%;
+// 	padding: 0 1em;
+// 	border-top-left-radius: 0;
+// 	border-bottom-left-radius: 0;
+// }

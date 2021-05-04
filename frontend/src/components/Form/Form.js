@@ -14,7 +14,7 @@ export default function Form() {
 		handleSubmit,
 		register,
 		formState: { errors },
-	} = useForm({ mode: 'onSubmit' });
+	} = useForm({ mode: 'onBlur' });
 
 	const onSubmit = async (data, e) => {
 		const serviceId = 'service_stagesync';
@@ -52,6 +52,11 @@ export default function Form() {
 					<input type="hidden" name="contact_number" />
 					<label htmlFor="name" className={styles.label}>
 						Name
+						{errors.name && (
+							<span className={styles['error-message']}>
+								A name is required
+							</span>
+						)}
 						<input
 							type="text"
 							id="name"
@@ -62,6 +67,11 @@ export default function Form() {
 					</label>
 					<label htmlFor="email" className={styles.label}>
 						E-mail
+						{errors.email && (
+							<span className={styles['error-message']}>
+								An e-mail address is required
+							</span>
+						)}
 						<input
 							type="email"
 							id="email"
@@ -72,6 +82,11 @@ export default function Form() {
 					</label>
 					<label htmlFor="message" className={styles.label}>
 						Message
+						{errors.message && (
+							<span className={styles['error-message']}>
+								A message is required
+							</span>
+						)}
 						<textarea
 							id="message"
 							name="message"
