@@ -54,7 +54,7 @@ export default function Form() {
 						Name
 						{errors.name && (
 							<span className={styles['error-message']}>
-								A name is required
+								Please provide a name
 							</span>
 						)}
 						<input
@@ -69,7 +69,7 @@ export default function Form() {
 						E-mail
 						{errors.email && (
 							<span className={styles['error-message']}>
-								An e-mail address is required
+								Please provide an email address
 							</span>
 						)}
 						<input
@@ -84,7 +84,7 @@ export default function Form() {
 						Message
 						{errors.message && (
 							<span className={styles['error-message']}>
-								A message is required
+								Please provide a message
 							</span>
 						)}
 						<textarea

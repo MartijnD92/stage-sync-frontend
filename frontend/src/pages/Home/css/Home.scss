@@ -2,33 +2,27 @@
 @import '../../../components/Button/css/Button.module.scss';
 
 .teaser {
-	padding: 0 13rem;
-	height: 100vh;
 	width: 100%;
-	display: grid;
-	grid-template-columns: 445px 1fr;
-	align-items: center;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
 	color: $color-body--secondary;
-	background: $bg--primary;
 
 	&--left,
 	&--right {
-		// padding-bottom: 18rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 	}
 
 	&--left {
-		width: 445px;
+		max-width: 445px;
 		align-items: flex-start;
+		transform: translateY(-40%);
 	}
 	&--right {
+		width: 100%;
 		align-items: flex-end;
-
-		.spotlight {
-			width: 512px;
-		}
 	}
 
 	&__title {
@@ -42,20 +36,12 @@
 	}
 }
 
-.about__wrapper {
-	height: 100vh;
-	width: 100vw;
-	position: absolute;
-	top: 100vh;
+.about {
 	width: 100%;
 	background: $bg--alt;
+	padding: 11rem 0;
 }
-
-.contact__wrapper {
-	height: 100vh;
-	width: 100vw;
-	position: absolute;
-	top: 200vh;
+.contact {
 	width: 100%;
 	background: $bg--white;
 }
@@ -63,8 +49,8 @@
 .about,
 .contact {
 	height: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
+	display: flex;
+	justify-content: center;
 
 	&__left,
 	&__right {
@@ -75,19 +61,17 @@
 }
 
 .about {
-	padding: 0 13rem;
-
 	&__img-container {
 		height: 320px;
 	}
 
 	&__text-container {
 		height: 320px;
+		max-width: 418px;
 		display: flex;
 		justify-content: flex-start;
 		align-items: flex-start;
 		flex-direction: column;
-		text-align: left;
 	}
 	&__title {
 		display: inline-block;
@@ -134,19 +118,23 @@
 }
 
 .contact {
-	&__right {
-		display: flex;
-		justify-content: center;
-	}
+	position: relative;
 
-	&__img-container {
-		height: 100%;
-		background: salmon;
-	}
 	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
 		height: 100%;
-		width: 100%;
+		width: 50%;
 		object-fit: cover;
 		object-position: 20% 0;
+	}
+
+	&__right {
+		min-height: 671px;
+		grid-column: 2;
+		display: flex;
+		justify-content: center;
+		padding: 6rem 0;
 	}
 }

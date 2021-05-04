@@ -12,22 +12,24 @@ export default function Home() {
 		<>
 			<main>
 				<section className="teaser">
-					<div className="teaser--left">
-						<h1 className="teaser__title">StageSync knows about your gigs</h1>
-						<p className="teaser__subtitle">
-							A smart booking system for booking agencies and artists that does
-							all the work for you.
-						</p>
-						<Button type={'primary'} isAlt link={'/signup'}>
-							Try it now
-						</Button>
-					</div>
-					<div className="teaser--right">
-						<Spotlight className="spotlight" />
+					<div className="content-container">
+						<div className="teaser--left">
+							<h1 className="teaser__title">StageSync knows about your gigs</h1>
+							<p className="teaser__subtitle">
+								A smart booking system for booking agencies and artists that
+								does all the work for you.
+							</p>
+							<Button type={'primary'} isAlt link={'/signup'}>
+								Try it now
+							</Button>
+						</div>
+						<div className="teaser--right">
+							<Spotlight className="spotlight" />
+						</div>
 					</div>
 				</section>
-				<div className="about__wrapper">
-					<section className="about" id="about">
+				<section className="about" id="about">
+					<div className="content-container">
 						<div className="about__left">
 							<div className="about__img-container">
 								<div className="about__border">
@@ -49,24 +51,16 @@ export default function Home() {
 								</p>
 							</div>
 						</div>
-					</section>
-				</div>
-				<div className="contact__wrapper">
-					<section className="contact" id="contact">
-						<div className="contact__left">
-							<div className="contact__img-container">
-								<img
-									className="contact__img"
-									src={microphone}
-									alt="microphone"
-								/>
-							</div>
-						</div>
+					</div>
+				</section>
+				<section className="contact" id="contact">
+					<div className="content-container">
+						<img className="contact__img" src={microphone} alt="microphone" />
 						<div className="contact__right">
 							<Form />
 						</div>
-					</section>
-				</div>
+					</div>
+				</section>
 			</main>
 			<Footer />
 		</>

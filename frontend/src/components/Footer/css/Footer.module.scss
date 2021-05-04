@@ -1,6 +1,30 @@
 @import '../../../css/config';
 
+
 .footer {
 	width: 100%;
-	background: $bg-btn--primary;
+	display: flex;
+	justify-content: center;
+	background: $color-body--primary;
+	color: $color-body--secondary;
+	padding: 6rem 0;
+
+	.left,
+	.right {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 2rem;
+	}
+
+	.right {
+		align-items: flex-end;
+	}
+
+	.socials {
+		a:not(:last-child) {
+			margin-right: 2rem;
+		}
+	}
 }

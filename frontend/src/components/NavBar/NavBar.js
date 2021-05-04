@@ -16,48 +16,56 @@ export default function NavBar() {
 	return (
 		<>
 			{location.includes('/search') || location.includes('/artist') ? (
-				<nav className={`${styles.navbar} ${styles['navbar--secondary']}`}>
-					<Logo extended={false} />
-					{location.includes('/search') && <SearchBar />}
-					<Button type={'secondary'} link={'/login'}>
-						Log out
-					</Button>
-					<ProfilePicture defaultPicture={true} />
-				</nav>
+				<div className="content-container">
+					<nav className={`${styles.navbar} ${styles.secondary}`}>
+						<Logo extended={false} />
+						{location.includes('/search') && <SearchBar />}
+						<Button type={'secondary'} link={'/login'}>
+							Log out
+						</Button>
+						<ProfilePicture defaultPicture={true} />
+					</nav>
+				</div>
 			) : (
-				<nav className={`${styles.navbar} ${styles['navbar--primary']}`}>
-					<div className={styles['navbar__left']}>
-						<Logo extended={true} />
-						<div className={styles['navbar-links']}>
-							<NavHashLink
-								className={styles['navbar__link']}
-								smooth
-								to="/#about"
-								activeClassName={styles.active}
-							>
-								About
-							</NavHashLink>
-							<NavHashLink
-								className={styles['navbar__link']}
-								smooth
-								to="/#contact"
-								activeClassName={styles.active}
-							>
-								Contact
-							</NavHashLink>
+				<nav className={`${styles.navbar} ${styles.primary}`}>
+					<div className="content-container">
+						<div className={styles.left}>
+							<Logo className={styles.logo} extended={true} />
+							<ul className={styles.links}>
+								<li>
+									<NavHashLink
+										className={styles.link}
+										smooth
+										to="/#about"
+										activeClassName={styles.active}
+									>
+										About
+									</NavHashLink>
+								</li>
+								<li>
+									<NavHashLink
+										className={styles.link}
+										smooth
+										to="/#contact"
+										activeClassName={styles.active}
+									>
+										Contact
+									</NavHashLink>
+								</li>
+							</ul>
 						</div>
-					</div>
-					<div className={styles['navbar__right']}>
-						{!location.includes('/login') && (
-							<Button type={'secondary'} link={'/login'}>
-								{isAuthorized ? 'Log in' : 'Log out'}
-							</Button>
-						)}
-						{location.includes('/') && !location.includes('/signup') && (
-							<Button type={'primary'} link={'/signup'}>
-								Sign up
-							</Button>
-						)}
+						<div className={styles.right}>
+							{!location.includes('/login') && (
+								<Button type={'secondary'} link={'/login'}>
+									{isAuthorized ? 'Log in' : 'Log out'}
+								</Button>
+							)}
+							{location.includes('/') && !location.includes('/signup') && (
+								<Button type={'primary'} link={'/signup'}>
+									Sign up
+								</Button>
+							)}
+						</div>
 					</div>
 				</nav>
 			)}
