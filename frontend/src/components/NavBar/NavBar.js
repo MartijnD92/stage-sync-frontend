@@ -15,7 +15,7 @@ export default function NavBar() {
 
 	return (
 		<>
-			{location.includes('/search') || location.includes('/artist') ? (
+			{['/artist', '/dashboard'].includes(location) ? (
 				<div className="content-container">
 					<nav className={`${styles.navbar} ${styles.secondary}`}>
 						<Logo extended={false} />
