@@ -1,3 +1,5 @@
+import React from 'react';
+import NavBar from 'components/NavBar/NavBar';
 import Button from 'components/Button/Button';
 import Form from 'components/Form/Form';
 import Footer from 'components/Footer/Footer';
@@ -9,6 +11,9 @@ import './css/Home.scss';
 export default function Home() {
 	return (
 		<>
+			<header>
+				<NavBar />
+			</header>
 			<main>
 				<section className="teaser">
 					<div className="content-container">

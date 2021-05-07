@@ -15,56 +15,55 @@ export default function NavBar() {
 	return (
 		<>
 			{['/artist', '/dashboard'].includes(location) ? (
-				<div className="content-container">
-					<nav className={`${styles.navbar} ${styles.secondary}`}>
-						<Logo extended={false} />
-						{location.includes('/search') && <SearchBar />}
+				<nav className={`${styles.navbar} ${styles.secondary}`}>
+					<div className={styles.left}>
+						{location.includes('/dashboard') && <SearchBar />}
+					</div>
+					<div className={styles.right}>
 						<Button type={'secondary'} link={'/login'}>
 							Log out
 						</Button>
 						<ProfilePicture defaultPicture={true} />
-					</nav>
-				</div>
+					</div>
+				</nav>
 			) : (
 				<nav className={`${styles.navbar} ${styles.primary}`}>
-					<div className="content-container">
-						<div className={styles.left}>
-							<Logo className={styles.logo} extended={true} />
-							<ul className={styles.links}>
-								<li>
-									<NavHashLink
-										className={styles.link}
-										smooth
-										to="/#about"
-										activeClassName={styles.active}
-									>
-										About
-									</NavHashLink>
-								</li>
-								<li>
-									<NavHashLink
-										className={styles.link}
-										smooth
-										to="/#contact"
-										activeClassName={styles.active}
-									>
-										Contact
-									</NavHashLink>
-								</li>
-							</ul>
-						</div>
-						<div className={styles.right}>
-							{!location.includes('/login') && (
-								<Button type={'secondary'} link={'/login'}>
-									{isAuthorized ? 'Log in' : 'Log out'}
-								</Button>
-							)}
-							{location.includes('/') && !location.includes('/signup') && (
-								<Button type={'primary'} link={'/signup'}>
-									Sign up
-								</Button>
-							)}
-						</div>
+					<div className={styles.left}>
+						<Logo className={styles.logo} extended={true} />
+						<ul className={styles.links}>
+							<li>
+								<NavHashLink
+									className={styles.link}
+									smooth
+									to="/#about"
+									activeClassName={styles.active}
+								>
+									About
+								</NavHashLink>
+							</li>
+							<li>
+								<NavHashLink
+									className={styles.link}
+									smooth
+									to="/#contact"
+									activeClassName={styles.active}
+								>
+									Contact
+								</NavHashLink>
+							</li>
+						</ul>
+					</div>
+					<div className={styles.right}>
+						{!location.includes('/login') && (
+							<Button type={'secondary'} link={'/login'}>
+								{isAuthorized ? 'Log in' : 'Log out'}
+							</Button>
+						)}
+						{location.includes('/') && !location.includes('/signup') && (
+							<Button type={'primary'} link={'/signup'}>
+								Sign up
+							</Button>
+						)}
 					</div>
 				</nav>
 			)}

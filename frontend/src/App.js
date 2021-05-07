@@ -7,9 +7,6 @@ import './css/App.scss';
 function App() {
 	return (
 		<>
-			<header>
-				<NavBar />
-			</header>
 			<Switch>
 				<Route exact path="/">
 					<Home />
