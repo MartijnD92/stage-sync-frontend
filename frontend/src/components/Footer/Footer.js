@@ -1,4 +1,3 @@
-import React from 'react';
 import Logo from 'components/Logo/Logo';
 import { ReactComponent as Facebook } from 'assets/facebook.svg';
 import { ReactComponent as Twitter } from 'assets/twitter.svg';

@@ -1,4 +1,3 @@
-import React from 'react';
 import Button from 'components/Button/Button';
 import Form from 'components/Form/Form';
 import Footer from 'components/Footer/Footer';

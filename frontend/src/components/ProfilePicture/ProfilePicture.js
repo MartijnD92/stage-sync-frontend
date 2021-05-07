@@ -1,4 +1,3 @@
-import React from 'react';
 import DefaultProfile from 'assets/default-profile.jpg';
 import styles from './css/ProfilePicture.module.scss';
 
