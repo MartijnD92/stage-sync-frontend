@@ -12,25 +12,37 @@ export default function SideMenu() {
 				<div className={`${styles.item} ${styles.logo}`}>
 					<Logo />
 				</div>
+					<NavLink
+						to="/dashboard"
+						className={styles.link}
+						activeClassName={styles.active}
+					>
 				<div className={styles.item}>
 					<DashboardIcon className={styles.icon} />
 
-					<NavLink to="/dashboard" className={styles.link} activeClassName={styles.active}>
 						Dashboard
-					</NavLink>
 				</div>
-				<div className={styles.item}>
-					<ProfileIcon className={styles.icon} />
-					<NavLink to="/profile" className={styles.link} activeClassName={styles.active}>
+					</NavLink>
+				<NavLink
+					to="/profile"
+					className={styles.link}
+					activeClassName={styles.active}
+				>
+					<div className={styles.item}>
+						<ProfileIcon className={styles.icon} />
 						Profile
-					</NavLink>
-				</div>
+					</div>
+				</NavLink>
+					<NavLink
+						to="/settings"
+						className={styles.link}
+						activeClassName={styles.active}
+					>
 				<div className={styles.item}>
 					<SettingsIcon className={styles.icon} />
-					<NavLink to="/settings" className={styles.link} activeClassName={styles.active}>
 						Settings
-					</NavLink>
 				</div>
+					</NavLink>
 			</div>
 		</nav>
 	);

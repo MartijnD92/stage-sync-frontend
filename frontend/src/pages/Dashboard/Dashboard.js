@@ -8,18 +8,28 @@ import results from 'mockData/mockresults.json';
 import './css/Dashboard.scss';
 
 export default function Dashboard() {
-	const [query, setQuery] = useState('');
+	const [artistResults, setArtistResults] = useState(null);
+	const [artist, setArtist] = useState('');
+
+	useEffect(() => {
+		const filterResult = () => {
+			const data = results.filter(result => result.artist === artist);
+			setArtistResults(data);
+		}
+		artist && filterResult();
+	}, [artist])
 
 	return (
 		<>
 			<SideMenu />
+
 			<main className="content">
 				<NavBar>
 					<AddButton />
-					<SearchBar />
+					<SearchBar setArtistHandler={setArtist}/>
 				</NavBar>
 				<div className="table-container">
-					<ResultsList results={results} />
+					<ResultsList results={artistResults && artistResults} />
 				</div>
 			</main>
 		</>
