@@ -1,0 +1,47 @@
+@import '../../../css/config';
+
+.wrapper {
+	width: 42px;
+	height: 42px;
+
+    &::after {
+        content: 
+    }
+}
+
+.btn {
+	width: 100%;
+	height: 100%;
+	background: $color-body--primary;
+	border: 0;
+	cursor: pointer;
+	position: relative;
+    border-radius: 10px 10px 10px 0;
+
+	&::before,
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: $bg-white;
+		border-radius: 4px;
+	}
+	&::before {
+		width: 60%;
+		height: 4px;
+	}
+	&::after {
+		width: 4px;
+		height: 60%;
+	}
+
+	&:hover {
+		&::before,
+		&::after {
+			background: lighten($bg-white, 10%);
+		}
+	}
+}

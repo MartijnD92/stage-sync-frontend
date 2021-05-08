@@ -1,4 +1,4 @@
-import DefaultProfile from 'assets/default-profile.jpg';
+import DefaultProfile from 'assets/icons/default-profile.jpg';
 import styles from './css/ProfilePicture.module.scss';
 
 export default function ProfilePicture({ defaultPicture }) {

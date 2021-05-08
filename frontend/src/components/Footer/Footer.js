@@ -1,7 +1,7 @@
 import Logo from 'components/Logo/Logo';
-import { ReactComponent as Facebook } from 'assets/facebook.svg';
-import { ReactComponent as Twitter } from 'assets/twitter.svg';
-import { ReactComponent as Instagram } from 'assets/instagram.svg';
+import { ReactComponent as Facebook } from 'assets/icons/facebook.svg';
+import { ReactComponent as Twitter } from 'assets/icons/twitter.svg';
+import { ReactComponent as Instagram } from 'assets/icons/instagram.svg';
 import styles from './css/Footer.module.scss';
 
 export default function Footer() {
@@ -16,9 +16,27 @@ export default function Footer() {
 				</div>
 				<div className={styles.right}>
 					<div className={styles.socials}>
-						<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"><Facebook/></a>
-						<a href="https://www.twitter.com/" target="_blank" rel="noopener noreferrer"><Twitter/></a>
-						<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><Instagram/></a>
+						<a
+							href="https://www.facebook.com/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<Facebook />
+						</a>
+						<a
+							href="https://www.twitter.com/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<Twitter />
+						</a>
+						<a
+							href="https://www.instagram.com/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<Instagram />
+						</a>
 					</div>
 					<p>Web Design & Development by Martijn Doensen</p>
 				</div>

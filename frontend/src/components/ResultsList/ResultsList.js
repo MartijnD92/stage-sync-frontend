@@ -3,7 +3,6 @@ import styles from './css/ResultsList.module.scss';
 export default function ResultsList({ results }) {
 
 	function showResults(results) {
-		console.log('in functie', results);
 		return results.map((r) => {
 			return (
 				<tr key={r.id}>

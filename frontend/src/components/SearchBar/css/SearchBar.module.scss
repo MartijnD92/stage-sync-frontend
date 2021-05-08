@@ -1,0 +1,55 @@
+@import '../../../css/config';
+
+.searchbar {
+	width: 23rem;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+
+	&:focus-within .input {
+	    color: $color-body--primary;
+	}
+
+	.input {
+		width: 80%;
+		height: 100%;
+        font-size: 1rem;
+        line-height: 1.5rem;
+		border: 3px solid $color-body--primary;
+		border-radius: 500px;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		padding: 12px 20px;
+		background: rgba($bg-white, 0.8);
+        color: rgba($color-body--primary, 0.5);
+
+		&::placeholder {
+			color: rgba($color-body--primary, 0.5);
+		}
+	}
+
+	.btn {
+		width: 20%;
+		height: 100%;
+		background: $color-body--primary;
+		color: $color-body--secondary;
+		border: 3px solid $color-body--primary;
+		border-top-right-radius: 500px;
+		border-bottom-right-radius: 500px;
+		margin: 0 auto;
+		cursor: pointer;
+        outline: none;
+
+		.icon path {
+			fill: rgba($bg-white, 0.5);
+			transition: fill 100ms ease;
+		}
+
+		&:hover,
+		&:focus {
+			.icon path {
+				fill: rgba($bg-white, 1);
+			}
+		}
+	}
+}

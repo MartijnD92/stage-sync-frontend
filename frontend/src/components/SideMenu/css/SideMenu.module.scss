@@ -1,21 +1,80 @@
+@import '../../../css/config';
+
 .sidemenu {
+	--paddingX: 1.5rem;
 	position: fixed;
 	top: 0;
 	left: 0;
-	height: 100vh;
-	width: 216px;
+	height: 100%;
+	max-height: 100%;
+	width: 100%;
+	max-width: 260px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	align-items: center;
-	background: #0a2540;
+	align-items: flex-start;
+	background: $color-body--primary;
 	border-top-right-radius: 50px;
-	z-index: -1;
 
-	&__btn {
+	.inner {
+		height: 100%;
+		width: 100%;
+		padding-left: var(--paddingX);
+		padding-right: var(--paddingX);
+		padding-top: 1rem;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.item {
+		width: 100%;
+		height: 3.5rem;
 		margin-top: 3.5rem;
-		&:first-of-type {
-			margin-top: 10.25rem;
+		padding: 0 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		cursor: pointer;
+		border-radius: 10px;
+		transition: background 100ms ease;
+		position: relative;
+
+		&.logo {
+			justify-content: center;
+			cursor: auto;
+			& > * {
+				cursor: pointer;
+			}
+			
+		}
+
+		.icon {
+			width: 2rem;
+		}
+
+		&:hover:not(.logo) {
+			background: lighten($color-body--primary, 10%);
+			transition: background 100ms ease;
+		}
+
+	
+	}
+
+	.link {
+		margin-left: 1rem;
+		text-decoration: none;
+		color: $color-body--secondary;
+
+		&.active::after {
+			content: '';
+			width: 6px;
+			height: 100%;
+			display: block;
+			position: absolute;
+			top: 0;
+			right: calc(var(--paddingX) * -1);
+			background: #22d3d3;
+			border-radius: 5px;
 		}
 	}
 }

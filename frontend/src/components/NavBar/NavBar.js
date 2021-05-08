@@ -2,11 +2,10 @@ import { useLocation } from 'react-router-dom';
 import { NavHashLink } from 'react-router-hash-link';
 import Logo from 'components/Logo/Logo';
 import Button from 'components/Button/Button.js';
-import SearchBar from 'components/SearchBar/SearchBar.js';
 import ProfilePicture from 'components/ProfilePicture/ProfilePicture.js';
 import styles from './css/NavBar.module.scss';
 
-export default function NavBar() {
+export default function NavBar({ children }) {
 	const { pathname: location } = useLocation();
 
 	// TODO: variable verwijderen
@@ -17,7 +16,7 @@ export default function NavBar() {
 			{['/artist', '/dashboard'].includes(location) ? (
 				<nav className={`${styles.navbar} ${styles.secondary}`}>
 					<div className={styles.left}>
-						{location.includes('/dashboard') && <SearchBar />}
+						{ children }
 					</div>
 					<div className={styles.right}>
 						<Button type={'secondary'} link={'/login'}>
