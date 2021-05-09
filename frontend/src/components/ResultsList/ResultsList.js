@@ -1,11 +1,18 @@
 import styles from './css/ResultsList.module.scss';
 
 export default function ResultsList({ results }) {
-
 	function showResults(results) {
 		return results.map((r) => {
 			return (
 				<tr key={r.id}>
+						<th>
+						<input
+							type="checkbox"
+							name={`select-${r.id}`}
+							id={`select-${r.id}`}
+							className={styles.checkbox}
+						/>
+					</th>
 					<td>{r.date}</td>
 					<td>{r.time}</td>
 					<td>{r.status}</td>
@@ -15,8 +22,10 @@ export default function ResultsList({ results }) {
 					<td>{r.venue}</td>
 					<td>{r.room}</td>
 					<td>{r.pay}</td>
-					<td>{r.showType}</td>
-					<td>{r.ticketsSold || 0}/{r.ticketsTotal || 0}</td>
+					<td>{r.gigType}</td>
+					<td>
+						{r.ticketsSold || 0}/{r.ticketsTotal || 0}
+					</td>
 				</tr>
 			);
 		});
@@ -26,6 +35,14 @@ export default function ResultsList({ results }) {
 		<table className={styles.table}>
 			<thead>
 				<tr>
+					<th>
+						<input
+							type="checkbox"
+							name="selectAll"
+							id="selectAll"
+							className={styles.checkbox}
+						/>
+					</th>
 					<th>Date</th>
 					<th>Time</th>
 					<th>Status</th>
@@ -35,7 +52,7 @@ export default function ResultsList({ results }) {
 					<th>Venue</th>
 					<th>Room</th>
 					<th>Pay</th>
-					<th>Show Type</th>
+					<th>Gig Type</th>
 					<th>Tickets</th>
 				</tr>
 			</thead>

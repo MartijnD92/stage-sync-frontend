@@ -51,7 +51,7 @@ export default function Home() {
 								<p className="about__text">
 									StageSync's intuitive and intelligent design allows artists
 									and booking agents alike to easily and comfortably get
-									insightful details about upcoming shows.
+									insightful details about upcoming gigs.
 								</p>
 							</div>
 						</div>

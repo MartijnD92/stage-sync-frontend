@@ -2,16 +2,16 @@ import {useState} from 'react';
 import { ReactComponent as SearchIcon } from 'assets/icons/icon-search.svg';
 import styles from './css/SearchBar.module.scss';
 
-export default function SearchBar({setArtistHandler}) {
+export default function SearchBar({setGigHandler}) {
 	const [query, setQuery] =useState('');
 
 	function handleClick() {
-		setArtistHandler(query);
+		setGigHandler(query);
 	}
 
 	function keyPressCheck(e) {
 		if (e.key === 'Enter') {
-			setArtistHandler(query);
+			setGigHandler(query);
 		}
 	}
 

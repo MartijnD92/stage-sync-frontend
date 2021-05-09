@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import styles from './css/AddButton.module.scss';
 
 export default function AddButton() {
@@ -8,13 +8,13 @@ export default function AddButton() {
 			<button type="button" className={styles.btn}></button>
 			<ul className={styles.dropdown}>
 				<li className={styles.item}>
-					<Link className={styles.link}>Artist</Link>
+					<HashLink to="/dashboard#artist" className={styles.link}>Artist</HashLink>
 				</li>
 				<li className={styles.item}>
-					<Link className={styles.link}>Venue</Link>
+					<HashLink to="/dashboard#venue" className={styles.link}>Venue</HashLink>
 				</li>
 				<li className={styles.item}>
-					<Link className={styles.link}>Show</Link>
+					<HashLink to="/dashboard#gig" className={styles.link}>Gig</HashLink>
 				</li>
 			</ul>
 		</div>

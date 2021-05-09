@@ -1,23 +1,28 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import NavBar from 'components/NavBar/NavBar';
 import SideMenu from 'components/SideMenu/SideMenu';
 import AddButton from 'components/AddButton/AddButton';
 import SearchBar from 'components/SearchBar/SearchBar';
 import ResultsList from 'components/ResultsList/ResultsList';
-import results from 'mockData/mockresults.json';
 import './css/Dashboard.scss';
 
 export default function Dashboard() {
-	const [artistResults, setArtistResults] = useState(null);
-	const [artist, setArtist] = useState('');
+	const [gigResults, setGigResults] = useState(null);
+	const [gigDetail, setGigDetail] = useState('');
 
 	useEffect(() => {
-		const filterResult = () => {
-			const data = results.filter(result => result.artist === artist);
-			setArtistResults(data);
+		async function getGigs() {
+			try {
+				const response = await axios.get('http://localhost:3000/gigs/');
+				const data = response.data.filter(responseObj => responseObj.artist === gigDetail);
+				setGigResults(data);
+			} catch (e) {
+				console.error(e);
+			}
 		}
-		artist && filterResult();
-	}, [artist])
+		gigDetail && getGigs();
+	}, [gigDetail]);
 
 	return (
 		<>
@@ -26,12 +31,21 @@ export default function Dashboard() {
 			<main className="content">
 				<NavBar>
 					<AddButton />
-					<SearchBar setArtistHandler={setArtist}/>
+					<SearchBar setGigHandler={setGigDetail} />
 				</NavBar>
 				<div className="table-container">
-					<ResultsList results={artistResults && artistResults} />
+					<ResultsList results={gigResults && gigResults} />
 				</div>
 			</main>
 		</>
 	);
 }
+
+
+// useEffect(() => {
+// 	const filterResult = () => {
+// 		const data = results.filter(result => result.artist === artist);
+// 		setArtistResults(data);
+// 	}
+// 	artist && filterResult();
+// }, [artist])
