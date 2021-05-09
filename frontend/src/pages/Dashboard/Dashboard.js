@@ -5,17 +5,24 @@ import SideMenu from 'components/SideMenu/SideMenu';
 import AddButton from 'components/AddButton/AddButton';
 import SearchBar from 'components/SearchBar/SearchBar';
 import ResultsList from 'components/ResultsList/ResultsList';
+import Pagination from 'components/Pagination/Pagination';
 import './css/Dashboard.scss';
+
+// TODO: Remove when finished styling:
+import results from 'mockData/mockresults.json';
 
 export default function Dashboard() {
 	const [gigResults, setGigResults] = useState(null);
 	const [gigDetail, setGigDetail] = useState('');
+	const resultsLimit = 20;
 
 	useEffect(() => {
 		async function getGigs() {
 			try {
 				const response = await axios.get('http://localhost:3000/gigs/');
-				const data = response.data.filter(responseObj => responseObj.artist === gigDetail);
+				const data = response.data.filter(
+					(responseObj) => responseObj.artist === gigDetail
+				);
 				setGigResults(data);
 			} catch (e) {
 				console.error(e);
@@ -34,13 +41,20 @@ export default function Dashboard() {
 					<SearchBar setGigHandler={setGigDetail} />
 				</NavBar>
 				<div className="table-container">
-					<ResultsList results={gigResults && gigResults} />
+					{/* <ResultsList results={gigResults && gigResults} /> */}
+
+					{/* TODO: Remove when finished styling: */}
+					<ResultsList results={results} />
+					<Pagination
+						results={results}
+						pageLimit={5}
+						resultsLimit={resultsLimit}
+					/>
 				</div>
 			</main>
 		</>
 	);
 }
-
 
 // useEffect(() => {
 // 	const filterResult = () => {

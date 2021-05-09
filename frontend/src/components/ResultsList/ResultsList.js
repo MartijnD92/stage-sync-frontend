@@ -1,11 +1,26 @@
 import styles from './css/ResultsList.module.scss';
 
 export default function ResultsList({ results }) {
+
+	function getStatusStyle(status) {
+		let className = '';
+		switch (status) {
+			case 'Pending':
+				return (className = 'pending');
+			case 'Confirmed':
+				return (className = 'confirmed');
+			case 'Cancelled':
+				return (className = 'cancelled');
+			default:
+				return className;
+		}
+	}
+
 	function showResults(results) {
 		return results.map((r) => {
 			return (
 				<tr key={r.id}>
-						<th>
+					<th>
 						<input
 							type="checkbox"
 							name={`select-${r.id}`}
@@ -15,13 +30,13 @@ export default function ResultsList({ results }) {
 					</th>
 					<td>{r.date}</td>
 					<td>{r.time}</td>
-					<td>{r.status}</td>
+					<td className={styles[getStatusStyle(r.status)]}>{r.status}</td>
 					<td>{r.invoice}</td>
 					<td>{r.artist}</td>
 					<td>{r.location}</td>
 					<td>{r.venue}</td>
 					<td>{r.room}</td>
-					<td>{r.pay}</td>
+					<td>&euro;&nbsp;{r.pay}</td>
 					<td>{r.gigType}</td>
 					<td>
 						{r.ticketsSold || 0}/{r.ticketsTotal || 0}

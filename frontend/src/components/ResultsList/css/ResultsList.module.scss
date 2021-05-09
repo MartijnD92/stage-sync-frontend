@@ -10,9 +10,12 @@
 
 tr {
 	height: 3rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
+	text-align: left;
+	padding: 1rem;
+}
+
+th, td {
+	padding: 1rem;
 }
 
 thead {
@@ -24,8 +27,17 @@ tbody {
 	color: $color-body--primary;
 }
 
-
 .checkbox {
 	height: 1rem;
 	width: 1rem;
+}
+
+.pending {
+	color: #FFCF0D;
+}
+.confirmed {
+	color: #458D11;
+}
+.cancelled {
+	color: #C75A67;
 }
