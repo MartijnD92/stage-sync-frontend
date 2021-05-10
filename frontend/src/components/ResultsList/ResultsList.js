@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom';
 import styles from './css/ResultsList.module.scss';
 
 export default function ResultsList({ results }) {
-
 	function getStatusStyle(status) {
 		let className = '';
 		switch (status) {
@@ -20,26 +20,70 @@ export default function ResultsList({ results }) {
 		return results.map((r) => {
 			return (
 				<tr key={r.id}>
-					<th>
-						<input
-							type="checkbox"
-							name={`select-${r.id}`}
-							id={`select-${r.id}`}
-							className={styles.checkbox}
-						/>
-					</th>
-					<td>{r.date}</td>
-					<td>{r.time}</td>
-					<td className={styles[getStatusStyle(r.status)]}>{r.status}</td>
-					<td>{r.invoice}</td>
-					<td>{r.artist}</td>
-					<td>{r.location}</td>
-					<td>{r.venue}</td>
-					<td>{r.room}</td>
-					<td>&euro;&nbsp;{r.pay}</td>
-					<td>{r.gigType}</td>
 					<td>
-						{r.ticketsSold || 0}/{r.ticketsTotal || 0}
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							<input
+								type="checkbox"
+								name={`select-${r.id}`}
+								id={`select-${r.id}`}
+								className={styles.checkbox}
+							/>
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							{r.date}
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							{r.time}
+						</Link>
+					</td>
+					<td className={styles[getStatusStyle(r.status)]}>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							{r.status}
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							{r.invoice}
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							{r.artist}
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							{r.location}
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							{r.venue}
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							{r.room}
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							&euro;&nbsp;{r.pay}
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							{r.gigType}
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${r.artist}`} className={styles.link}>
+							{r.ticketsSold || 0}/{r.ticketsTotal || 0}
+						</Link>
 					</td>
 				</tr>
 			);

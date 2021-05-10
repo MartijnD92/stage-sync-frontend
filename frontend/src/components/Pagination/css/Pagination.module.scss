@@ -16,8 +16,8 @@ button {
 
 .number {
 	padding: 10px 15px;
-	height: 45px;
-	width: 45px;
+	height: 40px;
+	width: 40px;
 	position: relative;
 	margin: 0 5px;
 	cursor: pointer;
@@ -26,12 +26,14 @@ button {
 .number.active::after {
 	content: '';
 	display: block;
-	width: 100%;
+	width: 55%;
 	height: 3px;
 	background: #22d3d3;
+	box-shadow: 1px 1px 8px #22d3d3;
 	position: absolute;
-	bottom: 0;
-    left: 0;
+	bottom: 10px;
+    left: 50%;
+	transform: translateX(-50%);
     border-radius: 10px;
 }
 

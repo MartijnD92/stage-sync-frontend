@@ -1,7 +1,7 @@
 @import '../../../css/config';
 
 .sidemenu {
-	--paddingX: .75rem;
+	--paddingX: 0.75rem;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -69,14 +69,16 @@
 		}
 
 		&.active::after {
+			--width: 6px;
 			content: '';
-			width: 6px;
+			width: var(--width);
 			height: 100%;
 			display: block;
 			position: absolute;
 			top: 0;
-			right: calc(var(--paddingX) * -1);
+			right: calc(var(--paddingX) * -1 - (var(--width) / 2));
 			background: #22d3d3;
+			box-shadow: 1px 1px 8px #22d3d3;
 			border-radius: 5px;
 		}
 	}

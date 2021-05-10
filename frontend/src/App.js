@@ -13,6 +13,9 @@ function App() {
 				<Route path="/dashboard">
 					<Dashboard />
 				</Route>
+				<Route path="/settings">
+					<Dashboard settingsModal={true}/>
+				</Route>
 			</Switch>
 		</>
 	);

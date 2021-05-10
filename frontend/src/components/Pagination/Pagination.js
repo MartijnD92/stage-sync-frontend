@@ -3,30 +3,23 @@ import { ReactComponent as PreviousIcon } from 'assets/icons/prevIcon.svg';
 import { ReactComponent as NextIcon } from 'assets/icons/nextIcon.svg';
 import styles from './css/Pagination.module.scss';
 
-export default function Pagination({ results, pageLimit, resultsLimit }) {
-	const [pages] = useState(Math.round(results.length / resultsLimit));
-	const [currentPage, setCurrentPage] = useState(1);
-
+export default function Pagination({ pages, currentPage, setCurrentPage, pageLimit }) {
 	function goToNextPage() {
 		setCurrentPage((page) => page + 1);
 	}
 	function goToPreviousPage() {
 		setCurrentPage((page) => page - 1);
 	}
-	function changePage() {
-		// const pageNumber = Number(event.target.textContent);
-		// setCurrentPage(pageNumber);
+	function changePage(e) {
+		const pageNumber = Number(e.target.textContent);
+		setCurrentPage(pageNumber);
 	}
-	const getPaginatedResults = () => {
-		const startIndex = currentPage * resultsLimit - resultsLimit;
-		const endIndex = startIndex + resultsLimit;
-		return results.slice(startIndex, endIndex);
-	};
+	
 
 	const getPaginationGroup = () => {
-        const trueLimit = pages < pageLimit ? pages : pageLimit;
-		let start = Math.floor((currentPage - 1) / trueLimit) * trueLimit;
-		return new Array(trueLimit).fill().map((_, index) => start + index + 1);
+        pageLimit = pages < pageLimit ? pages : pageLimit;
+		let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
+		return new Array(pageLimit).fill().map((_, index) => start + index + 1);
 	};
     
 	return (

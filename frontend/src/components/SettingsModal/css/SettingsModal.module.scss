@@ -1,0 +1,23 @@
+@import '../../../css/config';
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba($color-body--primary, .5);
+}
+
+.window {
+    width: 75vw;
+    height: 75vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba($color-body--secondary, .9);
+    border-radius: 50px;
+}
+
+// TODO: Body scroll voorkomen als modal is geopend
