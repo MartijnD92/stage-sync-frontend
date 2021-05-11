@@ -1,23 +1,66 @@
 @import '../../../css/config';
 
 .overlay {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba($color-body--primary, .5);
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba($color-body--primary, 0.5);
 }
 
 .window {
-    width: 75vw;
-    height: 75vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba($color-body--secondary, .9);
-    border-radius: 50px;
-}
+	max-width: 784px;
+	width: 50%;
+	max-height: 768px;
+	height: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 5rem;
+	background: rgba($color-body--secondary, 0.9);
+	border-radius: 50px;
 
-// TODO: Body scroll voorkomen als modal is geopend
+	& .inner {
+		width: 100%;
+		margin: 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+
+		& .row {
+            width: 70%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+            border-bottom: 2px solid $color-body--primary;
+
+			& .label {
+				display: block;
+				margin: 1rem;
+			}
+			& .checkbox {
+				display: block;
+                width: 1rem;
+                height: 1rem;
+			}
+
+            @media only screen and (max-width: 992px) {
+                width: 100%;
+            }
+		}
+	}
+
+    & button {
+        margin: auto;
+    }
+
+    @media only screen and (max-width: 700px) {
+        width: 100%;
+    }
+}

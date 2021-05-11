@@ -14,12 +14,32 @@ import './css/Dashboard.scss';
 import results from 'mockData/mockresults.json';
 
 export default function Dashboard({ settingsModal }) {
+	const [settings, setSettings] = useState({
+		transparency: true,
+		statusGlow: false,
+	});
+
 	const [gigResults, setGigResults] = useState(null);
 	const [gigQuery, setGigQuery] = useState('');
 
 	const resultsLimit = 15;
 	const [pages] = useState(Math.round(results.length / resultsLimit) || 1);
 	const [currentPage, setCurrentPage] = useState(1);
+
+	useEffect(() => {
+		setSettings({
+			...settings,
+			transparency: JSON.parse(localStorage.getItem('userSettings'))
+				?.transparency,
+		});
+	}, [settings]);
+
+	useEffect(() => {
+		setSettings({
+			...settings,
+			statusGlow: JSON.parse(localStorage.getItem('userSettings'))?.statusGlow,
+		});
+	}, [settings]);
 
 	useEffect(() => {
 		setGigResults(getPaginatedResults(results, resultsLimit, currentPage));
@@ -52,16 +72,18 @@ export default function Dashboard({ settingsModal }) {
 					{/* <ResultsList results={gigResults && gigResults} /> */}
 
 					{/* TODO: Remove when finished styling: */}
-					<ResultsList results={gigResults} />
-					<Pagination
-						pages={pages}
-						currentPage={currentPage}
-						setCurrentPage={setCurrentPage}
-						pageLimit={5}
-						resultsLimit={resultsLimit}
-					/>
+					<ResultsList results={gigResults} settings={settings} />
 				</div>
-				{settingsModal && <SettingsModal />}
+				<Pagination
+					pages={pages}
+					currentPage={currentPage}
+					setCurrentPage={setCurrentPage}
+					pageLimit={5}
+					resultsLimit={resultsLimit}
+				/>
+				{settingsModal && (
+					<SettingsModal settings={settings} settingsHandler={setSettings} />
+				)}
 			</main>
 		</>
 	);

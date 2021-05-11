@@ -49,7 +49,6 @@ export default function Form() {
 				<>
 					<h2 className={styles.title}>We'd love to hear from you!</h2>
 
-					<input type="hidden" name="contact_number" />
 					<label htmlFor="name" className={styles.label}>
 						Name
 						{errors.name && (
@@ -96,7 +95,7 @@ export default function Form() {
 							{...register('message', { required: true })}
 						/>
 					</label>
-					<Button type={'secondary'} isAlt>
+					<Button variant={'secondary'} isAlt>
 						Send
 					</Button>
 				</>

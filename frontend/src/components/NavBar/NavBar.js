@@ -13,13 +13,11 @@ export default function NavBar({ children }) {
 
 	return (
 		<>
-			{['/artist', '/dashboard'].includes(location) ? (
+			{location !== '/' ? (
 				<nav className={`${styles.navbar} ${styles.secondary}`}>
-					<div className={styles.left}>
-						{ children }
-					</div>
+					<div className={styles.left}>{children}</div>
 					<div className={styles.right}>
-						<Button type={'secondary'} link={'/login'}>
+						<Button variant={'secondary'} link={'/login'}>
 							Log out
 						</Button>
 						<ProfilePicture defaultPicture={true} />
@@ -54,12 +52,12 @@ export default function NavBar({ children }) {
 					</div>
 					<div className={styles.right}>
 						{!location.includes('/login') && (
-							<Button type={'secondary'} link={'/login'}>
+							<Button variant={'secondary'} link={'/login'}>
 								{isAuthorized ? 'Log in' : 'Log out'}
 							</Button>
 						)}
 						{location.includes('/') && !location.includes('/signup') && (
-							<Button type={'primary'} link={'/signup'}>
+							<Button variant={'primary'} link={'/signup'}>
 								Sign up
 							</Button>
 						)}

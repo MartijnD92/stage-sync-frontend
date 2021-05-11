@@ -10,11 +10,11 @@ function App() {
 				<Route exact path="/">
 					<Home />
 				</Route>
-				<Route path="/dashboard">
+				<Route exact path="/dashboard">
 					<Dashboard />
 				</Route>
-				<Route path="/settings">
-					<Dashboard settingsModal={true}/>
+				<Route path="/dashboard/settings">
+					<Dashboard settingsModal={true} />
 				</Route>
 			</Switch>
 		</>

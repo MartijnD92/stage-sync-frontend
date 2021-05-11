@@ -23,7 +23,7 @@ export default function Home() {
 								A smart booking system for booking agencies and artists that
 								does all the work for you.
 							</p>
-							<Button type={'primary'} isAlt link={'/signup'}>
+							<Button variant={'primary'} isAlt link={'/signup'}>
 								Try it now
 							</Button>
 						</div>

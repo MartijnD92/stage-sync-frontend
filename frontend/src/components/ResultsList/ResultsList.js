@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './css/ResultsList.module.scss';
 
-export default function ResultsList({ results }) {
+export default function ResultsList({ results, settings }) {
+
 	function getStatusStyle(status) {
 		let className = '';
 		switch (status) {
@@ -19,7 +21,14 @@ export default function ResultsList({ results }) {
 	function showResults(results) {
 		return results.map((r) => {
 			return (
-				<tr key={r.id}>
+				<tr
+					key={r.id}
+					className={
+						statusGlow
+							? `${styles[getStatusStyle(r.status)]} ${styles.glow}`
+							: ''
+					}
+				>
 					<td>
 						<Link to={`/artists/${r.artist}`} className={styles.link}>
 							<input
@@ -40,7 +49,7 @@ export default function ResultsList({ results }) {
 							{r.time}
 						</Link>
 					</td>
-					<td className={styles[getStatusStyle(r.status)]}>
+					<td className={!statusGlow ? styles[getStatusStyle(r.status)] : ''}>
 						<Link to={`/artists/${r.artist}`} className={styles.link}>
 							{r.status}
 						</Link>
@@ -115,7 +124,9 @@ export default function ResultsList({ results }) {
 					<th>Tickets</th>
 				</tr>
 			</thead>
-			<tbody>{results && showResults(results)}</tbody>
+			<tbody className={transparency ? styles.transparent : ''}>
+				{results && showResults(results)}
+			</tbody>
 		</table>
 	);
 }

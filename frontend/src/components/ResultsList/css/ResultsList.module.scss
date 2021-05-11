@@ -35,7 +35,12 @@ thead {
 }
 tbody {
 	background: rgba($color-body--secondary, 0.5);
+	background: $color-body--secondary;
 	color: $color-body--primary;
+
+	&.transparent {
+		background: rgba($color-body--secondary, 0.5);
+	}
 }
 
 .link {
@@ -51,12 +56,31 @@ tbody {
 	width: 1rem;
 }
 
+.glow {
+	color: $color-body--primary;
+}
+
 .pending {
 	color: #ffcf0d;
+
+	&.glow {
+		background: #f0d87b;
+		color: $color-body--primary;
+	}
 }
 .confirmed {
 	color: #458d11;
+
+	&.glow {
+		background: #89be64;
+		color: $color-body--primary;
+	}
 }
 .cancelled {
 	color: #c75a67;
+
+	&.glow {
+		background: #f1828f;
+		color: $color-body--primary;
+	}
 }

@@ -13,6 +13,7 @@ export default function SideMenu() {
 					<Logo />
 				</div>
 				<NavLink
+					exact
 					to="/dashboard"
 					className={styles.link}
 					activeClassName={styles.active}
@@ -33,7 +34,7 @@ export default function SideMenu() {
 					</div>
 				</NavLink>
 				<NavLink
-					to="/settings"
+					to="/dashboard/settings"
 					className={styles.link}
 					activeClassName={styles.active}
 				>
