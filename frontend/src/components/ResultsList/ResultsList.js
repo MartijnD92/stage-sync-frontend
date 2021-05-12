@@ -1,8 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './css/ResultsList.module.scss';
 
 export default function ResultsList({ results, settings }) {
+	const [sortConfig, setSortConfig] = useState(null);
+	let sortedResults = JSON.parse(JSON.stringify(results))
+
+	if (sortConfig !== null) {
+		sortedResults.sort((a, b) => {
+			if (a[sortConfig] < b[sortConfig]) {
+				return -1;
+			}
+			if (a[sortConfig] > b[sortConfig]) {
+				return 1;
+			}
+			return 0;
+		});
+	}
 
 	function getStatusStyle(status) {
 		let className = '';
@@ -19,16 +33,9 @@ export default function ResultsList({ results, settings }) {
 	}
 
 	function showResults(results) {
-		return results.map((r) => {
+		return sortedResults.map((r) => {
 			return (
-				<tr
-					key={r.id}
-					className={
-						statusGlow
-							? `${styles[getStatusStyle(r.status)]} ${styles.glow}`
-							: ''
-					}
-				>
+				<tr key={r.id}>
 					<td>
 						<Link to={`/artists/${r.artist}`} className={styles.link}>
 							<input
@@ -49,7 +56,7 @@ export default function ResultsList({ results, settings }) {
 							{r.time}
 						</Link>
 					</td>
-					<td className={!statusGlow ? styles[getStatusStyle(r.status)] : ''}>
+					<td className={styles[getStatusStyle(r.status)]}>
 						<Link to={`/artists/${r.artist}`} className={styles.link}>
 							{r.status}
 						</Link>
@@ -74,26 +81,32 @@ export default function ResultsList({ results, settings }) {
 							{r.venue}
 						</Link>
 					</td>
-					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							{r.room}
-						</Link>
-					</td>
+					{settings.room && (
+						<td>
+							<Link to={`/artists/${r.artist}`} className={styles.link}>
+								{r.room}
+							</Link>
+						</td>
+					)}
 					<td>
 						<Link to={`/artists/${r.artist}`} className={styles.link}>
 							&euro;&nbsp;{r.pay}
 						</Link>
 					</td>
-					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							{r.gigType}
-						</Link>
-					</td>
-					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							{r.ticketsSold || 0}/{r.ticketsTotal || 0}
-						</Link>
-					</td>
+					{settings.gigType && (
+						<td>
+							<Link to={`/artists/${r.artist}`} className={styles.link}>
+								{r.gigType}
+							</Link>
+						</td>
+					)}
+					{settings.ticketStats && (
+						<td>
+							<Link to={`/artists/${r.artist}`} className={styles.link}>
+								{r.ticketsSold || 0}/{r.ticketsTotal || 0}
+							</Link>
+						</td>
+					)}
 				</tr>
 			);
 		});
@@ -111,20 +124,114 @@ export default function ResultsList({ results, settings }) {
 							className={styles.checkbox}
 						/>
 					</th>
-					<th>Date</th>
-					<th>Time</th>
-					<th>Status</th>
-					<th>Invoice</th>
-					<th>Artist</th>
-					<th>Location</th>
-					<th>Venue</th>
-					<th>Room</th>
-					<th>Pay</th>
-					<th>Gig Type</th>
-					<th>Tickets</th>
+					<th>
+						<button
+							type="button"
+							className={styles.date}
+							onClick={() => setSortConfig('date')}
+						>
+							Date
+						</button>
+					</th>
+					<th>
+						<button
+							type="button"
+							className={styles.date}
+							onClick={() => setSortConfig('time')}
+						>
+							Time
+						</button>
+					</th>
+					<th>
+						<button
+							type="button"
+							className={styles.status}
+							onClick={() => setSortConfig('status')}
+						>
+							Status
+						</button>
+					</th>
+					<th>
+						<button
+							type="button"
+							className={styles.status}
+							onClick={() => setSortConfig('invoice')}
+						>
+							Invoice
+						</button>
+					</th>
+					<th>
+						<button
+							type="button"
+							className={styles.status}
+							onClick={() => setSortConfig('artist')}
+						>
+							Artist
+						</button>
+					</th>
+					<th>
+						<button
+							type="button"
+							className={styles.status}
+							onClick={() => setSortConfig('location')}
+						>
+							Location
+						</button>
+					</th>
+					<th>
+						<button
+							type="button"
+							className={styles.status}
+							onClick={() => setSortConfig('venue')}
+						>
+							Venue
+						</button>
+					</th>
+					{settings.room && (
+						<th>
+							<button
+								type="button"
+								className={styles.status}
+								onClick={() => setSortConfig('room')}
+							>
+								Room
+							</button>
+						</th>
+					)}
+					<th>
+						<button
+							type="button"
+							className={styles.status}
+							onClick={() => setSortConfig('pay')}
+						>
+							Pay
+						</button>
+					</th>
+					{settings.gigType && (
+						<th>
+							<button
+								type="button"
+								className={styles.status}
+								onClick={() => setSortConfig('pay')}
+							>
+								Gig Type
+							</button>
+						</th>
+					)}
+					{settings.ticketStats && (
+						<th>
+							<button
+								type="button"
+								className={styles.status}
+								onClick={() => setSortConfig('pay')}
+							>
+								Tickets
+							</button>
+						</th>
+					)}
 				</tr>
 			</thead>
-			<tbody className={transparency ? styles.transparent : ''}>
+			<tbody className={settings.transparency ? styles.transparent : ''}>
 				{results && showResults(results)}
 			</tbody>
 		</table>

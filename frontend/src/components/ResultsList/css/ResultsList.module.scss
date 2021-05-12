@@ -6,6 +6,7 @@
 	border-collapse: collapse;
 	border-radius: 10px;
 	overflow: hidden;
+	padding: 2rem;
 }
 
 tr {
@@ -23,6 +24,7 @@ td {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	text-align: center;
 }
 
 th {
@@ -56,31 +58,12 @@ tbody {
 	width: 1rem;
 }
 
-.glow {
-	color: $color-body--primary;
-}
-
 .pending {
 	color: #ffcf0d;
-
-	&.glow {
-		background: #f0d87b;
-		color: $color-body--primary;
-	}
 }
 .confirmed {
 	color: #458d11;
-
-	&.glow {
-		background: #89be64;
-		color: $color-body--primary;
-	}
 }
 .cancelled {
 	color: #c75a67;
-
-	&.glow {
-		background: #f1828f;
-		color: $color-body--primary;
-	}
 }
