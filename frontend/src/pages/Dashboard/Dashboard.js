@@ -18,6 +18,7 @@ export default function Dashboard({ settingsModal }) {
 	const [settings, setSettings] = useState(
 		userPredefinedSettings || {
 			ticketStats: true,
+			invoiceStatus: false,
 			gigType: false,
 			room: false,
 			transparency: true

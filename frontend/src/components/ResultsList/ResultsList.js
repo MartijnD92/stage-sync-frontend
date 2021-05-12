@@ -1,21 +1,15 @@
-import { useState } from 'react';
+import useSortableData from 'helpers/useSortableData';
 import { Link } from 'react-router-dom';
 import styles from './css/ResultsList.module.scss';
 
 export default function ResultsList({ results, settings }) {
-	const [sortConfig, setSortConfig] = useState(null);
-	let sortedResults = JSON.parse(JSON.stringify(results))
+	const { items, requestSort, sortConfig } = useSortableData(results);
 
-	if (sortConfig !== null) {
-		sortedResults.sort((a, b) => {
-			if (a[sortConfig] < b[sortConfig]) {
-				return -1;
-			}
-			if (a[sortConfig] > b[sortConfig]) {
-				return 1;
-			}
-			return 0;
-		});
+	function getClassNamesFor(name) {
+		if (!sortConfig) {
+			return;
+		}
+		return sortConfig.key === name ? styles[sortConfig.direction] : undefined;
 	}
 
 	function getStatusStyle(status) {
@@ -32,8 +26,8 @@ export default function ResultsList({ results, settings }) {
 		}
 	}
 
-	function showResults(results) {
-		return sortedResults.map((r) => {
+	function showResults(items) {
+		return items.map((r) => {
 			return (
 				<tr key={r.id}>
 					<td>
@@ -61,11 +55,13 @@ export default function ResultsList({ results, settings }) {
 							{r.status}
 						</Link>
 					</td>
-					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							{r.invoice}
-						</Link>
-					</td>
+					{settings.invoiceStatus && (
+						<td>
+							<Link to={`/artists/${r.artist}`} className={styles.link}>
+								{r.invoice}
+							</Link>
+						</td>
+					)}
 					<td>
 						<Link to={`/artists/${r.artist}`} className={styles.link}>
 							{r.artist}
@@ -127,8 +123,8 @@ export default function ResultsList({ results, settings }) {
 					<th>
 						<button
 							type="button"
-							className={styles.date}
-							onClick={() => setSortConfig('date')}
+							onClick={() => requestSort('date')}
+							className={getClassNamesFor('date')}
 						>
 							Date
 						</button>
@@ -136,8 +132,8 @@ export default function ResultsList({ results, settings }) {
 					<th>
 						<button
 							type="button"
-							className={styles.date}
-							onClick={() => setSortConfig('time')}
+							onClick={() => requestSort('time')}
+							className={getClassNamesFor('time')}
 						>
 							Time
 						</button>
@@ -145,26 +141,28 @@ export default function ResultsList({ results, settings }) {
 					<th>
 						<button
 							type="button"
-							className={styles.status}
-							onClick={() => setSortConfig('status')}
+							onClick={() => requestSort('status')}
+							className={getClassNamesFor('status')}
 						>
 							Status
 						</button>
 					</th>
+					{settings.invoiceStatus && (
+						<th>
+							<button
+								type="button"
+								onClick={() => requestSort('invoice')}
+								className={getClassNamesFor('invoice')}
+							>
+								Invoice
+							</button>
+						</th>
+					)}
 					<th>
 						<button
 							type="button"
-							className={styles.status}
-							onClick={() => setSortConfig('invoice')}
-						>
-							Invoice
-						</button>
-					</th>
-					<th>
-						<button
-							type="button"
-							className={styles.status}
-							onClick={() => setSortConfig('artist')}
+							onClick={() => requestSort('artist')}
+							className={getClassNamesFor('artist')}
 						>
 							Artist
 						</button>
@@ -172,8 +170,8 @@ export default function ResultsList({ results, settings }) {
 					<th>
 						<button
 							type="button"
-							className={styles.status}
-							onClick={() => setSortConfig('location')}
+							onClick={() => requestSort('location')}
+							className={getClassNamesFor('location')}
 						>
 							Location
 						</button>
@@ -181,8 +179,8 @@ export default function ResultsList({ results, settings }) {
 					<th>
 						<button
 							type="button"
-							className={styles.status}
-							onClick={() => setSortConfig('venue')}
+							onClick={() => requestSort('venue')}
+							className={getClassNamesFor('venue')}
 						>
 							Venue
 						</button>
@@ -191,8 +189,8 @@ export default function ResultsList({ results, settings }) {
 						<th>
 							<button
 								type="button"
-								className={styles.status}
-								onClick={() => setSortConfig('room')}
+								onClick={() => requestSort('room')}
+								className={getClassNamesFor('room')}
 							>
 								Room
 							</button>
@@ -201,8 +199,8 @@ export default function ResultsList({ results, settings }) {
 					<th>
 						<button
 							type="button"
-							className={styles.status}
-							onClick={() => setSortConfig('pay')}
+							onClick={() => requestSort('pay')}
+							className={getClassNamesFor('pay')}
 						>
 							Pay
 						</button>
@@ -211,8 +209,8 @@ export default function ResultsList({ results, settings }) {
 						<th>
 							<button
 								type="button"
-								className={styles.status}
-								onClick={() => setSortConfig('pay')}
+								onClick={() => requestSort('gigType')}
+								className={getClassNamesFor('gigType')}
 							>
 								Gig Type
 							</button>
@@ -222,8 +220,8 @@ export default function ResultsList({ results, settings }) {
 						<th>
 							<button
 								type="button"
-								className={styles.status}
-								onClick={() => setSortConfig('pay')}
+								onClick={() => requestSort('ticketsSold')}
+								className={getClassNamesFor('ticketsSold')}
 							>
 								Tickets
 							</button>
@@ -232,7 +230,7 @@ export default function ResultsList({ results, settings }) {
 				</tr>
 			</thead>
 			<tbody className={settings.transparency ? styles.transparent : ''}>
-				{results && showResults(results)}
+				{results && showResults(items)}
 			</tbody>
 		</table>
 	);

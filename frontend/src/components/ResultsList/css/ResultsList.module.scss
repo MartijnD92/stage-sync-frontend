@@ -24,7 +24,7 @@ td {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	text-align: center;
+	text-align: left;
 }
 
 th {
@@ -34,7 +34,26 @@ th {
 thead {
 	background: $color-body--secondary;
 	color: rgba($color-body--primary, 0.5);
+
+	& button {
+		padding: 0.5em;
+
+		&.ascending::after,
+		&.descending::after {
+			display: inline-block;
+			font-family: 'Font Awesome 5 Free';
+			margin-left: 1em;
+		}
+		&.ascending::after {
+			content: '\f0dd';
+		}
+		&.descending::after {
+			content: '\f0de';
+			transform: translateY(25%);
+		}
+	}
 }
+
 tbody {
 	background: rgba($color-body--secondary, 0.5);
 	background: $color-body--secondary;

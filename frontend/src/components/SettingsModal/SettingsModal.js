@@ -40,6 +40,20 @@ export default function SettingsModal({ settings, settingsHandler }) {
 					</div>
 					<div className={styles.row}>
 						<label htmlFor="name" className={styles.label}>
+							Show invoice status
+						</label>
+						<input
+							type="checkbox"
+							id="invoiceStatus"
+							name="invoiceStatus"
+							className={styles.checkbox}
+							checked={settings.invoiceStatus}
+							onClick={changeSettings}
+							{...register('invoiceStatus')}
+						/>
+					</div>
+					<div className={styles.row}>
+						<label htmlFor="name" className={styles.label}>
 							Show gig type
 						</label>
 						<input
