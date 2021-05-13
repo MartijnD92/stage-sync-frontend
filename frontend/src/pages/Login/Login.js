@@ -19,9 +19,7 @@ export default function Login() {
 			const result = await axios.post(`${host}/login`, data);
 			logIn(result.data.accessToken);
 			toggleSuccess(true);
-			setTimeout(() => {
-				history.push('/dashboard');
-			}, 2000);
+			history.push('/dashboard');
 		} catch (e) {
 			console.error(e);
 			toggleError(true);

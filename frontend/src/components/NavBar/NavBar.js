@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { AuthContext } from 'context/AuthContext';
 import { useLocation } from 'react-router-dom';
 import { NavHashLink } from 'react-router-hash-link';
 import Logo from 'components/Logo/Logo';
@@ -7,9 +9,7 @@ import styles from './css/NavBar.module.scss';
 
 export default function NavBar({ children }) {
 	const { pathname: location } = useLocation();
-
-	// TODO: variable verwijderen
-	const isAuthorized = true;
+	const { user, logOut } = useContext(AuthContext);
 
 	return (
 		<>
@@ -17,9 +17,15 @@ export default function NavBar({ children }) {
 				<nav className={`${styles.navbar} ${styles.secondary}`}>
 					<div className={styles.left}>{children}</div>
 					<div className={styles.right}>
-						<Button variant={'secondary'} link={'/login'}>
-							Log out
-						</Button>
+						{user !== null ? (
+							<Button variant={'secondary'} url={'/'} onClick={logOut}>
+								Log out
+							</Button>
+						) : (
+							<Button variant={'secondary'} url={'/login'}>
+								Log in
+							</Button>
+						)}
 						<ProfilePicture defaultPicture={true} />
 					</div>
 				</nav>
@@ -49,16 +55,30 @@ export default function NavBar({ children }) {
 										Contact
 									</NavHashLink>
 								</li>
+								<li>
+									<NavHashLink
+										className={styles.link}
+										smooth
+										to="/dashboard"
+										activeClassName={styles.active}
+									>
+										Dashboard
+									</NavHashLink>
+								</li>
 							</ul>
 						</div>
 						<div className={styles.right}>
-							{!location.includes('/login') && (
-								<Button variant={'secondary'} link={'/login'}>
-									{isAuthorized ? 'Log in' : 'Log out'}
+							{!location.includes('/login') && user === null ? (
+								<Button variant={'secondary'} url={'/login'}>
+									Log in
+								</Button>
+							) : (
+								<Button variant={'secondary'} onClick={logOut}>
+									Log out
 								</Button>
 							)}
 							{location.includes('/') && !location.includes('/signup') && (
-								<Button variant={'primary'} link={'/signup'}>
+								<Button variant={'primary'} url={'/signup'}>
 									Sign up
 								</Button>
 							)}

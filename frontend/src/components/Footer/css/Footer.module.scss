@@ -26,5 +26,16 @@
 		a:not(:last-child) {
 			margin-right: 2rem;
 		}
+		svg:hover {
+			transform: scale(1.1);
+		}
+	}
+
+	p a {
+		color: inherit;
+
+		&:hover {
+			color: $color-btn--secondary;
+		}
 	}
 }

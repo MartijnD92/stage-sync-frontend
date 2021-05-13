@@ -2,18 +2,22 @@ import { createContext, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
-import Preloader from 'components/Preloader/Preloader';
 
 export const AuthContext = createContext({});
 
 export default function AuthContextProvider({ children }) {
 	const history = useHistory();
+	const [isLoading, setIsLoading] = useState(true);
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [userState, setUserState] = useState({
 		user: null,
 		status: 'pending',
 	});
 
 	async function fetchUserData(jwt) {
+		if (!jwt) {
+			return;
+		}
 		const decoded = jwt_decode(jwt);
 		const userId = decoded.sub;
 
@@ -39,13 +43,14 @@ export default function AuthContextProvider({ children }) {
 		} catch (e) {
 			console.error(e);
 		}
+		setIsLoading(false);
 	}
 
 	useEffect(() => {
 		const token = localStorage.getItem('JWT_token');
 
 		if (token !== undefined && userState.user === null) {
-			fetchUserData(token)
+			fetchUserData(token);
 		} else {
 			setUserState({
 				user: null,
@@ -73,11 +78,9 @@ export default function AuthContextProvider({ children }) {
 		...userState,
 		logIn,
 		logOut,
+		isLoading,
+		isAuthenticated,
 	};
 
-	return (
-		<AuthContext.Provider value={data}>
-			{userState.status === 'done' ? children : <Preloader/>}
-		</AuthContext.Provider>
-	);
+	return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 }

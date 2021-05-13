@@ -1,19 +1,14 @@
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styles from './css/Button.module.scss';
 
-export default function Button({ variant, isAlt, link, children }) {
+export default function Button({ variant, isAlt, children, url, ...rest }) {
+	const history = useHistory();
 
-	return link ? (
-		<Link
-			className={`${styles.btn} ${styles[variant]} ${isAlt ? styles.alt : ''}`}
-			to={link}
-		>
-			{children}
-		</Link>
-	) : (
+	return (
 		<button
 			className={`${styles.btn} ${styles[variant]} ${isAlt ? styles.alt : ''}`}
-			type="submit"
+			onClick={url && (() => history.push(url))}
+			{...rest}
 		>
 			{children}
 		</button>

@@ -25,7 +25,6 @@ export default function Form() {
 		try {
 			await emailjs.sendForm(serviceId, templateId, '#contact-form', userId);
 			e.target.reset();
-			toggleLoading(false);
 			toggleMessageSent(true);
 		} catch (e) {
 			console.error(e);
@@ -95,7 +94,7 @@ export default function Form() {
 							{...register('message', { required: true })}
 						/>
 					</label>
-					<Button variant={'secondary'} isAlt>
+					<Button variant={'secondary'} isAlt type="submit">
 						Send
 					</Button>
 				</>

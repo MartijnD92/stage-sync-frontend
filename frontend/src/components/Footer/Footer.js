@@ -38,7 +38,7 @@ export default function Footer() {
 							<Instagram />
 						</a>
 					</div>
-					<p>Web Design & Development by Martijn Doensen</p>
+					<p>Web Design & Development by <a href="https://www.linkedin.com/in/martijndoensen/" target="__blank">Martijn Doensen</a></p>
 				</div>
 			</div>
 		</footer>

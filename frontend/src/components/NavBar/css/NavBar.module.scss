@@ -26,10 +26,7 @@ $navbar-margin-top: 2rem;
 		position: relative;
 		transition: transform 100ms ease;
 		color: #f0f0f0;
-
-		&:first-child {
-			margin-right: 2rem;
-		}
+		margin-right: 2rem;
 
 		&:hover,
 		&.active {
@@ -63,16 +60,8 @@ $navbar-margin-top: 2rem;
 		align-items: center;
 		margin-right: 4rem;
 
-		a:first-child {
+		button:first-child {
 			margin-right: 2rem;
 		}
-	}
-
-	&.primary {
-
-	}
-
-
-	&.secondary {
 	}
 }

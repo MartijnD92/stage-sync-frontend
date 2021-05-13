@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { AuthContext } from 'context/AuthContext';
 import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from 'components/PrivateRoute';
 import Home from 'pages/Home/Home';
@@ -9,7 +7,6 @@ import Login from 'pages/Login/Login';
 import './css/App.scss';
 
 function App() {
-	const { userState } = useContext(AuthContext);
 
 	return (
 		<>
@@ -23,7 +20,7 @@ function App() {
 				<Route path="/login">
 					<Login />
 				</Route>
-				<PrivateRoute exact path="/dashboard" isLoggedIn={userState}>
+				<PrivateRoute exact path="/dashboard">
 					<Dashboard />
 				</PrivateRoute>
 				<Route path="/dashboard/settings">

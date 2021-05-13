@@ -1,9 +1,22 @@
+import { useContext } from 'react';
+import { AuthContext } from 'context/AuthContext';
+import FullPageLoader from 'components/FullPageLoader/FullPageLoader';
 import { Route, Redirect } from 'react-router-dom';
 
-function PrivateRoute({ children, isLoggedIn, ...rest }) {
+function PrivateRoute({ children, ...rest }) {
+	const { user, isLoading } = useContext(AuthContext);
+
 	return (
 		<Route {...rest}>
-			{isLoggedIn ? children : <Redirect to={'/login'}/>}
+			{!isLoading ? (
+				user !== null ? (
+					children
+				) : (
+					<Redirect to={'/login'} />
+				)
+			) : (
+				<FullPageLoader />
+			)}
 		</Route>
 	);
 }

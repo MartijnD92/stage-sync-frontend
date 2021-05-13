@@ -11,7 +11,7 @@ import getPaginatedResults from 'helpers/getPaginatedResults';
 import './css/Dashboard.scss';
 
 // TODO: Remove when finished styling:
-import gigResults from 'mockData/mockresults.json';
+// import gigResults from 'mockData/mockresults.json';
 
 export default function Dashboard({ settingsModal }) {
 	const userPredefinedSettings = JSON.parse(
@@ -27,7 +27,7 @@ export default function Dashboard({ settingsModal }) {
 		}
 	);
 
-	// const [gigResults, setGigResults] = useState([]);
+	const [gigResults, setGigResults] = useState([]);
 	const [paginatedResults, setPaginatedResults] = useState([]);
 	const [gigQuery, setGigQuery] = useState('');
 
@@ -36,7 +36,7 @@ export default function Dashboard({ settingsModal }) {
 	const [currentPage, setCurrentPage] = useState(1);
 
 	useEffect(() => {
-		// getGigs(setGigResults, gigQuery);
+		getGigs(setGigResults, gigQuery);
 		setPages(Math.round(gigResults.length / resultsLimit));
 		setPaginatedResults(
 			getPaginatedResults(gigResults, resultsLimit, currentPage)
@@ -51,7 +51,7 @@ export default function Dashboard({ settingsModal }) {
 					<AddButton />
 					<SearchBar setGigHandler={setGigQuery} />
 				</NavBar>
-				{paginatedResults.length !== 0 && (
+				{paginatedResults.length !== 0 ? (
 					<>
 						<div className="table-container">
 							<ResultsList results={paginatedResults} settings={settings} />
@@ -64,7 +64,7 @@ export default function Dashboard({ settingsModal }) {
 							resultsLimit={resultsLimit}
 						/>
 					</>
-				)}
+				) : <div className="title-container"><h1 className="no-content">Let's give that search bar a try!</h1></div>}
 				{settingsModal && (
 					<SettingsModal settings={settings} settingsHandler={setSettings} />
 				)}
