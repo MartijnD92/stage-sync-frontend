@@ -27,6 +27,10 @@ $navbar-margin-top: 2rem;
 		transition: transform 100ms ease;
 		color: #f0f0f0;
 
+		&:first-child {
+			margin-right: 2rem;
+		}
+
 		&:hover,
 		&.active {
 			&::after {
@@ -49,11 +53,6 @@ $navbar-margin-top: 2rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-
-		// & > *,
-		// a:first-child {
-		// 	margin-right: 2rem;
-		// }
 	}
 
 	.right {

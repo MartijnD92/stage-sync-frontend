@@ -25,42 +25,44 @@ export default function NavBar({ children }) {
 				</nav>
 			) : (
 				<nav className={`${styles.navbar} ${styles.primary}`}>
-					<div className={styles.left}>
-						<Logo className={styles.logo} extended={true} />
-						<ul className={styles.links}>
-							<li>
-								<NavHashLink
-									className={styles.link}
-									smooth
-									to="/#about"
-									activeClassName={styles.active}
-								>
-									About
-								</NavHashLink>
-							</li>
-							<li>
-								<NavHashLink
-									className={styles.link}
-									smooth
-									to="/#contact"
-									activeClassName={styles.active}
-								>
-									Contact
-								</NavHashLink>
-							</li>
-						</ul>
-					</div>
-					<div className={styles.right}>
-						{!location.includes('/login') && (
-							<Button variant={'secondary'} link={'/login'}>
-								{isAuthorized ? 'Log in' : 'Log out'}
-							</Button>
-						)}
-						{location.includes('/') && !location.includes('/signup') && (
-							<Button variant={'primary'} link={'/signup'}>
-								Sign up
-							</Button>
-						)}
+					<div className="content-container">
+						<div className={styles.left}>
+							<Logo className={styles.logo} extended={true} />
+							<ul className={styles.links}>
+								<li>
+									<NavHashLink
+										className={styles.link}
+										smooth
+										to="/#about"
+										activeClassName={styles.active}
+									>
+										About
+									</NavHashLink>
+								</li>
+								<li>
+									<NavHashLink
+										className={styles.link}
+										smooth
+										to="/#contact"
+										activeClassName={styles.active}
+									>
+										Contact
+									</NavHashLink>
+								</li>
+							</ul>
+						</div>
+						<div className={styles.right}>
+							{!location.includes('/login') && (
+								<Button variant={'secondary'} link={'/login'}>
+									{isAuthorized ? 'Log in' : 'Log out'}
+								</Button>
+							)}
+							{location.includes('/') && !location.includes('/signup') && (
+								<Button variant={'primary'} link={'/signup'}>
+									Sign up
+								</Button>
+							)}
+						</div>
 					</div>
 				</nav>
 			)}

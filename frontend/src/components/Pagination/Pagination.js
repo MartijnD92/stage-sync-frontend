@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { ReactComponent as PreviousIcon } from 'assets/icons/prevIcon.svg';
 import { ReactComponent as NextIcon } from 'assets/icons/nextIcon.svg';
 import styles from './css/Pagination.module.scss';
