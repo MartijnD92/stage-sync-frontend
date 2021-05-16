@@ -26,14 +26,14 @@ export default function NavBar({ children }) {
 								Log in
 							</Button>
 						)}
-						<ProfilePicture defaultPicture={true} />
+						<ProfilePicture defaultPicture />
 					</div>
 				</nav>
 			) : (
 				<nav className={`${styles.navbar} ${styles.primary}`}>
 					<div className="content-container">
 						<div className={styles.left}>
-							<Logo className={styles.logo} extended={true} />
+							<Logo className={styles.logo} extended />
 							<ul className={styles.links}>
 								<li>
 									<NavHashLink
@@ -59,7 +59,7 @@ export default function NavBar({ children }) {
 									<NavHashLink
 										className={styles.link}
 										smooth
-										to="/dashboard"
+										to={user !== null ? '/dashboard' : '/login'}
 										activeClassName={styles.active}
 									>
 										Dashboard

@@ -9,17 +9,14 @@ export default function Login() {
 	const [error, toggleError] = useState(false);
 	const [success, toggleSuccess] = useState(false);
 	const { logIn } = useContext(AuthContext);
-	const history = useHistory();
-	const host = 'http://localhost:3000';
 
 	async function onFormSubmit(data) {
 		toggleError(false);
 
 		try {
-			const result = await axios.post(`${host}/login`, data);
+			const result = await axios.post('http://localhost:3000/login', data);
 			logIn(result.data.accessToken);
 			toggleSuccess(true);
-			history.push('/dashboard');
 		} catch (e) {
 			console.error(e);
 			toggleError(true);

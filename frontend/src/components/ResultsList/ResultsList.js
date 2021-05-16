@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './css/ResultsList.module.scss';
 
 export default function ResultsList({ results, settings }) {
+
 	const { items, requestSort, sortConfig } = useSortableData(results);
 
 	function getClassNamesFor(name) {

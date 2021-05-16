@@ -9,6 +9,10 @@
 	margin: 0;
 }
 
+html, body, #root {
+	height: 100%;
+}
+
 html {
 	font-size: 16px;
 }
@@ -16,7 +20,6 @@ html {
 body {
 	width: 100%;
     min-height: 100vh;
-    // overflow-x: hidden;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: $font-body--primary;
 	color: $color-body--primary;

@@ -8,7 +8,6 @@ export const AuthContext = createContext({});
 export default function AuthContextProvider({ children }) {
 	const history = useHistory();
 	const [isLoading, setIsLoading] = useState(true);
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [userState, setUserState] = useState({
 		user: null,
 		status: 'pending',
@@ -47,16 +46,20 @@ export default function AuthContextProvider({ children }) {
 	}
 
 	useEffect(() => {
+		let mounted = true;
 		const token = localStorage.getItem('JWT_token');
 
-		if (token !== undefined && userState.user === null) {
-			fetchUserData(token);
+		if (token !== null && userState.user === null) {
+			if (mounted) {
+				fetchUserData(token);
+			}
 		} else {
 			setUserState({
 				user: null,
 				status: 'done',
 			});
 		}
+		return () => mounted = false;
 	}, []);
 
 	function logIn(jwt) {
@@ -79,7 +82,6 @@ export default function AuthContextProvider({ children }) {
 		logIn,
 		logOut,
 		isLoading,
-		isAuthenticated,
 	};
 
 	return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

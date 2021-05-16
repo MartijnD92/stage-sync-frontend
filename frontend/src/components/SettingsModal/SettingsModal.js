@@ -3,7 +3,11 @@ import { useHistory } from 'react-router-dom';
 import Button from 'components/Button/Button';
 import styles from './css/SettingsModal.module.scss';
 
-export default function SettingsModal({ settings, settingsHandler }) {
+export default function SettingsModal({
+	settings,
+	settingsHandler,
+	modalHandler,
+}) {
 	const history = useHistory();
 
 	const changeSettings = (e) => {
@@ -17,15 +21,22 @@ export default function SettingsModal({ settings, settingsHandler }) {
 	const saveSettings = (settings) => {
 		localStorage.setItem('userSettings', JSON.stringify(settings));
 		history.push('/dashboard');
+		modalHandler(false);
 	};
 
 	return (
-		<div className={styles.overlay}>
+		<div
+			className={styles.overlay}
+			onClick={(e) => {
+				e.target.className.includes('overlay') && modalHandler(false);
+				history.push('/dashboard');
+			}}
+		>
 			<div className={styles.window}>
 				<form onSubmit={handleSubmit(saveSettings)}>
 					<h2 className={styles.title}>Settings</h2>
 					<div className={styles.row}>
-						<label htmlFor="name" className={styles.label}>
+						<label htmlFor="ticketStats" className={styles.label}>
 							Show ticket stats
 						</label>
 						<input
@@ -39,7 +50,7 @@ export default function SettingsModal({ settings, settingsHandler }) {
 						/>
 					</div>
 					<div className={styles.row}>
-						<label htmlFor="name" className={styles.label}>
+						<label htmlFor="invoiceStatus" className={styles.label}>
 							Show invoice status
 						</label>
 						<input
@@ -53,7 +64,7 @@ export default function SettingsModal({ settings, settingsHandler }) {
 						/>
 					</div>
 					<div className={styles.row}>
-						<label htmlFor="name" className={styles.label}>
+						<label htmlFor="gigType" className={styles.label}>
 							Show gig type
 						</label>
 						<input
@@ -67,7 +78,7 @@ export default function SettingsModal({ settings, settingsHandler }) {
 						/>
 					</div>
 					<div className={styles.row}>
-						<label htmlFor="name" className={styles.label}>
+						<label htmlFor="room" className={styles.label}>
 							Show venue room
 						</label>
 						<input
@@ -81,7 +92,7 @@ export default function SettingsModal({ settings, settingsHandler }) {
 						/>
 					</div>
 					<div className={styles.row}>
-						<label htmlFor="name" className={styles.label}>
+						<label htmlFor="transparency" className={styles.label}>
 							Toggle background transparency
 						</label>
 						<input

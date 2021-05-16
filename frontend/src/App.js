@@ -1,4 +1,6 @@
-import { Switch, Route } from 'react-router-dom';
+import { useContext } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { AuthContext } from 'context/AuthContext';
 import PrivateRoute from 'components/PrivateRoute';
 import Home from 'pages/Home/Home';
 import Dashboard from 'pages/Dashboard/Dashboard';
@@ -7,6 +9,7 @@ import Login from 'pages/Login/Login';
 import './css/App.scss';
 
 function App() {
+	const { user } = useContext(AuthContext);
 
 	return (
 		<>
@@ -18,17 +21,14 @@ function App() {
 					<Signup />
 				</Route>
 				<Route path="/login">
-					<Login />
+					{user !== null ? <Redirect to="/dashboard" /> : <Login />}
 				</Route>
 				<PrivateRoute exact path="/dashboard">
 					<Dashboard />
 				</PrivateRoute>
-				<Route path="/dashboard/settings">
-					<Dashboard settingsModal={true} />
-				</Route>
-				<Route path="/dashboard/add">
-					<Dashboard AddModal={true} />
-				</Route>
+				<PrivateRoute path="/dashboard#settings">
+					<Dashboard />
+				</PrivateRoute>
 			</Switch>
 		</>
 	);

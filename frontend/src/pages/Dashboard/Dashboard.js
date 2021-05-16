@@ -13,7 +13,7 @@ import './css/Dashboard.scss';
 // TODO: Remove when finished styling:
 // import gigResults from 'mockData/mockresults.json';
 
-export default function Dashboard({ settingsModal }) {
+export default function Dashboard() {
 	const userPredefinedSettings = JSON.parse(
 		localStorage.getItem('userSettings')
 	);
@@ -27,6 +27,12 @@ export default function Dashboard({ settingsModal }) {
 		}
 	);
 
+	const [isModalOpen, setIsModalOpen] = useState({
+		settings: false,
+		artist: false
+	}
+	);
+
 	const [gigResults, setGigResults] = useState([]);
 	const [paginatedResults, setPaginatedResults] = useState([]);
 	const [gigQuery, setGigQuery] = useState('');
@@ -36,37 +42,33 @@ export default function Dashboard({ settingsModal }) {
 	const [currentPage, setCurrentPage] = useState(1);
 
 	useEffect(() => {
-		getGigs(setGigResults, gigQuery);
-		setPages(Math.round(gigResults.length / resultsLimit));
-		setPaginatedResults(
-			getPaginatedResults(gigResults, resultsLimit, currentPage)
-		);
-	}, [gigResults]);
+		gigQuery && getGigs(setGigResults, gigQuery);
+	}, [gigQuery]);
 
 	return (
 		<>
-			<SideMenu />
+			<SideMenu isModalOpen={isModalOpen} modalHandler={setIsModalOpen}/>
 			<main className="content">
 				<NavBar>
 					<AddButton />
 					<SearchBar setGigHandler={setGigQuery} />
 				</NavBar>
-				{paginatedResults.length !== 0 ? (
+				{gigResults.length !== 0 ? (
 					<>
 						<div className="table-container">
-							<ResultsList results={paginatedResults} settings={settings} />
+							<ResultsList results={gigResults} settings={settings} />
 						</div>
-						<Pagination
+						{/* <Pagination
 							pages={pages}
 							currentPage={currentPage}
 							setCurrentPage={setCurrentPage}
 							pageLimit={5}
 							resultsLimit={resultsLimit}
-						/>
+						/> */}
 					</>
 				) : <div className="title-container"><h1 className="no-content">Let's give that search bar a try!</h1></div>}
-				{settingsModal && (
-					<SettingsModal settings={settings} settingsHandler={setSettings} />
+				{isModalOpen.settings && (
+					<SettingsModal settings={settings} settingsHandler={setSettings} modalHandler={setIsModalOpen}/>
 				)}
 			</main>
 		</>
