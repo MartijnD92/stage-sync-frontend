@@ -15,6 +15,7 @@
 	align-items: flex-start;
 	background: $color-body--primary;
 	border-top-right-radius: 50px;
+	z-index: 4;
 
 	.inner {
 		height: 100%;

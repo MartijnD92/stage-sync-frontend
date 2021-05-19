@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 import { AuthContext } from 'context/AuthContext';
 import { useForm } from 'react-hook-form';
+import NavBar from 'components/NavBar/NavBar';
 import axios from 'axios';
 
 export default function Login() {
@@ -14,7 +14,10 @@ export default function Login() {
 		toggleError(false);
 
 		try {
-			const result = await axios.post('http://localhost:3000/login', data);
+			const result = await axios.post(
+				'https://localhost:8443/api/auth/signin',
+				data
+			);
 			logIn(result.data.accessToken);
 			toggleSuccess(true);
 		} catch (e) {
@@ -25,20 +28,21 @@ export default function Login() {
 
 	return (
 		<div className="container">
+			<NavBar />
 			<form onSubmit={handleSubmit(onFormSubmit)}>
 				<fieldset>
-					<legend>Sign in</legend>
+					<legend>Log in</legend>
 					{success ? (
-						<h2>Inloggen gelukt! Je wordt nu doorgestuurd.</h2>
+						<h2>Login successful. You're now being redirected.</h2>
 					) : (
 						<>
-							<label htmlFor="email">
-								E-mail
+							<label htmlFor="username">
+								Username
 								<input
-									type="email"
-									name="email"
-									id="email"
-									{...register('email')}
+									type="text"
+									name="username"
+									id="username"
+									{...register('username')}
 								/>
 							</label>
 							<label htmlFor="password">
@@ -55,7 +59,7 @@ export default function Login() {
 							</button>
 						</>
 					)}
-					{error && <p>Inloggen mislukt. Probeer het opnieuw.</p>}
+					{error && <p>Login failed. Please try again.</p>}
 				</fieldset>
 			</form>
 		</div>

@@ -13,7 +13,7 @@ export default function NavBar({ children }) {
 
 	return (
 		<>
-			{location !== '/' ? (
+			{['/dashboard', '/artist'].includes(location) ? (
 				<nav className={`${styles.navbar} ${styles.secondary}`}>
 					<div className={styles.left}>{children}</div>
 					<div className={styles.right}>
@@ -60,7 +60,6 @@ export default function NavBar({ children }) {
 										className={styles.link}
 										smooth
 										to={user !== null ? '/dashboard' : '/login'}
-										activeClassName={styles.active}
 									>
 										Dashboard
 									</NavHashLink>
@@ -68,16 +67,17 @@ export default function NavBar({ children }) {
 							</ul>
 						</div>
 						<div className={styles.right}>
-							{!location.includes('/login') && user === null ? (
-								<Button variant={'secondary'} url={'/login'}>
-									Log in
-								</Button>
-							) : (
-								<Button variant={'secondary'} onClick={logOut}>
-									Log out
-								</Button>
-							)}
-							{location.includes('/') && !location.includes('/signup') && (
+							{!location.includes('/login') &&
+								(user === null ? (
+									<Button variant={'secondary'} url={'/login'}>
+										Log in
+									</Button>
+								) : (
+									<Button variant={'secondary'} onClick={logOut}>
+										Log out
+									</Button>
+								))}
+							{!location.includes('/signup') && (
 								<Button variant={'primary'} url={'/signup'}>
 									Sign up
 								</Button>

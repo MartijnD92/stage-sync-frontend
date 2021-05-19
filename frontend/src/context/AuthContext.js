@@ -22,7 +22,7 @@ export default function AuthContextProvider({ children }) {
 
 		try {
 			const result = await axios.get(
-				`http://localhost:3000/600/users/${userId}`,
+				`https://localhost:8443/api/users/user/${userId}`,
 				{
 					headers: {
 						'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export default function AuthContextProvider({ children }) {
 			});
 		}
 		return () => mounted = false;
-	}, []);
+	}, [userState.user]);
 
 	function logIn(jwt) {
 		localStorage.setItem('JWT_token', jwt);

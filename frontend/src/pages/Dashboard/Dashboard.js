@@ -5,9 +5,9 @@ import SettingsModal from 'components/SettingsModal/SettingsModal';
 import AddButton from 'components/AddButton/AddButton';
 import SearchBar from 'components/SearchBar/SearchBar';
 import ResultsList from 'components/ResultsList/ResultsList';
-import Pagination from 'components/Pagination/Pagination';
+// import Pagination from 'components/Pagination/Pagination';
 import getGigs from 'helpers/getGigs';
-import getPaginatedResults from 'helpers/getPaginatedResults';
+// import getPaginatedResults from 'helpers/getPaginatedResults';
 import './css/Dashboard.scss';
 
 // TODO: Remove when finished styling:
@@ -34,12 +34,12 @@ export default function Dashboard() {
 	);
 
 	const [gigResults, setGigResults] = useState([]);
-	const [paginatedResults, setPaginatedResults] = useState([]);
+	// const [paginatedResults, setPaginatedResults] = useState([]);
 	const [gigQuery, setGigQuery] = useState('');
 
-	const resultsLimit = 15;
-	const [pages, setPages] = useState(1);
-	const [currentPage, setCurrentPage] = useState(1);
+	// const resultsLimit = 15;
+	// const [pages, setPages] = useState(1);
+	// const [currentPage, setCurrentPage] = useState(1);
 
 	useEffect(() => {
 		gigQuery && getGigs(setGigResults, gigQuery);

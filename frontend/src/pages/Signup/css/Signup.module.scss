@@ -1,0 +1,140 @@
+@import '../../../css/config';
+
+.container {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+
+.left {
+	width: 50%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: $color-body--primary;
+	position: relative;
+	border-radius: 0 50px 50px 0;
+	overflow: hidden;
+	z-index: -10;
+	box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.16);
+
+	.img {
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		object-fit: cover;
+		opacity: 0.1;
+	}
+
+	blockquote {
+		font-size: clamp(2.5rem, 2vw, 3.5rem);
+		color: rgba($bg-alt, 0.75);
+		margin: 5rem;
+
+		q {
+			display: block;
+		}
+		cite {
+			font-size: 1.75rem;
+		}
+	}
+
+	@media only screen and (max-width: get-breakpoints('md')) {
+		display: none;
+	}
+}
+
+.right {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 3rem;
+
+	@media only screen and (max-width: get-breakpoints('md')) {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+.form {
+	width: 26rem;
+	height: 38rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	:first-child {
+		margin-bottom: .5rem;
+	}
+
+	> *:not(:first-child) {
+		display: block;
+		margin-bottom: 2rem;
+		width: 100%;
+		text-align: center;
+	}
+
+	.fields {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		text-align: left;
+	}
+
+	label {
+		padding: 0 0.5rem;
+	}
+
+	.terms {
+		display: flex;
+		justify-content: flex-start;
+
+		input {
+			width: 1rem;
+			margin-right: .5rem;
+		}
+	}
+
+	input,
+	textarea {
+		display: block;
+		width: 100%;
+		border: 0;
+		border-bottom: 2px solid $color-body--primary;
+		background: inherit;
+		color: inherit;
+		font-family: inherit;
+		font-size: inherit;
+		resize: none;
+		margin-bottom: 2.5rem;
+		padding: 0.5rem 0;
+	}
+
+	.error {
+		font-size: 1.2rem;
+	}
+}
+
+.link {
+	color: $bg-btn--secondary;
+
+	&:visited {
+		color: $bg-btn--secondary;
+	}
+	&:active {
+		color: $color-body--secondary;
+	}
+	&:hover {
+		color: $bg-btn--secondary-alt;
+	}
+}
+
+// TODO: Navbar is niet klikbaar!

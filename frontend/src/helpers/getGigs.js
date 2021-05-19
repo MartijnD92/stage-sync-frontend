@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default async function getGigs(setter, query) {
     try {
-        const response = await axios.get('http://localhost:3000/gigs/');
+        const response = await axios.get('https://localhost:8443/gigs/');
         const data = response.data.filter(
             (responseObj) => responseObj.artist === query
         );

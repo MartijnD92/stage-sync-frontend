@@ -203,7 +203,7 @@ export default function ResultsList({ results, settings }) {
 							onClick={() => requestSort('pay')}
 							className={getClassNamesFor('pay')}
 						>
-							Pay
+							Fee
 						</button>
 					</th>
 					{settings.gigType && (
