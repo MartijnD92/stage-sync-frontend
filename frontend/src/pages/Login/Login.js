@@ -1,8 +1,11 @@
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from 'context/AuthContext';
 import { useForm } from 'react-hook-form';
 import NavBar from 'components/NavBar/NavBar';
+import Button from 'components/Button/Button';
 import axios from 'axios';
+import styles from './css/Login.module.scss';
 
 export default function Login() {
 	const { handleSubmit, register } = useForm();
@@ -15,7 +18,7 @@ export default function Login() {
 
 		try {
 			const result = await axios.post(
-				'https://localhost:8443/api/auth/signin',
+				'http://localhost:8080/api/auth/signin',
 				data
 			);
 			logIn(result.data.accessToken);
@@ -27,41 +30,52 @@ export default function Login() {
 	}
 
 	return (
-		<div className="container">
+		<>
 			<NavBar />
-			<form onSubmit={handleSubmit(onFormSubmit)}>
-				<fieldset>
-					<legend>Log in</legend>
+			<div className={styles.container}>
+				<form onSubmit={handleSubmit(onFormSubmit)} className={styles.form}>
 					{success ? (
-						<h2>Login successful. You're now being redirected.</h2>
+						<h2>Login successful.</h2>
 					) : (
 						<>
-							<label htmlFor="username">
-								Username
-								<input
-									type="text"
-									name="username"
-									id="username"
-									{...register('username')}
-								/>
-							</label>
-							<label htmlFor="password">
-								Password
-								<input
-									type="password"
-									name="password"
-									id="password"
-									{...register('password')}
-								/>
-							</label>
-							<button className="submit-btn" type="submit">
-								Sign in
-							</button>
+							<h1>Log in</h1>
+							<p>
+								New here?{' '}
+								<Link to="/login" className={styles.link}>
+									Create an account
+								</Link>
+							</p>
+							<div className={styles.fields}>
+								<label htmlFor="username">
+									Username
+									<input
+										type="text"
+										name="username"
+										id="username"
+										{...register('username')}
+									/>
+								</label>
+								<label htmlFor="password">
+									Password
+									<input
+										type="password"
+										name="password"
+										id="password"
+										{...register('password')}
+									/>
+								</label>
+								<Link to="/login" className={styles.link}>
+									Forgot password?
+								</Link>
+							</div>
+							{error && <p>Login failed. Please try again.</p>}
+							<Button variant={'primary'} type="submit">
+								Log in
+							</Button>
 						</>
 					)}
-					{error && <p>Login failed. Please try again.</p>}
-				</fieldset>
-			</form>
-		</div>
+				</form>
+			</div>
+		</>
 	);
 }

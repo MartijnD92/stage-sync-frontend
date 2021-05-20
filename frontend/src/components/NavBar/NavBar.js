@@ -78,7 +78,12 @@ export default function NavBar({ children }) {
 									</Button>
 								))}
 							{!location.includes('/signup') && (
-								<Button variant={'primary'} url={'/signup'}>
+								<Button
+									variant={
+										location.includes('/login') ? 'secondary' : 'primary'
+									}
+									url={'/signup'}
+								>
 									Sign up
 								</Button>
 							)}

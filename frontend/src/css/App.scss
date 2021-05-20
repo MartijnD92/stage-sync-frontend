@@ -9,7 +9,9 @@
 	margin: 0;
 }
 
-html, body, #root {
+html,
+body,
+#root {
 	height: 100%;
 }
 
@@ -19,17 +21,11 @@ html {
 
 body {
 	width: 100%;
-    min-height: 100vh;
-	margin-top: 5rem;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: $font-body--primary;
 	color: $color-body--primary;
 	background: $bg--primary;
 }
-
-// main {
-//     flex: 1 0 auto;
-// }
 
 header {
 	width: 100%;

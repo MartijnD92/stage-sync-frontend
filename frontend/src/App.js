@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { AuthContext } from 'context/AuthContext';
 import PrivateRoute from 'components/PrivateRoute';
 import Home from 'pages/Home/Home';
@@ -21,7 +21,7 @@ function App() {
 					<Signup />
 				</Route>
 				<Route path="/login">
-					{user !== null ? <Redirect to="/dashboard" /> : <Login />}
+					<Login />
 				</Route>
 				<PrivateRoute exact path="/dashboard">
 					<Dashboard />

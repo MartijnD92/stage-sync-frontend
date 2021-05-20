@@ -16,14 +16,13 @@ export default function Signup() {
 	async function onFormSubmit(data) {
 		toggleError(false);
 		try {
-			await axios.post('https://localhost:8443/api/auth/signup', data);
+			await axios.post('http://localhost:8080/api/auth/signup', data);
 			toggleSuccess(true);
 			setTimeout(() => {
 				history.push('/login');
 			}, 2000);
 		} catch (e) {
 			console.error(e);
-			console.log(e.response.data)
 			toggleError(true);
 		}
 	}
