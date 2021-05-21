@@ -33,7 +33,7 @@ export default function SettingsModal({
 			}}
 		>
 			<div className={styles.window}>
-				<form onSubmit={handleSubmit(saveSettings)}>
+				<form onSubmit={handleSubmit(saveSettings)} className={styles.form}>
 					<h2 className={styles.title}>Settings</h2>
 					<div className={styles.row}>
 						<label htmlFor="ticketStats" className={styles.label}>

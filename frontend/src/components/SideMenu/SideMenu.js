@@ -9,6 +9,13 @@ import styles from './css/SideMenu.module.scss';
 export default function SideMenu({ isModalOpen, modalHandler }) {
 	const { hash } = useLocation();
 
+	const disableModals = () => {
+		modalHandler({
+			settings: false,
+			artist: false
+		});
+	};
+
 	return (
 		<nav className={styles.sidemenu}>
 			<div className={styles.inner}>
@@ -21,6 +28,7 @@ export default function SideMenu({ isModalOpen, modalHandler }) {
 					className={styles.link}
 					activeClassName={styles.active}
 					isActive={() => !hash}
+					onClick={disableModals}
 				>
 					<div className={styles.item}>
 						<DashboardIcon className={styles.icon} />
@@ -36,7 +44,7 @@ export default function SideMenu({ isModalOpen, modalHandler }) {
 				<NavHashLink
 					exact
 					to="/dashboard#settings"
-					onClick={() => modalHandler(true)}
+					onClick={() => modalHandler({ settings: true })}
 					className={styles.link}
 					activeClassName={isModalOpen && styles.active}
 				>

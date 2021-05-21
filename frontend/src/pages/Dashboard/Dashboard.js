@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import NavBar from 'components/NavBar/NavBar';
 import SideMenu from 'components/SideMenu/SideMenu';
 import SettingsModal from 'components/SettingsModal/SettingsModal';
+import AddArtistModal from 'components/AddArtistModal/AddArtistModal';
 import AddButton from 'components/AddButton/AddButton';
 import SearchBar from 'components/SearchBar/SearchBar';
 import ResultsList from 'components/ResultsList/ResultsList';
@@ -9,9 +10,6 @@ import ResultsList from 'components/ResultsList/ResultsList';
 import getGigs from 'helpers/getGigs';
 // import getPaginatedResults from 'helpers/getPaginatedResults';
 import './css/Dashboard.scss';
-
-// TODO: Remove when finished styling:
-// import gigResults from 'mockData/mockresults.json';
 
 export default function Dashboard() {
 	const userPredefinedSettings = JSON.parse(
@@ -50,7 +48,7 @@ export default function Dashboard() {
 			<SideMenu isModalOpen={isModalOpen} modalHandler={setIsModalOpen}/>
 			<main className="content">
 				<NavBar>
-					<AddButton />
+					<AddButton modalSetter={setIsModalOpen}/>
 					<SearchBar setGigHandler={setGigQuery} />
 				</NavBar>
 				{gigResults.length !== 0 ? (
@@ -70,15 +68,11 @@ export default function Dashboard() {
 				{isModalOpen.settings && (
 					<SettingsModal settings={settings} settingsHandler={setSettings} modalHandler={setIsModalOpen}/>
 				)}
+				{isModalOpen.artist && (
+					<AddArtistModal modalHandler={setIsModalOpen}/>
+				)}
 			</main>
 		</>
 	);
 }
 
-// useEffect(() => {
-// 	const filterResult = () => {
-// 		const data = results.filter(result => result.artist === artist);
-// 		setArtistResults(data);
-// 	}
-// 	artist && filterResult();
-// }, [artist])

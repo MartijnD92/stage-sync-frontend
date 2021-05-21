@@ -1,0 +1,25 @@
+@import '../../../css/modal.module.scss';
+
+.title {
+    margin-bottom: 2rem;
+}
+
+.left {
+    width: 70%;
+}
+.right {
+    width: 30%;
+    margin-left: 3rem;
+
+    > *:not(:first-child) {
+        margin-top: 2rem;
+    }
+}
+
+.fields {
+    display: flex;
+
+    button {
+        padding: 0;
+    }
+}

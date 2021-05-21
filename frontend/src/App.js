@@ -23,12 +23,12 @@ function App() {
 				<Route path="/login">
 					<Login />
 				</Route>
-				<PrivateRoute exact path="/dashboard">
+				{/* <PrivateRoute path="/dashboard">
 					<Dashboard />
-				</PrivateRoute>
-				<PrivateRoute path="/dashboard#settings">
+				</PrivateRoute> */}
+				<Route path="/dashboard">
 					<Dashboard />
-				</PrivateRoute>
+				</Route>
 			</Switch>
 		</>
 	);
