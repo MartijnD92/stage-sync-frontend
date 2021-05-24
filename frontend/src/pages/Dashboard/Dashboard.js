@@ -24,6 +24,7 @@ export default function Dashboard() {
 			transparency: true,
 		}
 	);
+	const [error, setError] = useState(false);
 
 	const [isModalOpen, setIsModalOpen] = useState({
 		settings: false,
@@ -40,7 +41,7 @@ export default function Dashboard() {
 	// const [currentPage, setCurrentPage] = useState(1);
 
 	useEffect(() => {
-		gigQuery && getGigs(setGigResults, gigQuery);
+		gigQuery && getGigs(setGigResults, gigQuery, setError);
 	}, [gigQuery]);
 
 	return (
@@ -51,7 +52,8 @@ export default function Dashboard() {
 					<AddButton modalSetter={setIsModalOpen}/>
 					<SearchBar setGigHandler={setGigQuery} />
 				</NavBar>
-				{gigResults.length !== 0 ? (
+				{error ? <div className="title-container"><h1 className="no-content">Sorry! We couldn't find the thing you were looking for!</h1></div> : 
+				gigResults ? (
 					<>
 						<div className="table-container">
 							<ResultsList results={gigResults} settings={settings} />
@@ -64,10 +66,11 @@ export default function Dashboard() {
 							resultsLimit={resultsLimit}
 						/> */}
 					</>
-				) : <div className="title-container"><h1 className="no-content">Let's give that search bar a try!</h1></div>}
+				 ) : <div className="title-container"><h1 className="no-content">Let's give that search bar a try!</h1></div>}
 				{isModalOpen.settings && (
 					<SettingsModal settings={settings} settingsHandler={setSettings} modalHandler={setIsModalOpen}/>
 				)}
+
 				{isModalOpen.artist && (
 					<AddArtistModal modalHandler={setIsModalOpen}/>
 				)}

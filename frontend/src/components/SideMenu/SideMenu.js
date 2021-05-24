@@ -46,7 +46,8 @@ export default function SideMenu({ isModalOpen, modalHandler }) {
 					to="/dashboard#settings"
 					onClick={() => modalHandler({ settings: true })}
 					className={styles.link}
-					activeClassName={isModalOpen && styles.active}
+					isActive={() => hash === "#settings"}
+					activeClassName={styles.active}
 				>
 					<div className={styles.item}>
 						<SettingsIcon className={styles.icon} />

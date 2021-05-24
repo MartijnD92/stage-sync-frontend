@@ -36,6 +36,7 @@ export default function AuthContextProvider({ children }) {
 					username: result.data.username,
 					email: result.data.email,
 					id: result.data.id,
+					token: jwt
 				},
 				status: 'done',
 			});

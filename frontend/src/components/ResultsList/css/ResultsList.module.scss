@@ -33,10 +33,17 @@ th {
 
 thead {
 	background: $color-body--secondary;
-	color: rgba($color-body--primary, 0.5);
 
-	& button {
-		padding: 0.5em;
+	button {
+		border: 0;
+		font-family: inherit;
+		font-size: 1rem;
+		color: rgba($color-body--primary, 0.7);
+
+		&.ascending,
+		&.descending {
+			color: rgba($color-body--primary, 1);
+		}
 
 		&.ascending::after,
 		&.descending::after {

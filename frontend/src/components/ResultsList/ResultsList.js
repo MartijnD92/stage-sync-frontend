@@ -1,106 +1,90 @@
 import useSortableData from 'helpers/useSortableData';
 import { Link } from 'react-router-dom';
+import getStatusStyle from 'helpers/getStatusStyle';
+import getClassNamesFor from 'helpers/getClassNamesFor';
+import getInvoiceStatusName from 'helpers/getInvoiceStatusName';
+import getDateAndTime from 'helpers/getDateAndTime';
 import styles from './css/ResultsList.module.scss';
 
 export default function ResultsList({ results, settings }) {
-
 	const { items, requestSort, sortConfig } = useSortableData(results);
 
-	function getClassNamesFor(name) {
-		if (!sortConfig) {
-			return;
-		}
-		return sortConfig.key === name ? styles[sortConfig.direction] : undefined;
-	}
-
-	function getStatusStyle(status) {
-		let className = '';
-		switch (status) {
-			case 'Pending':
-				return (className = 'pending');
-			case 'Confirmed':
-				return (className = 'confirmed');
-			case 'Cancelled':
-				return (className = 'cancelled');
-			default:
-				return className;
-		}
-	}
-
 	function showResults(items) {
-		return items.map((r) => {
+		return items.map((item) => {
+
+			const dateAndTime = getDateAndTime(item.date);
 			return (
-				<tr key={r.id}>
+				<tr key={item.id}>
 					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
+						<Link to={`/artists/${item.artistName}`} className={styles.link}>
 							<input
 								type="checkbox"
-								name={`select-${r.id}`}
-								id={`select-${r.id}`}
+								name={`select-${item.id}`}
+								id={`select-${item.id}`}
 								className={styles.checkbox}
 							/>
 						</Link>
 					</td>
 					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							{r.date}
+						<Link to={`/artists/${item.artistName}`} className={styles.link}>
+							{dateAndTime.date}
 						</Link>
 					</td>
 					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							{r.time}
+						<Link to={`/artists/${item.artistName}`} className={styles.link}>
+							{dateAndTime.time}
 						</Link>
 					</td>
-					<td className={styles[getStatusStyle(r.status)]}>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							{r.status}
+					<td className={styles[getStatusStyle(item.confirmationStatus)]}>
+						<Link to={`/artists/${item.artistName}`} className={styles.link}>
+							{item.confirmationStatus}
 						</Link>
 					</td>
 					{settings.invoiceStatus && (
 						<td>
-							<Link to={`/artists/${r.artist}`} className={styles.link}>
-								{r.invoice}
+							<Link to={`/artists/${item.artistName}`} className={styles.link}>
+								{getInvoiceStatusName(item.invoiceStatus)}
 							</Link>
 						</td>
 					)}
 					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							{r.artist}
+						<Link to={`/artists/${item.artistName}`} className={styles.link}>
+							{item.artistName}
 						</Link>
 					</td>
 					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							{r.location}
+						<Link to={`/artists/${item.artistName}`} className={styles.link}>
+							{item.location}
 						</Link>
 					</td>
 					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							{r.venue}
+						<Link to={`/artists/${item.artistName}`} className={styles.link}>
+							{item.venue}
 						</Link>
 					</td>
 					{settings.room && (
 						<td>
-							<Link to={`/artists/${r.artist}`} className={styles.link}>
-								{r.room}
+							<Link to={`/artists/${item.artistName}`} className={styles.link}>
+								{item.room}
 							</Link>
 						</td>
 					)}
 					<td>
-						<Link to={`/artists/${r.artist}`} className={styles.link}>
-							&euro;&nbsp;{r.pay}
+						<Link to={`/artists/${item.artistName}`} className={styles.link}>
+							&euro;&nbsp;{item.fee}
 						</Link>
 					</td>
 					{settings.gigType && (
 						<td>
-							<Link to={`/artists/${r.artist}`} className={styles.link}>
-								{r.gigType}
+							<Link to={`/artists/${item.artistName}`} className={styles.link}>
+								{item.gigType}
 							</Link>
 						</td>
 					)}
 					{settings.ticketStats && (
 						<td>
-							<Link to={`/artists/${r.artist}`} className={styles.link}>
-								{r.ticketsSold || 0}/{r.ticketsTotal || 0}
+							<Link to={`/artists/${item.artistName}`} className={styles.link}>
+								{item.ticketsSold || 0}/{item.ticketsTotal || 0}
 							</Link>
 						</td>
 					)}
@@ -125,7 +109,7 @@ export default function ResultsList({ results, settings }) {
 						<button
 							type="button"
 							onClick={() => requestSort('date')}
-							className={getClassNamesFor('date')}
+							className={getClassNamesFor('date', sortConfig, styles)}
 						>
 							Date
 						</button>
@@ -134,7 +118,7 @@ export default function ResultsList({ results, settings }) {
 						<button
 							type="button"
 							onClick={() => requestSort('time')}
-							className={getClassNamesFor('time')}
+							className={getClassNamesFor('time', sortConfig, styles)}
 						>
 							Time
 						</button>
@@ -143,7 +127,7 @@ export default function ResultsList({ results, settings }) {
 						<button
 							type="button"
 							onClick={() => requestSort('status')}
-							className={getClassNamesFor('status')}
+							className={getClassNamesFor('status', sortConfig, styles)}
 						>
 							Status
 						</button>
@@ -153,7 +137,7 @@ export default function ResultsList({ results, settings }) {
 							<button
 								type="button"
 								onClick={() => requestSort('invoice')}
-								className={getClassNamesFor('invoice')}
+								className={getClassNamesFor('invoice', sortConfig, styles)}
 							>
 								Invoice
 							</button>
@@ -163,7 +147,7 @@ export default function ResultsList({ results, settings }) {
 						<button
 							type="button"
 							onClick={() => requestSort('artist')}
-							className={getClassNamesFor('artist')}
+							className={getClassNamesFor('artist', sortConfig, styles)}
 						>
 							Artist
 						</button>
@@ -172,7 +156,7 @@ export default function ResultsList({ results, settings }) {
 						<button
 							type="button"
 							onClick={() => requestSort('location')}
-							className={getClassNamesFor('location')}
+							className={getClassNamesFor('location', sortConfig, styles)}
 						>
 							Location
 						</button>
@@ -181,7 +165,7 @@ export default function ResultsList({ results, settings }) {
 						<button
 							type="button"
 							onClick={() => requestSort('venue')}
-							className={getClassNamesFor('venue')}
+							className={getClassNamesFor('venue', sortConfig, styles)}
 						>
 							Venue
 						</button>
@@ -191,7 +175,7 @@ export default function ResultsList({ results, settings }) {
 							<button
 								type="button"
 								onClick={() => requestSort('room')}
-								className={getClassNamesFor('room')}
+								className={getClassNamesFor('room', sortConfig, styles)}
 							>
 								Room
 							</button>
@@ -201,7 +185,7 @@ export default function ResultsList({ results, settings }) {
 						<button
 							type="button"
 							onClick={() => requestSort('pay')}
-							className={getClassNamesFor('pay')}
+							className={getClassNamesFor('pay', sortConfig, styles)}
 						>
 							Fee
 						</button>
@@ -211,7 +195,7 @@ export default function ResultsList({ results, settings }) {
 							<button
 								type="button"
 								onClick={() => requestSort('gigType')}
-								className={getClassNamesFor('gigType')}
+								className={getClassNamesFor('gigType', sortConfig, styles)}
 							>
 								Gig Type
 							</button>
@@ -222,7 +206,7 @@ export default function ResultsList({ results, settings }) {
 							<button
 								type="button"
 								onClick={() => requestSort('ticketsSold')}
-								className={getClassNamesFor('ticketsSold')}
+								className={getClassNamesFor('ticketsSold', sortConfig, styles)}
 							>
 								Tickets
 							</button>
