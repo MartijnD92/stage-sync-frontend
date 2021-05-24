@@ -11,6 +11,7 @@ export default function Signup() {
 	const { handleSubmit, register } = useForm();
 	const [error, toggleError] = useState(false);
 	const [success, toggleSuccess] = useState(false);
+	const [termsMessage, setTermsMessage] = useState(false);
 	const history = useHistory();
 
 	async function onFormSubmit(data) {
@@ -115,14 +116,23 @@ export default function Signup() {
 									Sign up
 								</Button>
 								<label htmlFor="terms" className={styles.terms}>
-									<input type="checkbox" name="terms" id="terms" />
+									<input type="checkbox" name="terms" id="terms" required />
 									<span>
 										I have read and agree to the{' '}
-										<Link to="/" className={styles.link}>
+										<Link
+											to="/signup"
+											className={styles.link}
+											onClick={() => setTermsMessage(!termsMessage)}
+										>
 											Terms of Service
 										</Link>
 									</span>
 								</label>
+								{termsMessage && (
+									<p className={styles.termsMessage}>
+										Just do it already! You weren't going to read them anyway.
+									</p>
+								)}
 							</>
 						)}
 					</form>

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from 'context/AuthContext';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
@@ -14,35 +14,44 @@ export default function AddArtistModal({ modalHandler }) {
 	const history = useHistory();
 	const { user } = useContext(AuthContext);
 	const watchFiles = watch('riders');
-	const [fileNames, setFileNames] = useState([]);
-
+	const watchName = watch('name');
 
 	const saveArtist = async (artistDetails) => {
+
 		// await axios.post('http://localhost:8080/api/artists/', artistDetails, {
 		// 	headers: {
 		// 		'Content-Type': 'application/json',
 		// 		Authorization: `Bearer ${user.token}`,
 		// 	},
 		// });
-		console.log(artistDetails);
 		modalHandler(false);
 		history.push('/dashboard');
 	};
 
-	const onFileChange = (files) => {
-		for (let file of files) {
-			setFileNames(fileNames.push(file.name));
-		}
-	}
+	const onFileSubmit = async (files) => {
+		const formData = new FormData();
+		files.map((file) => {
+			formData.append('rider', file);
+			formData.append('artistName', watchName);
+			return formData;
+		});
+
+		await axios.post('http://localhost:8080/api/artists/riders', formData, {
+			headers: { 'content-type': 'multipart/form-data' },
+		});
+	};
+
+	console.log(watchFiles);
 
 	return (
-		<div
-			className={styles.overlay}
-			onClick={(e) => {
-				e.target.className.includes('overlay') && modalHandler(false);
-				history.push('/dashboard');
-			}}
-		>
+		<>
+			<div
+				className={styles.overlay}
+				onClick={(e) => {
+					e.target.className.includes('overlay') && modalHandler(false);
+					history.push('/dashboard');
+				}}
+			></div>
 			<div className={styles.window}>
 				<h2 className={styles.title}>Add an artist</h2>
 				<div className={styles.container}>
@@ -129,7 +138,7 @@ export default function AddArtistModal({ modalHandler }) {
 									id="bio"
 									name="bio"
 									cols="30"
-									rows="5"
+									rows="3"
 									{...register('bio')}
 									className={styles.textarea}
 								/>
@@ -142,6 +151,7 @@ export default function AddArtistModal({ modalHandler }) {
 						</div>
 					</form>
 					<form
+						onSubmit={handleSubmit(onFileSubmit)}
 						className={`${styles.form} ${styles.uploadForm}`}
 						encType="multipart/form-data"
 					>
@@ -156,22 +166,30 @@ export default function AddArtistModal({ modalHandler }) {
 									type="file"
 									id="riders"
 									name="riders"
+									multiple
 									// accept=".pdf"
 									className={styles.fileInput}
-									onChange={onFileChange}
 									{...register('riders')}
 								/>
-								<span className={styles.fileInputText}>{fileNames ? `${fileNames[0]}` : 'Choose files'}</span>
+								<div className={styles.fileInputText}>
+									{watchFiles ? (
+										Array.from(watchFiles).map((f) => (
+											<p key={f.name}>{f.name}</p>
+										))
+									) : (
+										<p>Choose files</p>
+									)}
+								</div>
 							</div>
 						</div>
 						<div className={styles.row}>
-							<Button variant={'primary'} isAlt type="submit">
+							<Button variant={'primary'} isAlt type="submit" disabled={watchName}>
 								Upload
 							</Button>
 						</div>
 					</form>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }

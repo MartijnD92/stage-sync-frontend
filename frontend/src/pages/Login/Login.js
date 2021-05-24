@@ -11,6 +11,7 @@ export default function Login() {
 	const { handleSubmit, register } = useForm();
 	const [error, toggleError] = useState(false);
 	const [success, toggleSuccess] = useState(false);
+	const [forgotPassword, setForgotPassword] = useState(false);
 	const { logIn } = useContext(AuthContext);
 
 	async function onFormSubmit(data) {
@@ -41,7 +42,7 @@ export default function Login() {
 							<h1>Log in</h1>
 							<p>
 								New here?{' '}
-								<Link to="/login" className={styles.link}>
+								<Link to="/signup" className={styles.link}>
 									Create an account
 								</Link>
 							</p>
@@ -64,9 +65,21 @@ export default function Login() {
 										{...register('password')}
 									/>
 								</label>
-								<Link to="/login" className={styles.link}>
-									Forgot password?
-								</Link>
+								{forgotPassword ? (
+									<p onClick={() => setForgotPassword(false)}>
+										Sorry, you'll have to create a new account! 😱
+									</p>
+								) : (
+									<p>
+										<Link
+											to="/login"
+											className={styles.link}
+											onClick={() => setForgotPassword(true)}
+										>
+											Forgot password?
+										</Link>
+									</p>
+								)}
 							</div>
 							{error && <p>Login failed. Please try again.</p>}
 							<Button variant={'primary'} type="submit">

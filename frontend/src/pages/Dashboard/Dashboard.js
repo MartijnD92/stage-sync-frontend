@@ -32,7 +32,7 @@ export default function Dashboard() {
 	}
 	);
 
-	const [gigResults, setGigResults] = useState([]);
+	const [gigResults, setGigResults] = useState(null);
 	// const [paginatedResults, setPaginatedResults] = useState([]);
 	const [gigQuery, setGigQuery] = useState('');
 
@@ -53,7 +53,7 @@ export default function Dashboard() {
 					<SearchBar setGigHandler={setGigQuery} />
 				</NavBar>
 				{error ? <div className="title-container"><h1 className="no-content">Sorry! We couldn't find the thing you were looking for!</h1></div> : 
-				gigResults ? (
+				gigResults !== null ? (
 					<>
 						<div className="table-container">
 							<ResultsList results={gigResults} settings={settings} />

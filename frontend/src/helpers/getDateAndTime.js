@@ -4,6 +4,6 @@ export default function getSeparateDateAndTime(dateTime) {
 	const d = new Date(dateTime);
 	return {
 		date: d.toLocaleString('en-UK', {dateStyle: 'long'}),
-		time: d.toLocaleString('en-UK', {timeStyle: 'long'}),
+		time: d.toLocaleString('en-UK', {timeStyle: 'short'}),
 	};
 }

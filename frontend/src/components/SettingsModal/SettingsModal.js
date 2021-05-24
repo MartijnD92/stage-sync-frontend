@@ -25,13 +25,14 @@ export default function SettingsModal({
 	};
 
 	return (
-		<div
-			className={styles.overlay}
-			onClick={(e) => {
-				e.target.className.includes('overlay') && modalHandler(false);
-				history.push('/dashboard');
-			}}
-		>
+		<>
+			<div
+				className={styles.overlay}
+				onClick={(e) => {
+					e.target.className.includes('overlay') && modalHandler(false);
+					history.push('/dashboard');
+				}}
+			></div>
 			<div className={styles.window}>
 				<form onSubmit={handleSubmit(saveSettings)} className={styles.form}>
 					<h2 className={styles.title}>Settings</h2>
@@ -112,6 +113,6 @@ export default function SettingsModal({
 					</div>
 				</form>
 			</div>
-		</div>
+		</>
 	);
 }

@@ -24,12 +24,15 @@
 	align-items: center;
 	justify-content: center;
 
-	:first-child {
+	h1 {
 		margin-bottom: 0.5rem;
 	}
 
-	> *:not(:first-child) {
-		display: block;
+	p {
+		line-height: 1;
+	}
+
+	> *:not(h1) {
 		margin-bottom: 2rem;
 		width: 100%;
 		text-align: center;
@@ -38,7 +41,6 @@
 	.fields {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 1rem;
 		text-align: left;
 	}
 
@@ -59,6 +61,7 @@
 }
 
 .link {
+	line-height: 1;
 	color: $bg-btn--secondary;
 
 	&:visited {
