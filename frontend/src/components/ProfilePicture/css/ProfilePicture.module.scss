@@ -1,7 +1,9 @@
+@import '../../../css/config';
+
 .profile-picture {
     width: 50px;
     height: 50px;
-    border: 2px solid #0A2540;
+    border: 3px solid $color-body--primary;
     border-radius: 50%;
     cursor: pointer;
 }

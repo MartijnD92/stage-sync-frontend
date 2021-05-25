@@ -107,7 +107,7 @@ export default function SettingsModal({
 						/>
 					</div>
 					<div className={styles.row}>
-						<Button variant={'secondary'} isAlt>
+						<Button variant={'primary'} isAlt>
 							Save
 						</Button>
 					</div>

@@ -7,13 +7,13 @@ export default function AddButton({modalSetter}) {
 			<button type="button" className={styles.btn}></button>
 			<ul className={styles.dropdown}>
 				<li className={styles.item}>
-					<HashLink to="/dashboard#artist" onClick={() => modalSetter({artist: true})}className={styles.link}>Artist</HashLink>
+					<HashLink to="/dashboard#artist" onClick={() => modalSetter({artist: true})} className={styles.link}>Artist</HashLink>
 				</li>
 				<li className={styles.item}>
 					<HashLink to="/dashboard#venue" className={styles.link}>Venue</HashLink>
 				</li>
 				<li className={styles.item}>
-					<HashLink to="/dashboard#gig" className={styles.link}>Gig</HashLink>
+					<HashLink to="/dashboard#gig" onClick={() => modalSetter({gig: true})} className={styles.link}>Gig</HashLink>
 				</li>
 			</ul>
 		</div>

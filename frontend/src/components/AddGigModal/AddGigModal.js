@@ -1,36 +1,56 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from 'context/AuthContext';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Button from 'components/Button/Button';
 import Preloader from 'components/Preloader/Preloader';
-import styles from './css/AddArtistModal.module.scss';
+import Select from 'components/Select/Select';
+import styles from './css/AddGigModal.module.scss';
 
-export default function AddArtistModal({ modalHandler }) {
+export default function AddGigModal({ modalHandler }) {
 	const { register, handleSubmit } = useForm({
 		mode: 'onSubmit',
 	});
 	const history = useHistory();
 	const { user } = useContext(AuthContext);
 	const [loading, toggleLoading] = useState(false);
+	const [artistNames, setArtistNames] = useState([]);
 
-	const saveArtist = async (artistDetails) => {
-		toggleLoading(true);
+	const saveGig = async (gigDetails) => {
+		// toggleLoading(true);
+		// try {
+		// 	await axios.post('http://localhost:8080/api/gigs/', gigDetails, {
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 			Authorization: `Bearer ${user.token}`,
+		// 		},
+		// 	});
+		// 	modalHandler(false);
+		// 	history.push('/dashboard');
+		// } catch (e) {
+		// 	console.error(e);
+		// }
+		// toggleLoading(false);
+		console.log(gigDetails);
+	};
+
+	const getArtistNames = async () => {
 		try {
-			await axios.post('http://localhost:8080/api/artists/', artistDetails, {
+			const response = await axios.get('http://localhost:8080/api/artists', {
 				headers: {
-					'Content-Type': 'application/json',
 					Authorization: `Bearer ${user.token}`,
 				},
 			});
-			modalHandler(false);
-			history.push('/dashboard');
+			setArtistNames(response.data.map((artist) => artist.name));
 		} catch (e) {
 			console.error(e);
 		}
-		toggleLoading(false);
 	};
+
+	useEffect(() => {
+		getArtistNames();
+	}, [user]);
 
 	return (
 		<>
@@ -48,96 +68,108 @@ export default function AddArtistModal({ modalHandler }) {
 					</div>
 				)}
 				<form
-					onSubmit={handleSubmit(saveArtist)}
+					onSubmit={handleSubmit(saveGig)}
 					className={styles.form}
 					encType="multipart/form-data"
 				>
-					<h2 className={styles.title}>Add an artist</h2>
+					<h2 className={styles.title}>Add a gig</h2>
 					<div className={styles.fields}>
 						<div className={styles.row}>
 							<label htmlFor="name" className={styles.label}>
-								Name
+								Artist
+							</label>
+						</div>
+						<div className={styles.row}>
+							<Select
+								options={artistNames}
+								register={register}
+								name="artist"
+								className={styles.select}
+							/>
+						</div>
+						<div className={styles.row}>
+							<label htmlFor="origin" className={styles.label}>
+								Gig name
 							</label>
 						</div>
 						<div className={styles.row}>
 							<input
-								name="name"
-								id="name"
 								type="text"
+								id="name"
+								name="name"
 								className={styles.input}
 								{...register('name')}
 							/>
 						</div>
 						<div className={styles.row}>
-							<label htmlFor="origin" className={styles.label}>
-								Origin
+							<label htmlFor="venue" className={styles.label}>
+								Venue
 							</label>
 						</div>
 						<div className={styles.row}>
 							<input
 								type="text"
-								id="origin"
-								name="origin"
+								id="venue"
+								name="venue"
 								className={styles.input}
-								{...register('origin')}
+								{...register('venue')}
 							/>
 						</div>
 						<div className={styles.row}>
-							<label htmlFor="genre" className={styles.label}>
-								Genre
+							<label htmlFor="room" className={styles.label}>
+								Room
 							</label>
 						</div>
 						<div className={styles.row}>
 							<input
 								type="text"
-								id="genre"
-								name="genre"
+								id="room"
+								name="room"
 								className={styles.input}
-								{...register('genre')}
+								{...register('room')}
 							/>
 						</div>
 						<div className={styles.row}>
-							<label htmlFor="sound-engineer" className={styles.label}>
-								Sound engineer?
+							<label htmlFor="location" className={styles.label}>
+							Location
 							</label>
 						</div>
 						<div className={styles.row}>
 							<input
-								type="checkbox"
-								id="sound-engineer"
-								name="sound-engineer"
-								className={styles.checkbox}
-								{...register('sound-engineer')}
+								type="text"
+								id="location"
+								name="location"
+								className={styles.input}
+								{...register('location')}
 							/>
 						</div>
 						<div className={styles.row}>
-							<label htmlFor="price" className={styles.label}>
-								Price (EUR)
+							<label htmlFor="date" className={styles.label}>
+							Date
+							</label>
+						</div>
+						<div className={styles.row}>
+							<input
+								type="text"
+								id="date"
+								name="date"
+								className={styles.input}
+								{...register('date')}
+							/>
+						</div>
+						<div className={styles.row}>
+							<label htmlFor="fee" className={styles.label}>
+							Fee
 							</label>
 						</div>
 						<div className={styles.row}>
 							<input
 								type="number"
 								min="1"
-								id="price"
-								name="price"
+								id="date"
+								name="date"
 								className={styles.input}
-								{...register('price')}
-							/>
-						</div>
-						<div className={styles.row}>
-							<label htmlFor="name" className={styles.label}>
-								Bio
-							</label>
-						</div>
-						<div className={styles.row}>
-							<textarea
-								id="bio"
-								name="bio"
-								cols="30"
-								rows="3"
-								{...register('bio')}
-								className={styles.textarea}
+								{...register('date')}
 							/>
 						</div>
 					</div>
