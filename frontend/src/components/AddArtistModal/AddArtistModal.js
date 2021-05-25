@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from 'context/AuthContext';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import CreatableSelect from 'react-select/creatable';
+import { v4 as uuidv4 } from 'uuid';
 import Button from 'components/Button/Button';
 import styles from './css/AddArtistModal.module.scss';
 
@@ -13,35 +14,53 @@ export default function AddArtistModal({ modalHandler }) {
 	});
 	const history = useHistory();
 	const { user } = useContext(AuthContext);
+	const [UUID, setUUID] = useState('');
+	const [uploadLoading, toggleUploadLoading] = useState(false);
 	const watchFiles = watch('riders');
-	const watchName = watch('name');
+	console.log(UUID);
 
 	const saveArtist = async (artistDetails) => {
-
-		// await axios.post('http://localhost:8080/api/artists/', artistDetails, {
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 		Authorization: `Bearer ${user.token}`,
-		// 	},
-		// });
-		modalHandler(false);
-		history.push('/dashboard');
+		artistDetails.uuid = UUID;
+		console.log(artistDetails);
+		// try {
+		// 	await axios.post('http://localhost:8080/api/artists/', artistDetails, {
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 			Authorization: `Bearer ${user.token}`,
+		// 		},
+		// 	});
+		// 	modalHandler(false);
+		// 	history.push('/dashboard');
+		// } catch (e) {
+		// 	console.error(e);
+		// }
 	};
 
 	const onFileSubmit = async (files) => {
-		const formData = new FormData();
-		files.map((file) => {
-			formData.append('rider', file);
-			formData.append('artistName', watchName);
-			return formData;
-		});
+		console.log(files)
+		toggleUploadLoading(true);
+		try {
+			// const formData = new FormData();
+			// Array.from(files).map((file) => {
+			// 	formData.append('rider', file);
+			// 	formData.append('UUID', UUID);
+			// 	return formData;
+			// });
+			// console.log('test', formData)
+			console.log('test2');
 
-		await axios.post('http://localhost:8080/api/artists/riders', formData, {
-			headers: { 'content-type': 'multipart/form-data' },
-		});
+			// await axios.post('http://localhost:8080/api/artists/riders', formData, {
+			// 	headers: { 'content-type': 'multipart/form-data' },
+			// });
+		} catch (e) {
+			console.error(e);
+		}
+		toggleUploadLoading(false);
 	};
 
-	console.log(watchFiles);
+	useEffect(() => {
+		setUUID(uuidv4());
+	}, []);
 
 	return (
 		<>
@@ -172,19 +191,19 @@ export default function AddArtistModal({ modalHandler }) {
 									{...register('riders')}
 								/>
 								<div className={styles.fileInputText}>
-									{watchFiles ? (
+									{!watchFiles || watchFiles.length === 0 ? (
+										<p>Choose files</p>
+									) : (
 										Array.from(watchFiles).map((f) => (
 											<p key={f.name}>{f.name}</p>
 										))
-									) : (
-										<p>Choose files</p>
 									)}
 								</div>
 							</div>
 						</div>
 						<div className={styles.row}>
-							<Button variant={'primary'} isAlt type="submit" disabled={watchName}>
-								Upload
+							<Button variant={'primary'} isAlt type="submit">
+								{uploadLoading ? 'Loading' : 'Upload'}
 							</Button>
 						</div>
 					</form>

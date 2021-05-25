@@ -26,7 +26,8 @@ export default function NavBar({ children }) {
 								Log in
 							</Button>
 						)}
-						<ProfilePicture defaultPicture />
+						<ProfilePicture defaultPicture className={styles.profile}/>
+						
 					</div>
 				</nav>
 			) : (
