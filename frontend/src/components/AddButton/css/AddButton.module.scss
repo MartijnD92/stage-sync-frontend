@@ -12,7 +12,7 @@
 			transition: border-radius 100ms ease;
 		}
 		.dropdown {
-            transform: translate(0, 25%) scale(1);
+            transform: translate(0, 35%) scale(1);
 		}
 	}
 
@@ -28,7 +28,7 @@
 		background: $color-body--primary;
 		list-style: none;
 		border-radius: 0 10px 10px 10px;
-        transform: translate(-40%, -35%) scale(.2);
+        transform: translate(-40%, -20%) scale(.2);
         transition: transform 100ms ease;
         z-index: -1;
 

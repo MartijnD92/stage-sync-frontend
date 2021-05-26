@@ -12,7 +12,7 @@ export default function SideMenu({ isModalOpen, modalHandler }) {
 	const disableModals = () => {
 		modalHandler({
 			settings: false,
-			artist: false
+			artist: false,
 		});
 	};
 
@@ -27,7 +27,7 @@ export default function SideMenu({ isModalOpen, modalHandler }) {
 					to="/dashboard"
 					className={styles.link}
 					activeClassName={styles.active}
-					isActive={() => !hash}
+					isActive={() => hash !== '#settings' && hash !== '#profile'}
 					onClick={disableModals}
 				>
 					<div className={styles.item}>
@@ -35,18 +35,24 @@ export default function SideMenu({ isModalOpen, modalHandler }) {
 						Dashboard
 					</div>
 				</NavLink>
-				<NavLink to="/profile" className={styles.link}>
+				<NavHashLink
+					to="/dashboard#profile"
+					className={styles.link}
+					onClick={() => modalHandler({ profile: true })}
+					isActive={() => hash === '#profile'}
+					activeClassName={styles.active}
+				>
 					<div className={styles.item}>
 						<ProfileIcon className={styles.icon} />
 						Profile
 					</div>
-				</NavLink>
+				</NavHashLink>
 				<NavHashLink
 					exact
 					to="/dashboard#settings"
 					onClick={() => modalHandler({ settings: true })}
 					className={styles.link}
-					isActive={() => hash === "#settings"}
+					isActive={() => hash === '#settings'}
 					activeClassName={styles.active}
 				>
 					<div className={styles.item}>

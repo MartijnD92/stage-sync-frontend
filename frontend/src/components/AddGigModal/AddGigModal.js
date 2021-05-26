@@ -18,21 +18,20 @@ export default function AddGigModal({ modalHandler }) {
 	const [artistNames, setArtistNames] = useState([]);
 
 	const saveGig = async (gigDetails) => {
-		// toggleLoading(true);
-		// try {
-		// 	await axios.post('http://localhost:8080/api/gigs/', gigDetails, {
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 			Authorization: `Bearer ${user.token}`,
-		// 		},
-		// 	});
-		// 	modalHandler(false);
-		// 	history.push('/dashboard');
-		// } catch (e) {
-		// 	console.error(e);
-		// }
-		// toggleLoading(false);
-		console.log(gigDetails);
+		toggleLoading(true);
+		try {
+			await axios.post('http://localhost:8080/api/gigs/', gigDetails, {
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${user.token}`,
+				},
+			});
+			modalHandler(false);
+			history.push('/dashboard');
+		} catch (e) {
+			console.error(e);
+		}
+		toggleLoading(false);
 	};
 
 	const getArtistNames = async () => {
@@ -83,7 +82,7 @@ export default function AddGigModal({ modalHandler }) {
 							<Select
 								options={artistNames}
 								register={register}
-								name="artist"
+								name="artistName"
 								className={styles.select}
 							/>
 						</div>
@@ -131,7 +130,7 @@ export default function AddGigModal({ modalHandler }) {
 						</div>
 						<div className={styles.row}>
 							<label htmlFor="location" className={styles.label}>
-							Location
+								Location
 							</label>
 						</div>
 						<div className={styles.row}>
@@ -145,12 +144,12 @@ export default function AddGigModal({ modalHandler }) {
 						</div>
 						<div className={styles.row}>
 							<label htmlFor="date" className={styles.label}>
-							Date
+								Date
 							</label>
 						</div>
 						<div className={styles.row}>
 							<input
-								type="text"
+								type="datetime-local"
 								id="date"
 								name="date"
 								className={styles.input}
@@ -159,17 +158,32 @@ export default function AddGigModal({ modalHandler }) {
 						</div>
 						<div className={styles.row}>
 							<label htmlFor="fee" className={styles.label}>
-							Fee
+								Fee (EUR)
 							</label>
 						</div>
 						<div className={styles.row}>
 							<input
 								type="number"
 								min="1"
-								id="date"
-								name="date"
+								id="fee"
+								name="fee"
 								className={styles.input}
-								{...register('date')}
+								{...register('fee')}
+							/>
+						</div>
+						<div className={styles.row}>
+							<label htmlFor="ticketsTotal" className={styles.label}>
+								Tickets (total number)
+							</label>
+						</div>
+						<div className={styles.row}>
+							<input
+								type="number"
+								min="1"
+								id="ticketsTotal"
+								name="ticketsTotal"
+								className={styles.input}
+								{...register('ticketsTotal')}
 							/>
 						</div>
 					</div>

@@ -1,49 +1,48 @@
 @import '../../../css/modal.module.scss';
 
 .title {
-    margin-bottom: 2rem;
+	margin-bottom: 2rem;
 }
 
 .window {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .loadingOverlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(240, 240, 240, 0.95);
-    z-index: 10;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(240, 240, 240, 0.95);
+	z-index: 10;
 }
 
 .form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 
-    @media only screen and (max-width: get-breakpoints('lg')) {
-        padding: 0;
-    }
+	@media only screen and (max-width: get-breakpoints('lg')) {
+		padding: 0;
+	}
 }
 
 .fields {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 
-    button {
-        padding: 0;
-    }
+	button {
+		padding: 0;
+	}
 
-    .checkbox {
-        margin-bottom: 1.5rem;
-    }
-
+	.checkbox {
+		margin-bottom: 1.5rem;
+	}
 }
 
 // .uploadForm {
@@ -85,12 +84,11 @@
 //         }
 //     }
 
-
 //     button::before {
 //         display: inline-block;
 //         margin-right: .5rem;
 //         content: '\f56f';
 //         font-family: 'Font Awesome 5 Free';
-        
+
 //     }
 // }

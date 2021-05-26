@@ -23,9 +23,6 @@ function App() {
 				<PrivateRoute path="/dashboard">
 					<Dashboard />
 				</PrivateRoute>
-				{/* <Route path="/dashboard">
-					<Dashboard />
-				</Route> */}
 			</Switch>
 		</>
 	);

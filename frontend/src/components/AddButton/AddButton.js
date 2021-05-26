@@ -10,9 +10,6 @@ export default function AddButton({modalSetter}) {
 					<HashLink to="/dashboard#artist" onClick={() => modalSetter({artist: true})} className={styles.link}>Artist</HashLink>
 				</li>
 				<li className={styles.item}>
-					<HashLink to="/dashboard#venue" className={styles.link}>Venue</HashLink>
-				</li>
-				<li className={styles.item}>
 					<HashLink to="/dashboard#gig" onClick={() => modalSetter({gig: true})} className={styles.link}>Gig</HashLink>
 				</li>
 			</ul>

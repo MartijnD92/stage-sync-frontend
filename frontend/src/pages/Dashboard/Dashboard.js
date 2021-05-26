@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import NavBar from 'components/NavBar/NavBar';
 import SideMenu from 'components/SideMenu/SideMenu';
 import SettingsModal from 'components/SettingsModal/SettingsModal';
+import ProfileModal from 'components/ProfileModal/ProfileModal';
 import AddArtistModal from 'components/AddArtistModal/AddArtistModal';
 import AddGigModal from 'components/AddGigModal/AddGigModal';
 import AddButton from 'components/AddButton/AddButton';
@@ -30,7 +31,8 @@ export default function Dashboard() {
 	const [isModalOpen, setIsModalOpen] = useState({
 		settings: false,
 		artist: false,
-		gig: false
+		gig: false,
+		profile: false
 	}
 	);
 
@@ -72,12 +74,16 @@ export default function Dashboard() {
 				{isModalOpen.settings && (
 					<SettingsModal settings={settings} settingsHandler={setSettings} modalHandler={setIsModalOpen}/>
 				)}
+				{isModalOpen.profile && (
+					<ProfileModal modalHandler={setIsModalOpen}/>
+				)}
 				{isModalOpen.artist && (
 					<AddArtistModal modalHandler={setIsModalOpen}/>
 				)}
 				{isModalOpen.gig && (
 					<AddGigModal modalHandler={setIsModalOpen}/>
 				)}
+		
 			</main>
 		</>
 	);

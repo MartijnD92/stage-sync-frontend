@@ -27,12 +27,12 @@ export default function ResultsList({ results, settings }) {
 					</td>
 					<td>
 						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							{dateAndTime.date}
+							{dateAndTime?.date}
 						</Link>
 					</td>
 					<td>
 						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							{dateAndTime.time}
+							{dateAndTime?.time}
 						</Link>
 					</td>
 					<td className={styles[getStatusStyle(item.confirmationStatus)]}>
@@ -50,6 +50,11 @@ export default function ResultsList({ results, settings }) {
 					<td>
 						<Link to={`/artists/${item.artistName}`} className={styles.link}>
 							{item.artistName}
+						</Link>
+					</td>
+					<td>
+						<Link to={`/artists/${item.artistName}`} className={styles.link}>
+							{item.name}
 						</Link>
 					</td>
 					<td>
@@ -150,6 +155,15 @@ export default function ResultsList({ results, settings }) {
 							className={getClassNamesFor('artist', sortConfig, styles)}
 						>
 							Artist
+						</button>
+					</th>
+					<th>
+						<button
+							type="button"
+							onClick={() => requestSort('artist')}
+							className={getClassNamesFor('artist', sortConfig, styles)}
+						>
+							Gig Name
 						</button>
 					</th>
 					<th>
