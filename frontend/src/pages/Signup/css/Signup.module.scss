@@ -19,7 +19,7 @@
 	border-radius: 0 50px 50px 0;
 	overflow: hidden;
 	z-index: -10;
-	box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.16);
+	box-shadow: $box-shadow;
 
 	.img {
 		height: 100%;

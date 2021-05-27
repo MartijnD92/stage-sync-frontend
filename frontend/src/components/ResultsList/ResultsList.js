@@ -6,24 +6,32 @@ import getInvoiceStatusName from 'helpers/getInvoiceStatusName';
 import getDateAndTime from 'helpers/getDateAndTime';
 import styles from './css/ResultsList.module.scss';
 
-export default function ResultsList({ results, settings }) {
+export default function ResultsList({ results, setGigStatus, settings }) {
 	const { items, requestSort, sortConfig } = useSortableData(results);
 
 	function showResults(items) {
 		return items.map((item) => {
-
 			const dateAndTime = getDateAndTime(item.date);
 			return (
 				<tr key={item.id}>
 					<td>
-						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							<input
-								type="checkbox"
-								name={`select-${item.id}`}
-								id={`select-${item.id}`}
-								className={styles.checkbox}
-							/>
-						</Link>
+						<input
+							type="checkbox"
+							checked={item.select}
+							name={`select-${item.id}`}
+							id={`select-${item.id}`}
+							className={styles.checkbox}
+							onChange={(e) => {
+								setGigStatus(
+									results.map((result) => {
+										if (result.id === item.id) {
+											result.select = e.target.checked;
+										}
+										return result;
+									})
+								);
+							}}
+						/>
 					</td>
 					<td>
 						<Link to={`/artists/${item.artistName}`} className={styles.link}>
@@ -108,6 +116,14 @@ export default function ResultsList({ results, settings }) {
 							name="selectAll"
 							id="selectAll"
 							className={styles.checkbox}
+							onChange={(e) => {
+								setGigStatus(
+									results.map((result) => {
+										result.select = e.target.checked;
+										return result;
+									})
+								);
+							}}
 						/>
 					</th>
 					<th>

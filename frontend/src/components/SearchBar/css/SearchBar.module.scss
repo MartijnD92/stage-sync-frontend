@@ -6,6 +6,7 @@
 	margin: 0 1rem;
 	display: flex;
 	align-items: center;
+	filter: drop-shadow($box-shadow);
 
 	&:focus-within .input {
 	    color: $color-body--primary;

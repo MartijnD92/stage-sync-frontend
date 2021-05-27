@@ -7,6 +7,7 @@
 	border-radius: 10px;
 	overflow: hidden;
 	padding: 2rem;
+	margin-top: 3rem;
 }
 
 tr {
@@ -25,10 +26,15 @@ td {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	text-align: left;
+	padding: 0;
 }
 
 th {
 	padding: 0.5rem 1rem;
+}
+
+td:first-of-type {
+		padding: 0.5rem 1rem;
 }
 
 thead {
@@ -77,6 +83,7 @@ tbody {
 	text-decoration: none;
 	color: inherit;
 	width: 100%;
+	line-height: 2;
 }
 
 .checkbox {

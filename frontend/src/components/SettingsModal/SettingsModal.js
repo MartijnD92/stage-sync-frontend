@@ -94,7 +94,7 @@ export default function SettingsModal({
 					</div>
 					<div className={styles.row}>
 						<label htmlFor="transparency" className={styles.label}>
-							Toggle background transparency
+							Toggle background transparency of results list
 						</label>
 						<input
 							type="checkbox"

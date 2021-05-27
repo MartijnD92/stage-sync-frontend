@@ -38,6 +38,7 @@ export default function AddGigModal({ modalHandler }) {
 		try {
 			const response = await axios.get('http://localhost:8080/api/artists', {
 				headers: {
+					'Content-Type': 'application/json',
 					Authorization: `Bearer ${user.token}`,
 				},
 			});
@@ -48,7 +49,13 @@ export default function AddGigModal({ modalHandler }) {
 	};
 
 	useEffect(() => {
-		getArtistNames();
+		let isMounted = true;
+		(async function() {
+			if (isMounted) await getArtistNames();
+		}());
+		return () => {
+			isMounted = false;
+		}
 	}, [user]);
 
 	return (

@@ -1,7 +1,14 @@
 import { useHistory } from 'react-router-dom';
 import styles from './css/Button.module.scss';
 
-export default function Button({ variant, isAlt, children, url, ...rest }) {
+export default function Button({
+	variant,
+	isAlt,
+	children,
+	url,
+	modifiers,
+	...rest
+}) {
 	const history = useHistory();
 
 	return (

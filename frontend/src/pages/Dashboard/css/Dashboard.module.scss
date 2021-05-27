@@ -1,4 +1,5 @@
 @import '../../../css/config';
+@import '../../../components/Button/css/Button.module.scss';
 
 .content {
     height: 100%;
@@ -13,6 +14,9 @@
 .table-container {
     overflow: auto;
     border-radius: 10px;
+    margin-top: 1rem;
+    position: relative;
+
 }
 
 .title-container {
@@ -26,6 +30,24 @@
 .no-content {
     @media only screen and (max-width: get-breakpoints('lg')) {
         font-size: 1.5rem;
+    }
+}
+
+.deleteBtn {
+    position: absolute;
+    top: 0rem;
+    border: 0;
+    border-radius: 500px;
+    text-transform: uppercase;
+    padding: 0 1.5rem;
+    height: 2rem;
+    color: $color-body--secondary;
+    background: $bg-btn--danger;
+    cursor: pointer;
+    transition: box-shadow 250ms ease;
+
+    &:hover {
+        box-shadow: 3px 3px 3px rgba(black, .16);
     }
 }
 

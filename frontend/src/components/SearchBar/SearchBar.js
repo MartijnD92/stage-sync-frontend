@@ -6,12 +6,12 @@ export default function SearchBar({setGigHandler}) {
 	const [query, setQuery] =useState('');
 
 	function handleClick() {
-		setGigHandler(query);
+		setGigHandler({query: query, time: Date.now()});
 	}
 
 	function keyPressCheck(e) {
 		if (e.key === 'Enter') {
-			setGigHandler(query);
+			setGigHandler({query: query, time: Date.now()});
 		}
 	}
 
@@ -23,7 +23,7 @@ export default function SearchBar({setGigHandler}) {
 				name="search"
 				id="search"
 				placeholder="Look up an artist, venue or location"
-				onChange={e => setQuery(e.target.value)}
+				onChange={e => setQuery({...query, query: e.target.value})}
 				onKeyUp={keyPressCheck}
 			/>
 			<button className={styles.btn} type="button" onClick={handleClick}>

@@ -8,10 +8,9 @@ import AddGigModal from 'components/AddGigModal/AddGigModal';
 import AddButton from 'components/AddButton/AddButton';
 import SearchBar from 'components/SearchBar/SearchBar';
 import ResultsList from 'components/ResultsList/ResultsList';
-// import Pagination from 'components/Pagination/Pagination';
+import axios from 'axios';
 import getGigs from 'helpers/getGigs';
-// import getPaginatedResults from 'helpers/getPaginatedResults';
-import './css/Dashboard.scss';
+import styles from './css/Dashboard.module.scss';
 
 export default function Dashboard() {
 	const userPredefinedSettings = JSON.parse(
@@ -32,60 +31,86 @@ export default function Dashboard() {
 		settings: false,
 		artist: false,
 		gig: false,
-		profile: false
-	}
-	);
+		profile: false,
+	});
 
 	const [gigResults, setGigResults] = useState(null);
-	// const [paginatedResults, setPaginatedResults] = useState([]);
-	const [gigQuery, setGigQuery] = useState('');
-
-	// const resultsLimit = 15;
-	// const [pages, setPages] = useState(1);
-	// const [currentPage, setCurrentPage] = useState(1);
+	const [gigQuery, setGigQuery] = useState({
+		query: '',
+		time: Date.now(),
+	});
 
 	useEffect(() => {
-		gigQuery && getGigs(setGigResults, gigQuery, setError);
+		gigQuery.query && getGigs(setGigResults, gigQuery, setError);
 	}, [gigQuery]);
+
+	const deleteGigsById = (gigResults) => {
+		let arrayids = [];
+		gigResults.forEach((gig) => {
+			if (gig.select) {
+				arrayids.push(gig.id);
+			}
+		});
+		axios
+			.delete(`http://localhost:8080/api/gigs/${arrayids}`)
+			.then(() => {
+				getGigs(setGigResults, gigQuery, setError);
+			})
+			.catch((err) => console.error(err));
+	};
 
 	return (
 		<>
-			<SideMenu isModalOpen={isModalOpen} modalHandler={setIsModalOpen}/>
-			<main className="content">
+			<SideMenu isModalOpen={isModalOpen} modalHandler={setIsModalOpen} />
+			<main className={styles.content}>
 				<NavBar>
-					<AddButton modalSetter={setIsModalOpen}/>
+					<AddButton modalSetter={setIsModalOpen} />
 					<SearchBar setGigHandler={setGigQuery} />
 				</NavBar>
-				{error ? <div className="title-container"><h1 className="no-content">Sorry! We couldn't find the thing you were looking for!</h1></div> : 
-				gigResults !== null ? (
-					<>
-						<div className="table-container">
-							<ResultsList results={gigResults} settings={settings} />
-						</div>
-						{/* <Pagination
-							pages={pages}
-							currentPage={currentPage}
-							setCurrentPage={setCurrentPage}
-							pageLimit={5}
-							resultsLimit={resultsLimit}
-						/> */}
-					</>
-				 ) : <div className="title-container"><h1 className="no-content">Let's give that search bar a try!</h1></div>}
+				{error ? (
+					<div className={styles['title-container']}>
+						<h1 className={styles['no-content']}>
+							Sorry! We couldn't find the thing you were looking for!
+						</h1>
+					</div>
+				) : gigResults !== null ? (
+					<div className={styles['table-container']}>
+						{gigResults.some((gig) => gig.select) && (
+							<button
+								className={styles.deleteBtn}
+								onClick={() => {
+									deleteGigsById(gigResults);
+								}}
+							>
+								Delete
+							</button>
+						)}
+						<ResultsList
+							results={gigResults}
+							setGigStatus={setGigResults}
+							settings={settings}
+						/>
+					</div>
+				) : (
+					<div className={styles['title-container']}>
+						<h1 className={styles['no-content']}>
+							Let's give that search bar a try!
+							<br />
+							(Or add an artist or gig if it's your first time)
+						</h1>
+					</div>
+				)}
 				{isModalOpen.settings && (
-					<SettingsModal settings={settings} settingsHandler={setSettings} modalHandler={setIsModalOpen}/>
+					<SettingsModal
+						settings={settings}
+						settingsHandler={setSettings}
+						modalHandler={setIsModalOpen}
+					/>
 				)}
-				{isModalOpen.profile && (
-					<ProfileModal modalHandler={setIsModalOpen}/>
-				)}
-				{isModalOpen.artist && (
-					<AddArtistModal modalHandler={setIsModalOpen}/>
-				)}
-				{isModalOpen.gig && (
-					<AddGigModal modalHandler={setIsModalOpen}/>
-				)}
-		
+				{isModalOpen.profile && <ProfileModal modalHandler={setIsModalOpen} />}
+				{isModalOpen.artist && <AddArtistModal modalHandler={setIsModalOpen} />}
+				{isModalOpen.gig && <AddGigModal modalHandler={setIsModalOpen} />}
 			</main>
 		</>
 	);
 }
-
