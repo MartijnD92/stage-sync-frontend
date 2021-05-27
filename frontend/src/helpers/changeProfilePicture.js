@@ -7,7 +7,7 @@ export default async function changeProfilePicture(picture, user, toggleUpdate) 
     formData.append('file', picture);
 
     try {
-        await axios.post(
+        await axios.put(
             `http://localhost:8080/api/users/user/profilepicture`, formData,
             {
                 headers: {

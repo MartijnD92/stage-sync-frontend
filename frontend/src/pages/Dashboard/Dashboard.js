@@ -8,8 +8,8 @@ import AddGigModal from 'components/AddGigModal/AddGigModal';
 import AddButton from 'components/AddButton/AddButton';
 import SearchBar from 'components/SearchBar/SearchBar';
 import ResultsList from 'components/ResultsList/ResultsList';
-import axios from 'axios';
 import getGigs from 'helpers/getGigs';
+import deleteGigsById from 'helpers/deleteGigsById';
 import styles from './css/Dashboard.module.scss';
 
 export default function Dashboard() {
@@ -44,21 +44,6 @@ export default function Dashboard() {
 		gigQuery.query && getGigs(setGigResults, gigQuery, setError);
 	}, [gigQuery]);
 
-	const deleteGigsById = (gigResults) => {
-		let arrayids = [];
-		gigResults.forEach((gig) => {
-			if (gig.select) {
-				arrayids.push(gig.id);
-			}
-		});
-		axios
-			.delete(`http://localhost:8080/api/gigs/${arrayids}`)
-			.then(() => {
-				getGigs(setGigResults, gigQuery, setError);
-			})
-			.catch((err) => console.error(err));
-	};
-
 	return (
 		<>
 			<SideMenu isModalOpen={isModalOpen} modalHandler={setIsModalOpen} />
@@ -79,7 +64,7 @@ export default function Dashboard() {
 							<button
 								className={styles.deleteBtn}
 								onClick={() => {
-									deleteGigsById(gigResults);
+									deleteGigsById(gigResults, setGigResults, gigQuery, setError);
 								}}
 							>
 								Delete

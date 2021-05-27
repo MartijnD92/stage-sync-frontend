@@ -6,6 +6,7 @@ import Button from 'components/Button/Button';
 import ProfilePicture from 'components/ProfilePicture/ProfilePicture';
 import changeProfilePicture from 'helpers/changeProfilePicture';
 import getUserDetails from 'helpers/getUserDetails';
+import updateUserDetails from 'helpers/updateUserDetails';
 import styles from './css/ProfileModal.module.scss';
 
 export default function ProfileModal({ modalHandler }) {
@@ -29,7 +30,8 @@ export default function ProfileModal({ modalHandler }) {
 	const password = useRef({});
 	password.current = watch('password', '');
 
-	const saveProfile = (settings) => {
+	const saveProfile = (requestDetails) => {
+		updateUserDetails(requestDetails, user);
 		history.push('/dashboard');
 		modalHandler(false);
 	};
@@ -62,7 +64,6 @@ export default function ProfileModal({ modalHandler }) {
 								id="profilepic"
 								className={styles.pictureInput}
 								accept="image/png, image/jpeg"
-								{...register('profilepic')}
 								onChange={(e) => changeProfilePicture(e.target.files[0], user)}
 							/>
 							<ProfilePicture className={styles.profilepic} />
@@ -77,7 +78,9 @@ export default function ProfileModal({ modalHandler }) {
 								name="firstName"
 								defaultValue={userDetails.firstName}
 								className={styles.input}
-								{...register('firstName', { required: true })}
+								{...register('firstName', {
+									minLength: 1,
+								})}
 							/>
 						</label>
 						<label htmlFor="lastName" className={styles.label}>
@@ -88,7 +91,9 @@ export default function ProfileModal({ modalHandler }) {
 								name="lastName"
 								defaultValue={userDetails.lastName}
 								className={styles.input}
-								{...register('lastName', { required: true })}
+								{...register('lastName', {
+									minLength: 1,
+								})}
 							/>
 						</label>
 						<label htmlFor="email" className={styles.label}>
@@ -99,7 +104,9 @@ export default function ProfileModal({ modalHandler }) {
 								name="email"
 								defaultValue={userDetails.email}
 								className={styles.input}
-								{...register('email', { required: true })}
+								{...register('email', {
+									minLength: 1,
+								})}
 							/>
 						</label>
 					</div>
@@ -110,20 +117,20 @@ export default function ProfileModal({ modalHandler }) {
 								type="password"
 								id="password"
 								name="password"
-								defaultValue="password"
 								className={styles.input}
 								{...register('password', {
-									required: 'You must specify a password',
 									minLength: {
 										value: 8,
 										message: 'Password must have at least 8 characters',
 									},
 								})}
 							/>
-							{errors.password && <span className={styles.error}>{errors.password.message}</span>}
+							{errors.password && (
+								<span className={styles.error}>{errors.password.message}</span>
+							)}
 						</label>
 						<label htmlFor="passwordConfirmation" className={styles.label}>
-							Password Confirmation
+							Password confirmation
 							<input
 								type="password"
 								id="passwordConfirmation"
@@ -134,9 +141,11 @@ export default function ProfileModal({ modalHandler }) {
 										value === password.current || 'The passwords do not match',
 								})}
 							/>
-						{errors.passwordConfirmation && (
-							<span className={styles.error}>{errors.passwordConfirmation.message}</span>
-						)}
+							{errors.passwordConfirmation && (
+								<span className={styles.error}>
+									{errors.passwordConfirmation.message}
+								</span>
+							)}
 						</label>
 					</div>
 					<div className={styles.row}>
