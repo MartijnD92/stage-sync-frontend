@@ -25,16 +25,12 @@ td {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	text-align: left;
+	text-align: center;
 	padding: 0;
 }
 
-th {
+th:first-of-type {
 	padding: 0.5rem 1rem;
-}
-
-td:first-of-type {
-		padding: 0.5rem 1rem;
 }
 
 thead {
@@ -87,8 +83,14 @@ tbody {
 }
 
 .checkbox {
+	display: inline;
 	height: 1rem;
 	width: 1rem;
+}
+
+.statusSelect {
+	border: 0;
+	background: transparent;
 }
 
 .pending {

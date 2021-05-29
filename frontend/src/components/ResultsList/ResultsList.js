@@ -1,107 +1,27 @@
+import { useContext, useState } from 'react';
+import { AuthContext } from 'context/AuthContext';
+import axios from 'axios';
 import useSortableData from 'helpers/useSortableData';
-import { Link } from 'react-router-dom';
-import getStatusStyle from 'helpers/getStatusStyle';
 import getClassNamesFor from 'helpers/getClassNamesFor';
-import getInvoiceStatusName from 'helpers/getInvoiceStatusName';
-import getDateAndTime from 'helpers/getDateAndTime';
+import hasPermission, { actions } from 'user-permissions/permissions';
+import Result from 'components/Result/Result';
 import styles from './css/ResultsList.module.scss';
 
 export default function ResultsList({ results, setGigStatus, settings }) {
+	const { user } = useContext(AuthContext);
 	const { items, requestSort, sortConfig } = useSortableData(results);
 
 	function showResults(items) {
 		return items.map((item) => {
-			const dateAndTime = getDateAndTime(item.date);
 			return (
-				<tr key={item.id}>
-					<td>
-						<input
-							type="checkbox"
-							checked={item.select}
-							name={`select-${item.id}`}
-							id={`select-${item.id}`}
-							className={styles.checkbox}
-							onChange={(e) => {
-								setGigStatus(
-									results.map((result) => {
-										if (result.id === item.id) {
-											result.select = e.target.checked;
-										}
-										return result;
-									})
-								);
-							}}
-						/>
-					</td>
-					<td>
-						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							{dateAndTime?.date}
-						</Link>
-					</td>
-					<td>
-						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							{dateAndTime?.time}
-						</Link>
-					</td>
-					<td className={styles[getStatusStyle(item.confirmationStatus)]}>
-						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							{item.confirmationStatus}
-						</Link>
-					</td>
-					{settings.invoiceStatus && (
-						<td>
-							<Link to={`/artists/${item.artistName}`} className={styles.link}>
-								{getInvoiceStatusName(item.invoiceStatus)}
-							</Link>
-						</td>
-					)}
-					<td>
-						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							{item.artistName}
-						</Link>
-					</td>
-					<td>
-						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							{item.name}
-						</Link>
-					</td>
-					<td>
-						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							{item.location}
-						</Link>
-					</td>
-					<td>
-						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							{item.venue}
-						</Link>
-					</td>
-					{settings.room && (
-						<td>
-							<Link to={`/artists/${item.artistName}`} className={styles.link}>
-								{item.room}
-							</Link>
-						</td>
-					)}
-					<td>
-						<Link to={`/artists/${item.artistName}`} className={styles.link}>
-							&euro;&nbsp;{item.fee}
-						</Link>
-					</td>
-					{settings.gigType && (
-						<td>
-							<Link to={`/artists/${item.artistName}`} className={styles.link}>
-								{item.gigType}
-							</Link>
-						</td>
-					)}
-					{settings.ticketStats && (
-						<td>
-							<Link to={`/artists/${item.artistName}`} className={styles.link}>
-								{item.ticketsSold || 0}/{item.ticketsTotal || 0}
-							</Link>
-						</td>
-					)}
-				</tr>
+				<Result
+					key={item.id}
+					results={results}
+					item={item}
+					setGigStatus={setGigStatus}
+					user={user}
+					settings={settings}
+				/>
 			);
 		});
 	}
@@ -110,22 +30,24 @@ export default function ResultsList({ results, setGigStatus, settings }) {
 		<table className={styles.table}>
 			<thead>
 				<tr>
-					<th>
-						<input
-							type="checkbox"
-							name="selectAll"
-							id="selectAll"
-							className={styles.checkbox}
-							onChange={(e) => {
-								setGigStatus(
-									results.map((result) => {
-										result.select = e.target.checked;
-										return result;
-									})
-								);
-							}}
-						/>
-					</th>
+					{hasPermission(user, actions.DELETE_RECORD) && (
+						<th>
+							<input
+								type="checkbox"
+								name="selectAll"
+								id="selectAll"
+								className={styles.checkbox}
+								onChange={(e) => {
+									setGigStatus(
+										results.map((result) => {
+											result.select = e.target.checked;
+											return result;
+										})
+									);
+								}}
+							/>
+						</th>
+					)}
 					<th>
 						<button
 							type="button"

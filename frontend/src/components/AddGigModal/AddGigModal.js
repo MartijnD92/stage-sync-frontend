@@ -50,12 +50,12 @@ export default function AddGigModal({ modalHandler }) {
 
 	useEffect(() => {
 		let isMounted = true;
-		(async function() {
+		(async function () {
 			if (isMounted) await getArtistNames();
-		}());
+		})();
 		return () => {
 			isMounted = false;
-		}
+		};
 	}, [user]);
 
 	return (
@@ -89,6 +89,7 @@ export default function AddGigModal({ modalHandler }) {
 							<Select
 								options={artistNames}
 								register={register}
+								defaultValue="Choose artist"
 								name="artistName"
 								className={styles.select}
 							/>

@@ -22,7 +22,7 @@ export default function SearchBar({setGigHandler}) {
 				type="text"
 				name="search"
 				id="search"
-				placeholder="Look up an artist, venue or location"
+				placeholder="Look up an artist"
 				onChange={e => setQuery({...query, query: e.target.value})}
 				onKeyUp={keyPressCheck}
 			/>

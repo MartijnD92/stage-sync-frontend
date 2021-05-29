@@ -66,8 +66,15 @@ $navbar-margin-top: 2rem;
 			margin-right: 2rem;
 		}
 
+		.profile {
+			transition: transform 100ms cubic-bezier(0.25, 0.1, 0.88, 1.66);
+
+			&:hover {
+				transform: scale(1.5);
+			}
+		}
+
 		@media only screen and (max-width: get-breakpoints('lg')) {
-			
 			button,
 			.profile {
 				display: none;

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from 'context/AuthContext';
 import NavBar from 'components/NavBar/NavBar';
 import SideMenu from 'components/SideMenu/SideMenu';
 import SettingsModal from 'components/SettingsModal/SettingsModal';
@@ -10,9 +11,12 @@ import SearchBar from 'components/SearchBar/SearchBar';
 import ResultsList from 'components/ResultsList/ResultsList';
 import getGigs from 'helpers/getGigs';
 import deleteGigsById from 'helpers/deleteGigsById';
+import hasPermission, { actions } from 'user-permissions/permissions';
 import styles from './css/Dashboard.module.scss';
 
 export default function Dashboard() {
+	const { user } = useContext(AuthContext);
+
 	const userPredefinedSettings = JSON.parse(
 		localStorage.getItem('userSettings')
 	);
@@ -60,16 +64,22 @@ export default function Dashboard() {
 					</div>
 				) : gigResults !== null ? (
 					<div className={styles['table-container']}>
-						{gigResults.some((gig) => gig.select) && (
-							<button
-								className={styles.deleteBtn}
-								onClick={() => {
-									deleteGigsById(gigResults, setGigResults, gigQuery, setError);
-								}}
-							>
-								Delete
-							</button>
-						)}
+						{hasPermission(user, actions.DELETE_RECORD) &&
+							gigResults.some((gig) => gig.select) && (
+								<button
+									className={styles.deleteBtn}
+									onClick={() => {
+										deleteGigsById(
+											gigResults,
+											setGigResults,
+											gigQuery,
+											setError
+										);
+									}}
+								>
+									Delete
+								</button>
+							)}
 						<ResultsList
 							results={gigResults}
 							setGigStatus={setGigResults}

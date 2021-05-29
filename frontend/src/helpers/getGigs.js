@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 export default async function getGigs(setter, { query }, setError) {
+	if (!query.query) return;
 	setError(false);
 	try {
 		const response = await axios.get(
-			`http://localhost:8080/api/artists/artist/${query.query}`,
+			`http://localhost:8080/api/gigs/${query.query}`,
 			{
 				headers: {
 					'Content-Type': 'application/json',
@@ -22,6 +23,7 @@ export default async function getGigs(setter, { query }, setError) {
 					};
 				})
 			);
+		if (gigs.length === 0) setError(true);
 	} catch (e) {
 		console.error("Error: couldn't find resource");
 		setError(true);

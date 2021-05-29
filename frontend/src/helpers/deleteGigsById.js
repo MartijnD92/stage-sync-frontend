@@ -5,16 +5,22 @@ export default function deleteGigsById(
 	gigResults,
 	setGigResults,
 	gigQuery,
-	setError
+	setError,
 ) {
-	let arrayids = [];
+
+	let arrayIds = [];
 	gigResults.forEach((gig) => {
 		if (gig.select) {
-			arrayids.push(gig.id);
+			arrayIds.push(gig.id);
 		}
 	});
 	axios
-		.delete(`http://localhost:8080/api/gigs/${arrayids}`)
+		.delete(`http://localhost:8080/api/gigs/${arrayIds}/delete`, {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('JWT_token')}`,
+			},
+		})
 		.then(() => {
 			getGigs(setGigResults, gigQuery, setError);
 		})

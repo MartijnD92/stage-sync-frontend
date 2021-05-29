@@ -2,11 +2,12 @@
 @import '../../../css/modal.module.scss';
 
 .title {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .window {
-    overflow: hidden;
+    max-height: 100vh;
+    overflow: auto;
 }
 
 .loadingOverlay {
