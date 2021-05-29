@@ -1,0 +1,41 @@
+@import '../../../css/config';
+
+.content {
+	height: 100%;
+}
+
+.main {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.textbox {
+	max-width: 500px;
+	text-align: left;
+}
+
+.title {
+	font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.large {
+	font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.small {
+	font-size: 1.2rem;
+}
+
+.link {
+    color: $bg-btn--secondary;
+
+	&:visited {
+		color: $bg-btn--secondary;
+	}
+}
