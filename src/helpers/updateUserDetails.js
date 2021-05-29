@@ -3,7 +3,7 @@ import axios from 'axios';
 export default async function updateUserDetails(requestDetails, user) {
     try {
         await axios.patch(
-            `http://localhost:8080/api/users/user/${user.username}/update`,
+            `http://localhost:8080/api/users/user/${user.username}/details/update`,
             requestDetails,
             {
                 headers: {

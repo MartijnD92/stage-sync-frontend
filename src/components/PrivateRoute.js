@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from 'context/AuthContext';
-import FullPageLoader from 'components/FullPageLoader/FullPageLoader';
+import FullPageLoader from 'components/FullPageLoader/FullPageloader';
 import { Route, Redirect } from 'react-router-dom';
 
 function PrivateRoute({ children, ...rest }) {
