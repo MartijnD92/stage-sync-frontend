@@ -1,2 +1,70 @@
 @import '../../../css/config';
 
+.hamburger {
+    position: relative;
+    display: block;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+
+    .label {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .item {
+        position: relative;
+        transition: all 0.11s;
+        position: relative;
+        width: 20px;
+        height: 16px;
+        cursor: pointer;
+    }
+    .part {
+        height: 2px;
+        position: absolute;
+        background: $color-body--primary;
+        right: 0;
+        left: 0;
+        transition: all 0.11s cubic-bezier(0.5, 0, 0.1, 0.8);
+        transform: rotate(0deg);
+        width: 100%;
+        top: 0;
+        &:nth-of-type(2) {
+            top: calc(50% - 1px);
+        }
+        &:nth-of-type(3) {
+            top: calc(100% - 1px);
+        }
+
+        @media only screen and (max-width: get-breakpoints('sm')) {
+            background: $color-body--secondary;
+        }
+    }
+
+    &.active {
+        .part {
+            &:nth-of-type(1) {
+                transform: rotate(45deg);
+                top: calc(50%);
+                width: gutter(1);
+            }
+            &:nth-of-type(2) {
+                left: -100%;
+                opacity: 0;
+            }
+            &:nth-of-type(3) {
+                transform: rotate(-45deg);
+                top: calc(50%);
+                width: gutter(1);
+            }
+        }
+    }
+}

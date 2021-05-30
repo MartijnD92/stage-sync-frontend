@@ -13,8 +13,8 @@ export default function Result({
 	item,
 	setGigStatus,
 	user,
-    settings,
-    key
+	settings,
+	key,
 }) {
 	const statuses = ['CONFIRMED', 'PENDING', 'CANCELLED'];
 	const [updatedStatus, setUpdatedStatus] = useState('');

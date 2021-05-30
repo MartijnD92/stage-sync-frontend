@@ -1,7 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from 'context/AuthContext';
+import { NavLink } from 'react-router-dom';
+import { NavHashLink } from 'react-router-hash-link';
 import NavBar from 'components/NavBar/NavBar';
 import SideMenu from 'components/SideMenu/SideMenu';
+import Hamburger from 'components/Hamburger/Hamburger';
+import Button from 'components/Button/Button';
 import SettingsModal from 'components/SettingsModal/SettingsModal';
 import ProfileModal from 'components/ProfileModal/ProfileModal';
 import AddArtistModal from 'components/AddArtistModal/AddArtistModal';
@@ -15,7 +19,8 @@ import hasPermission, { actions } from 'user-permissions/permissions';
 import styles from './css/Dashboard.module.scss';
 
 export default function Dashboard() {
-	const { user } = useContext(AuthContext);
+	const { user, logOut } = useContext(AuthContext);
+	const [mobileMenu, toggleMobileMenu] = useState(false);
 
 	const userPredefinedSettings = JSON.parse(
 		localStorage.getItem('userSettings')
@@ -50,6 +55,47 @@ export default function Dashboard() {
 
 	return (
 		<>
+			<div className={styles.hamburgerBtn}>
+				<Hamburger
+					active={mobileMenu}
+					onClick={() => toggleMobileMenu(!mobileMenu)}
+				/>
+			</div>
+			<div
+				className={styles.mobileSideMenu}
+				style={{ display: mobileMenu && 'flex' }}
+			>
+				<ul>
+					<li>
+						<NavLink to="/">Home</NavLink>
+					</li>
+					<li>
+						<NavHashLink
+							to="/dashboard#profile"
+							onClick={() => {
+								setIsModalOpen({ profile: true });
+								toggleMobileMenu(false);
+							}}
+						>
+							Profile
+						</NavHashLink>
+					</li>
+					<li>
+						<NavHashLink
+							to="/dashboard#settings"
+							onClick={() => {
+								setIsModalOpen({ settings: true });
+								toggleMobileMenu(false);
+							}}
+						>
+							Settings
+						</NavHashLink>
+					</li>
+					<Button variant={'secondary'} url={'/'} onClick={logOut}>
+						Log out
+					</Button>
+				</ul>
+			</div>
 			<SideMenu isModalOpen={isModalOpen} modalHandler={setIsModalOpen} />
 			<main className={styles.content}>
 				<NavBar>
