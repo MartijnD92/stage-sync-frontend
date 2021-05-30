@@ -34,7 +34,7 @@ export default function NavBar({ children }) {
 				<nav className={`${styles.navbar} ${styles.primary}`}>
 					<div className="content-container">
 						<div className={styles.left}>
-							<Logo className={styles.logo} extended />
+							<Logo className={styles.logo} extended/>
 							<ul className={styles.links}>
 								<li>
 									<NavHashLink
