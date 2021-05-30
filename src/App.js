@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { AuthContext } from 'context/AuthContext';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import PrivateRoute from 'components/PrivateRoute';
 import Home from 'pages/Home/Home';
@@ -8,6 +10,8 @@ import PageNotFound from 'pages/PageNotFound/PageNotFound';
 import './css/App.scss';
 
 function App() {
+	const { user } = useContext(AuthContext);
+
 	return (
 		<>
 			<Switch>
@@ -17,12 +21,10 @@ function App() {
 				<Route path="/signup">
 					<Signup />
 				</Route>
-				<Route path="/login">
-					<Login />
-				</Route>
 				<PrivateRoute path="/dashboard">
 					<Dashboard />
 				</PrivateRoute>
+				{user === null ? <Route path="/login" component={Login}/> : <Redirect to="/dashboard" />}
 				<Route path="/404" component={PageNotFound} />
 				<Redirect to="/404" />
 			</Switch>

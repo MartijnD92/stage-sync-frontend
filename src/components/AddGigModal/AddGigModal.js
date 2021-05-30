@@ -18,6 +18,7 @@ export default function AddGigModal({ modalHandler }) {
 	const [artistNames, setArtistNames] = useState([]);
 
 	const saveGig = async (gigDetails) => {
+		console.log(gigDetails)
 		toggleLoading(true);
 		try {
 			await axios.post('http://localhost:8080/api/gigs/', gigDetails, {
