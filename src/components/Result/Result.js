@@ -14,14 +14,13 @@ export default function Result({
 	setGigStatus,
 	user,
 	settings,
-	key,
 }) {
 	const statuses = ['CONFIRMED', 'PENDING', 'CANCELLED'];
 	const [updatedStatus, setUpdatedStatus] = useState('');
 	const dateAndTime = getDateAndTime(item.date);
 
 	return (
-		<tr key={key}>
+		<tr>
 			{hasPermission(user, actions.DELETE_RECORD) && (
 				<td>
 					<input

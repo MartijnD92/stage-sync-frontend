@@ -1,6 +1,5 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from 'context/AuthContext';
-import axios from 'axios';
 import useSortableData from 'helpers/useSortableData';
 import getClassNamesFor from 'helpers/getClassNamesFor';
 import hasPermission, { actions } from 'user-permissions/permissions';
