@@ -21,10 +21,16 @@ function App() {
 				<Route path="/signup">
 					<Signup />
 				</Route>
+				<Route path="/login">
+					{user === null ? (
+						<Route path="/login" component={Login} />
+					) : (
+						<Redirect to="/dashboard" />
+					)}
+				</Route>
 				<PrivateRoute path="/dashboard">
 					<Dashboard />
 				</PrivateRoute>
-				{user === null ? <Route path="/login" component={Login}/> : <Redirect to="/dashboard" />}
 				<Route path="/404" component={PageNotFound} />
 				<Redirect to="/404" />
 			</Switch>
